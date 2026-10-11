@@ -1,0 +1,9 @@
+{
+  "extends": "liquid-glass",
+  "name": "Preview (feature/value-color)",
+  "title": "PaintPlan · PREVIEW (value-linked colour) — plan &amp; practise paintings from a photo",
+  "deploy": "paintplan/preview/",
+  "manifest": { "name": "PaintPlan — feature preview", "short_name": "PP preview", "background_color": "#3a3a3a", "theme_color": "#3a3a3a" },
+  "sw": { "exclude": [], "legacyCaches": [] },
+  "runtime": { "storage": "paintplan-preview" }
+}

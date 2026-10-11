@@ -1,6 +1,6 @@
 /* ui/panel.js — Control panel: builds the settings markup, syncs controls <-> S, setState(). */
 /* ---------- panel UI ---------- */
-const FMT={compAlpha:'%',gridAlpha:'%',lineAlpha:'%',split:'%',tStrength:'x',cStrength:'x'};
+const FMT={vcDetail:'%',vcStrength:'%',compAlpha:'%',gridAlpha:'%',lineAlpha:'%',split:'%',tStrength:'x',cStrength:'x'};
 function sl(k,label,min,max,step){return`<div class="row"><label for="c_${k}">${label}</label><input type="range" id="c_${k}" data-k="${k}" min="${min}" max="${max}" step="${step}"><output id="o_${k}"></output></div>`;}
 function ck(k,label){return`<label class="ck"><input type="checkbox" data-k="${k}"> ${label}</label>`;}
 function se(k,label,opts){return`<div class="row"><label for="c_${k}">${label}</label><select id="c_${k}" data-k="${k}">${opts.map(o=>`<option value="${o[0]}">${esc(o[1])}</option>`).join('')}</select></div>`;}
@@ -12,7 +12,8 @@ function buildPanel(){
 <section class="sec" id="secMode">
   <h3 id="modeTitle"></h3><p class="hint" id="modeHint"></p>
   <div data-for="squint">${sl('squint','Squint amount',0.5,8,0.25)}</div>
-  <div data-for="values">${sl('vSteps','Steps',2,9,1)}${sl('vBlack','Black level',0,60,1)}${sl('vMid','Midpoint',5,95,1)}${sl('vWhite','White level',40,100,1)}${sl('vBlur','Pre-blur',0,8,0.25)}${sl('vSmooth','Simplify shapes',0,6,0.5)}</div>
+  <div data-for="values">${sl('vSteps','Steps',2,9,1)}${sl('vBlack','Black level',0,60,1)}${sl('vMid','Midpoint',5,95,1)}${sl('vWhite','White level',40,100,1)}${sl('vBlur','Pre-blur',0,8,0.25)}${sl('vSmooth','Simplify shapes',0,6,0.5)}
+    <div class="vcolor">${ck('vColor','Apply to colour photo')}<div data-show="vColor">${se('vcStyle','Style',[['steps','Stepped (value groups)'],['smooth','Smooth (tone curve)']])}<div data-show="vcStyle=steps">${se('vcOut','Step values',[['centre','Even scale'],['study','Same as value study'],['avg','Group average']])}</div>${sl('vcDetail','Keep texture',0,1,0.05)}${sl('vcStrength','Strength',0,1,0.05)}${ck('vcGamut','Mark pixels that lost chroma (gamut)')}<p class="hint" id="vcNote"></p></div></div></div>
   <div data-for="notan">${ck('nThree','3 values (dark / mid / light)')}${sl('nMid','Threshold',5,95,1)}${sl('nBlur','Pre-blur',0,10,0.25)}${sl('nSmooth','Simplify shapes',0,8,0.5)}</div>
   <div data-for="values notan"><div class="strip" id="strip"></div><canvas class="hist" id="hist" width="600" height="200" aria-label="Value histogram — drag the boundary handles to move the step thresholds"></canvas><div class="levels"><span class="hint" id="levelsInfo"></span><button id="bLevelsAuto" hidden>Reset to auto</button></div><p class="hint">Strip: step · output value · input L* range · coverage. Histogram = reference values; bands are shaded in each step's value. Drag a handle to move that boundary; tap a band to highlight it.</p></div>
   <div data-for="palette">${sl('pK','Colours',2,16,1)}${sl('pBlur','Pre-blur',0,8,0.25)}${sl('pSmooth','Simplify shapes',0,6,0.5)}<div class="sws" id="swatches"></div>

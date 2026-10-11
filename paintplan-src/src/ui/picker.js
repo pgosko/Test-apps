@@ -14,13 +14,16 @@ function showPick(){
   const temp=C<0.02?'neutral':warm>0.012?'warm':warm<-0.012?'cool':'neutral';const chroma=C<0.035?'low':C<0.1?'medium':'high';
   let extra='';const lok=labels&&labels.length===w*h;if(lok&&(S.mode==='values'||S.mode==='notan')&&lastValues)extra=` · step <b>${labels[py*w+px]+1}</b> of ${lastValues.N}`;
   if(lok&&S.mode==='palette'&&lastPalette)extra=` · palette colour <b>${labels[py*w+px]+1}</b>`;
+  let adj='';   // Values → "Apply to colour photo": original vs adjusted value at this point
+  if(S.mode==='values'&&S.vColor&&procData&&procData.width===w&&procData.height===h&&lastValues&&lastValues.color){let r2=0,g2=0,b2=0;const d=procData.data;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const j=(clamp(py+dy,0,h-1)*w+clamp(px+dx,0,w-1))*4;r2+=d[j];g2+=d[j+1];b2+=d[j+2];}
+    const l2=[r2/9,g2/9,b2/9].map(c=>U.S2L[Math.round(c)]),La=U.Lstar(0.2126*l2[0]+0.7152*l2[1]+0.0722*l2[2]);adj=` → adjusted <b>${Math.round(La)}%</b> <span class="pk-adj" style="display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;background:rgb(${[r2/9,g2/9,b2/9].map(Math.round).join(',')})"></span>`;}
   let mixHtml='';
   if(S.pigments.length){const m=local({type:'suggest',pigs:S.pigments.map(p=>p.c),ts:S.pigments.map(pigStrength),rgb}).res;const q=m.dE<3?'very close':m.dE<6?'close':m.dE<12?'approximate':'outside this palette';
     mixHtml=`<div style="margin-top:4px">Mix (${esc(PALS[S.rPreset]?PALS[S.rPreset][0].split(' (')[0]:'palette')}): <b>${recipe(m.w,S.pigments)}</b><br><span style="color:var(--muted)">simulated · ${q} (ΔE ${m.dE.toFixed(1)})</span></div>`;
     $('#pick').dataset.mix=hex2(m.rgb);}
   const hx=hex2(rgb);
   $('#pick').innerHTML=`<div class="pk-sw" title="Sample on neutral gray"><i style="background:${hx}"></i>${mixHtml?`<i style="background:${$('#pick').dataset.mix}" title="Suggested mix"></i>`:''}</div>
-   <div class="pk-t"><b>${hx}</b> <span style="color:var(--muted)">rgb ${rgb.join(', ')}</span><br>Value <b>${Math.round(Ls)}%</b> (L*, ≈ Munsell ${(Ls/10).toFixed(1)})${extra}<br>Chroma ${chroma} · ${temp}${mixHtml}</div>
+   <div class="pk-t"><b>${hx}</b> <span style="color:var(--muted)">rgb ${rgb.join(', ')}</span><br>Value <b>${Math.round(Ls)}%</b>${adj?' original'+adj:` (L*, ≈ Munsell ${(Ls/10).toFixed(1)})`}${extra}<br>Chroma ${chroma} · ${temp}${mixHtml}</div>
    <button class="pk-x" aria-label="Close">×</button>`;
   $('#pick').hidden=false;
 }

@@ -22,7 +22,8 @@ src/
   worker/
     client.js             spawns the engine as a Blob worker (works offline and on iOS Safari) + main-thread fallback
     engine/               pure image processing, concatenated into function ENGINE(){…}
-      color.js image-cache.js filters.js values.js palette.js mixing.js edges.js dispatch.js
+      color.js image-cache.js filters.js values.js palette.js mixing.js value-color.js edges.js dispatch.js
+      (value-color.js: Values → "Apply to colour photo" — lightness-only remap in OKLab, see research/value-linked-color.md)
   ui/                     DOM ↔ state controllers
     panel.js mode-info.js histogram.js scale-info.js render.js overlays.js gestures.js picker.js export.js init.js
     paint-picker.js (searchable paint picker for Limited Palette slots; bottom sheet on phones)
@@ -34,6 +35,8 @@ src/
     theme.css             design tokens (:root{…}) + component/layout overrides on top of base.css
     template.html         body markup: where header, stage, panel and mode bar go
     icons/*.svg           (optional) referenced from theme.css as {{icon:name}}
+    "extends": "<id>"     (optional, theme.json) inherit another theme's settings/template/CSS/icons; own theme.css is appended.
+                          themes/preview = liquid-glass → paintplan/preview/, own SW cache prefix + runtime.storage namespace
 dist/<id>/                build output — what gets deployed (index.html is a single file with CSS+JS inlined)
 research/                 oil-paints.md (sources + method), build-library.py, raw scraped data
 test/                     headless Chrome tests (functional, histogram, palette, service-worker update, visual parity)
@@ -94,3 +97,18 @@ cache is deleted. Strategy: pages are **network-first** (revalidated, cached cop
 icons/manifest are stale-while-revalidate. If a new worker takes over while an older page is open (e.g. an installed
 iPhone app resumed from the background), a small "PaintPlan was updated — Reload" toast appears. The classic worker
 ignores `proposals/` (previews have their own worker) and deletes the legacy `paintplan-v1` cache.
+
+## Feature previews (branches)
+Experimental work lives on a git branch (here and in the deploy repo's `paintplan-src/`). To let it be tried on a phone
+without touching the live app, the branch's `themes/preview` (liquid-glass look) is built and **only `dist/preview` is
+copied** to `<repo>/paintplan/preview/` on `main` (GitHub Pages serves `main` only):
+
+```
+git checkout feature/value-color && node build.mjs preview
+cp dist/preview/* ../test-apps/paintplan/preview/      # on the deploy repo's main branch — do NOT use --deploy here
+```
+Isolation: the preview has its own service worker (scope `paintplan/preview/`, cache prefix `paintplan-preview-`), the
+classic SW excludes `preview/` (`sw.exclude`), and `runtime.storage: "paintplan-preview"` gives it its own localStorage
+key and IndexedDB database, so it cannot read or overwrite the live app's saved photo/settings.
+Merging a feature: merge the branch into `main`, run the tests, `node build.mjs --deploy ../test-apps`; keep or delete
+`themes/preview` (and `paintplan/preview/`) as wanted.

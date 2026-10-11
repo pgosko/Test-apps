@@ -6,9 +6,9 @@
       case 'gray':for(let i=0;i<n;i++){const g=grayOfL(img.L[i]);put(i,g,g,g);}break;
       case 'squint':{const [R,G,B]=rgbB(p.squint*3*sc);for(let i=0;i<n;i++)put(i,R[i],G[i],B[i]);break;}
       case 'values':case 'notan':{
-        const r=valueSteps(p),g=r.outL.map(grayOfL);
-        for(let i=0;i<n;i++){const v=g[r.lab[i]];put(i,v,v,v);}
-        labels=r.lab.slice();info={N:r.N,counts:r.counts,bounds:r.bounds,outL:r.outL,hist:histL(),black:p.black,white:p.white,custom:!!(p.cuts&&p.cuts.length===r.N-1)};break;}
+        const r=valueSteps(p.color?Object.assign({},p,{color:undefined}):p),g=r.outL.map(grayOfL),vc=m.mode==='values'&&p.color?valueColor(p,r,out):null;
+        if(!vc)for(let i=0;i<n;i++){const v=g[r.lab[i]];put(i,v,v,v);}
+        labels=r.lab.slice();info={N:r.N,counts:r.counts,bounds:r.bounds,outL:vc?vc.outL:r.outL,hist:histL(),black:p.black,white:p.white,custom:!!(p.cuts&&p.cuts.length===r.N-1),color:vc};break;}
       case 'palette':{
         const r=paletteLabels(p);
         for(let i=0;i<n;i++){const c=r.cols[r.labels[i]].rgb;put(i,c[0],c[1],c[2]);}

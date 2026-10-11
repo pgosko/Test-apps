@@ -14,7 +14,7 @@ const vParams=()=>levelParams({steps:S.vSteps,black:S.vBlack,white:S.vWhite,mid:
 const nParams=()=>levelParams({steps:S.nThree?3:2,black:0,white:100,mid:S.nMid,blur:S.nBlur,smooth:S.nSmooth},'notan');
 const pParams=()=>({k:S.pK,blur:S.pBlur,smooth:S.pSmooth});
 function modeParams(){const m=S.mode;
-  if(m==='squint')return{squint:S.squint};if(m==='values')return vParams();if(m==='notan')return nParams();
+  if(m==='squint')return{squint:S.squint};if(m==='values')return S.vColor?Object.assign(vParams(),{color:{style:S.vcStyle,out:S.vcOut,detail:S.vcDetail,strength:S.vcStrength,gamut:S.vcGamut}}):vParams();if(m==='notan')return nParams();
   if(m==='palette')return pParams();if(m==='remap')return{pigs:S.pigments.map(p=>p.c),ts:S.pigments.map(pigStrength),mix:S.rMix,blur:S.rBlur};
   if(m==='temp')return{s:S.tStrength};if(m==='chroma')return{s:S.cStrength};return{};}
 function edgeParams(){return{src:S.lineSrc,blur:S.lineBlur,detail:S.lineDetail,clean:S.lineClean,thick:S.lineThick,
@@ -39,6 +39,7 @@ function applyProcess(r){
   if(r.mode==='palette'){lastPalette=r.info;if(hl>=r.info.cols.length)hl=-1;}
   if(r.mode==='remap'){lastRemap=r.info;if(hl>=0&&!r.info.mixes.some(m=>m.idx===hl))hl=-1;}
   rebuildDisplay();renderModeInfo();render();
+  if(pickPt&&r.mode==='values'&&S.vColor)showPick();   // eyedropper shows the adjusted value of the new result
 }
 function applyEdges(r){
   if(r.imageId!==imageId)return;edgeImageId=r.imageId;edgeMask=new Uint8Array(r.mask);edgeC.width=r.w;edgeC.height=r.h;recolorEdges();edgeReady=true;render();

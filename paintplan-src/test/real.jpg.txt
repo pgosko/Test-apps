@@ -1,0 +1,3 @@
+test/real.jpg — real photograph used by test/value-color.js (texture + saturated greens).
+"Altja jõgi Lahemaal" by Ivar Leidus, Wikimedia Commons, CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Altja_j%C3%B5gi_Lahemaal.jpg  (downloaded at 1600 px width, 2026-10-11)

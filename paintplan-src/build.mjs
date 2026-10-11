@@ -15,7 +15,7 @@ const SRC = path.join(ROOT, 'src');
 const read = p => fs.readFileSync(path.join(SRC, p), 'utf8');
 
 // Engine fragments: concatenated inside `function ENGINE(){ … }` (the function is also stringified into the worker).
-const ENGINE_PARTS = ['color', 'image-cache', 'filters', 'values', 'palette', 'mixing', 'edges', 'dispatch'].map(n => `worker/engine/${n}.js`);
+const ENGINE_PARTS = ['color', 'image-cache', 'filters', 'values', 'palette', 'mixing', 'value-color', 'edges', 'dispatch'].map(n => `worker/engine/${n}.js`);
 // App modules, in load order (they share one script scope). `if` = include only when the theme's runtime config says so.
 const MODULES = [
   'core/util.js', 'core/paint-library.js', 'core/config.js', 'core/store.js', 'worker/client.js', 'core/pipeline.js',
@@ -44,10 +44,19 @@ function iconsInline(css, dir) {
 
 function buildTheme(id) {
   const tdir = path.join(SRC, 'themes', id);
-  const T = JSON.parse(fs.readFileSync(path.join(tdir, 'theme.json'), 'utf8'));
+  let T = JSON.parse(fs.readFileSync(path.join(tdir, 'theme.json'), 'utf8'));
+  // "extends": "<theme>" → inherit that theme's settings, template, CSS, icons and assets; own theme.css is appended
+  // (used for isolated previews, e.g. themes/preview = liquid-glass deployed to another folder with its own SW + storage)
+  let bdir = tdir;
+  if (T.extends) {
+    bdir = path.join(SRC, 'themes', T.extends); const B = JSON.parse(fs.readFileSync(path.join(bdir, 'theme.json'), 'utf8'));
+    T = { ...B, ...T, manifest: { ...B.manifest, ...T.manifest }, sw: { ...B.sw, ...T.sw }, runtime: { ...(B.runtime || {}), ...(T.runtime || {}) } };
+  }
   const rt = T.runtime || {};
-  const body = fs.readFileSync(path.join(tdir, 'template.html'), 'utf8').replace(/\{\{> ([\w-]+)\}\}\n?/g, (m, n) => read(`partials/${n}.html`));
-  let themeCss = iconsInline(fs.readFileSync(path.join(tdir, 'theme.css'), 'utf8'), tdir);
+  const tfile = n => fs.existsSync(path.join(tdir, n)) ? path.join(tdir, n) : path.join(bdir, n);
+  const body = fs.readFileSync(tfile('template.html'), 'utf8').replace(/\{\{> ([\w-]+)\}\}\n?/g, (m, n) => read(`partials/${n}.html`));
+  let themeCss = iconsInline(fs.readFileSync(path.join(bdir, 'theme.css'), 'utf8'), bdir);
+  if (bdir !== tdir && fs.existsSync(path.join(tdir, 'theme.css'))) themeCss += '\n' + iconsInline(fs.readFileSync(path.join(tdir, 'theme.css'), 'utf8'), bdir);
   if (rt.setup) themeCss += '/* Setup sections (generated from theme.json → runtime.setup) */\n' +
     ['secSetup', ...rt.setup.sections].map(id => `body:not(.setup) #${id}`).join(',') + '{display:none!important}\n' +
     (rt.setup.hide || []).map(id => `body.setup #${id}`).join(',') + '{display:none!important}\n';
@@ -62,7 +71,7 @@ function buildTheme(id) {
     BASE_CSS: read('styles/base.css'), THEME_CSS: themeCss, BODY: body, JS: js });
   const manifest = fill(read('pwa/manifest.webmanifest'), T.manifest);
   const swTpl = fill(read('pwa/sw.js'), { theme: id, LEGACY: JSON.stringify(T.sw.legacyCaches || []), EXCLUDE: JSON.stringify(T.sw.exclude || []) });
-  const assetPath = a => fs.existsSync(path.join(tdir, 'assets', a)) ? path.join(tdir, 'assets', a) : path.join(SRC, 'assets', a);
+  const assetPath = a => [tdir, bdir].map(d => path.join(d, 'assets', a)).find(f => fs.existsSync(f)) || path.join(SRC, 'assets', a);
   const h = crypto.createHash('sha256'); [html, manifest, swTpl].forEach(s => h.update(s)); ASSETS.forEach(a => h.update(fs.readFileSync(assetPath(a))));
   const BUILD = h.digest('hex').slice(0, 12);
   html = html.split('{{BUILD}}').join(BUILD);
@@ -98,6 +107,6 @@ if (DEPLOY) {
   copyTree(SRC, path.join(srcDest, 'src'));
   for (const f of ['build.mjs', 'README.md', '.gitignore']) if (fs.existsSync(path.join(ROOT, f))) fs.copyFileSync(path.join(ROOT, f), path.join(srcDest, f));
   if (fs.existsSync(path.join(ROOT, 'research'))) copyTree(path.join(ROOT, 'research'), path.join(srcDest, 'research'));
-  copyTree(path.join(ROOT, 'test'), path.join(srcDest, 'test'), (n) => n === 'node_modules' || n === 'out' || /\.(png|jpe?g)$/i.test(n) && n !== 'photo.jpg' && n !== 'replace.jpg');
+  copyTree(path.join(ROOT, 'test'), path.join(srcDest, 'test'), (n) => n === 'node_modules' || n === 'out' || /\.(png|jpe?g)$/i.test(n) && n !== 'photo.jpg' && n !== 'replace.jpg' && n !== 'real.jpg');
   console.log('source → paintplan-src/');
 }
