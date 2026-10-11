@@ -14,7 +14,7 @@ function buildPanel(){
   <div data-for="squint">${sl('squint','Squint amount',0.5,8,0.25)}</div>
   <div data-for="values">${sl('vSteps','Steps',2,9,1)}${sl('vBlack','Black level',0,60,1)}${sl('vMid','Midpoint',5,95,1)}${sl('vWhite','White level',40,100,1)}${sl('vBlur','Pre-blur',0,8,0.25)}${sl('vSmooth','Simplify shapes',0,6,0.5)}</div>
   <div data-for="notan">${ck('nThree','3 values (dark / mid / light)')}${sl('nMid','Threshold',5,95,1)}${sl('nBlur','Pre-blur',0,10,0.25)}${sl('nSmooth','Simplify shapes',0,8,0.5)}</div>
-  <div data-for="values notan"><div class="strip" id="strip"></div><canvas class="hist" id="hist" width="600" height="112"></canvas><p class="hint">Strip: step · output value · input L* range · coverage. Histogram = reference values with step boundaries.</p></div>
+  <div data-for="values notan"><div class="strip" id="strip"></div><canvas class="hist" id="hist" width="600" height="200" aria-label="Value histogram — drag the boundary handles to move the step thresholds"></canvas><div class="levels"><span class="hint" id="levelsInfo"></span><button id="bLevelsAuto" hidden>Reset to auto</button></div><p class="hint">Strip: step · output value · input L* range · coverage. Histogram = reference values; bands are shaded in each step's value. Drag a handle to move that boundary; tap a band to highlight it.</p></div>
   <div data-for="palette">${sl('pK','Colours',2,16,1)}${sl('pBlur','Pre-blur',0,8,0.25)}${sl('pSmooth','Simplify shapes',0,6,0.5)}<div class="sws" id="swatches"></div>
     <div class="btns"><button id="bUsePal">Use as limited palette</button><button id="bCopyHex">Copy hex list</button></div></div>
   <div data-for="remap">${se('rPreset','Palette',Object.entries(PALS).map(([k,v])=>[k,v[0]]))}<div id="pigList"></div>
@@ -89,7 +89,7 @@ function syncControls(except){
   $('#bMirror').setAttribute('aria-pressed',String(S.flipH));
   $('#gridUnit').textContent=S.unit;
   document.documentElement.style.setProperty('--stage',S.stageBg);
-  renderPigs();updateInfo();
+  renderPigs();updateInfo();syncLevels();
 }
 function fmtVal(k,v){const f=FMT[k];if(f==='%')return Math.round(v*100)+'%';if(f==='x')return fmtN(v)+'×';return fmtN(v);}
 function onControl(e){
@@ -107,6 +107,7 @@ function setState(k,v,el){
   if(k==='orient'){if((v==='landscape')!==(S.cw>S.ch)&&S.cw!==S.ch){const t=S.cw;S.cw=S.ch;S.ch=t;}}
   if(k==='cw'||k==='ch'){S.preset='custom';if(S.cw!==S.ch)S.orient=S.cw>S.ch?'landscape':'portrait';}
   if(k==='rPreset')applyPigPreset();
+  levelsOnSetState(k,old);
   if(k==='mode'){hl=-1;rebuildDisplay();}
   if(k==='spiral'&&v)S.spiral=true;
   syncControls(el);save();

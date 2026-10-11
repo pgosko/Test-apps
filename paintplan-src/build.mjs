@@ -19,7 +19,7 @@ const ENGINE_PARTS = ['color', 'image-cache', 'filters', 'values', 'palette', 'm
 // App modules, in load order (they share one script scope). `if` = include only when the theme's runtime config says so.
 const MODULES = [
   'core/util.js', 'core/config.js', 'core/store.js', 'worker/client.js', 'core/pipeline.js',
-  'ui/panel.js', 'ui/mode-info.js', 'ui/scale-info.js',
+  'core/levels.js', 'ui/panel.js', 'ui/mode-info.js', 'ui/histogram.js', 'ui/scale-info.js',
   'core/storage.js', 'core/image.js', { file: 'core/sample.js', if: rt => rt.sample }, 'core/placement.js',
   'ui/render.js', 'core/geometry.js', 'ui/overlays.js', 'ui/gestures.js', 'ui/picker.js', 'ui/export.js', 'ui/init.js',
   { file: 'ui/empty.js', if: rt => !rt.sample }, { file: 'ui/setup.js', if: rt => !!rt.setup },

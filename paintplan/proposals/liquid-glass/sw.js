@@ -2,7 +2,7 @@
    so every deploy that changes anything gets a new cache automatically (no manual version bump).
    Strategy: pages (navigations/HTML) = network-first with offline fallback to the cached copy;
    static assets (icons, manifest) = stale-while-revalidate. */
-const BUILD = '6f2c87bf1841';
+const BUILD = '09bd28dc8642';
 const PREFIX = 'paintplan-liquid-glass-';
 const VERSION = PREFIX + BUILD;
 const LEGACY = [];     // cache names used by older service workers of this app

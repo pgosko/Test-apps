@@ -8,7 +8,7 @@
       case 'values':case 'notan':{
         const r=valueSteps(p),g=r.outL.map(grayOfL);
         for(let i=0;i<n;i++){const v=g[r.lab[i]];put(i,v,v,v);}
-        labels=r.lab.slice();info={N:r.N,counts:r.counts,bounds:r.bounds,outL:r.outL,hist:histL(),black:p.black,white:p.white};break;}
+        labels=r.lab.slice();info={N:r.N,counts:r.counts,bounds:r.bounds,outL:r.outL,hist:histL(),black:p.black,white:p.white,custom:!!(p.cuts&&p.cuts.length===r.N-1)};break;}
       case 'palette':{
         const r=paletteLabels(p);
         for(let i=0;i<n;i++){const c=r.cols[r.labels[i]].rgb;put(i,c[0],c[1],c[2]);}

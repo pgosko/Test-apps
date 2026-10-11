@@ -57,7 +57,13 @@ input[type=color]{width:44px;height:32px;border:1px solid #4a4a4a;border-radius:
 .pig{display:flex;gap:6px;align-items:center;margin:5px 0}
 .pig input[type=text]{flex:1}
 .pig button{min-height:32px;padding:2px 9px}
-canvas.hist{width:100%;height:56px;display:block;border-radius:4px;margin:4px 0}
+canvas.hist{width:100%;height:100px;display:block;border-radius:4px;margin:4px 0;touch-action:pan-y;cursor:default}
+canvas.hist.grab{cursor:ew-resize}
+canvas.hist.dragging{cursor:grabbing}
+.levels{display:flex;align-items:center;gap:8px;min-height:34px;margin:2px 0}
+.levels .hint{flex:1;margin:0}
+.levels button{min-height:30px;padding:3px 10px}
+.row.dim{opacity:.5}
 #posbar{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(34,34,34,.96);border:1px solid var(--accent);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;gap:2px}
 #posbar .pb-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 #posbar .pb-row>label{flex:0 0 52px;color:var(--muted);font-size:13px}
@@ -84,6 +90,7 @@ kbd{font:11px ui-monospace,monospace;background:#1d1d1d;border:1px solid #444;bo
   body.nopanel #panel{display:flex;height:auto}
   body.nopanel #panelBody{display:none}
   .row>label{flex-basis:96px}
+  canvas.hist{height:120px}
   header button,header .btn{padding:4px 7px;font-size:13px}
   header{gap:4px}
   .hide-m{display:none}

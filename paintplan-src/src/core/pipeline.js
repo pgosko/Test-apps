@@ -10,8 +10,8 @@ let posMode=false,posGest=false,placeDirty=false,procImageId=-1,edgeImageId=-1,p
 const fH=()=>S.flipH&&!posMode,fV=()=>S.flipV&&!posMode;
 
 const aspect=()=>(S.cw>0&&S.ch>0)?S.cw/S.ch:1;
-const vParams=()=>({steps:S.vSteps,black:S.vBlack,white:S.vWhite,mid:S.vMid,blur:S.vBlur,smooth:S.vSmooth});
-const nParams=()=>({steps:S.nThree?3:2,black:0,white:100,mid:S.nMid,blur:S.nBlur,smooth:S.nSmooth});
+const vParams=()=>levelParams({steps:S.vSteps,black:S.vBlack,white:S.vWhite,mid:S.vMid,blur:S.vBlur,smooth:S.vSmooth},'values');
+const nParams=()=>levelParams({steps:S.nThree?3:2,black:0,white:100,mid:S.nMid,blur:S.nBlur,smooth:S.nSmooth},'notan');
 const pParams=()=>({k:S.pK,blur:S.pBlur,smooth:S.pSmooth});
 function modeParams(){const m=S.mode;
   if(m==='squint')return{squint:S.squint};if(m==='values')return vParams();if(m==='notan')return nParams();

@@ -26,10 +26,3 @@ function renderModeInfo(){
     $('#remapNote').textContent=`${r.used} distinct mixes used (of ${r.gamutSize} possible${S.rMix?`, ratios in ${r.S}ths`:''}). Mixing is a simple simulation; real pigments vary — treat it as a starting point.`;
   }
 }
-function drawHist(v){
-  const c=$('#hist'),x=c.getContext('2d'),W=c.width,H=c.height;x.clearRect(0,0,W,H);
-  for(let i=0;i<v.N;i++){const lo=i===0?0:v.bounds[i],hi=i===v.N-1?100:v.bounds[i+1],g=Math.round(30+i/(Math.max(1,v.N-1))*50);x.fillStyle=`hsl(40,6%,${g}%)`;x.fillRect(lo/100*W,0,(hi-lo)/100*W+1,H);}
-  const mx=Math.max(...v.hist)||1;x.fillStyle='rgba(20,20,20,.85)';
-  for(let i=0;i<=100;i++){const bh=Math.sqrt(v.hist[i]/mx)*(H-4);x.fillRect(i/101*W,H-bh,W/101+0.5,bh);}
-  x.fillStyle='#c8b48f';for(let i=1;i<v.N;i++)x.fillRect(v.bounds[i]/100*W-1,0,2,H);
-}
