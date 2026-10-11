@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#151515">
+<title>Test apps</title>
+<link rel="icon" type="image/png" href="paintplan/icon-192.png">
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#151515;color:#e8e6e3;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:max(32px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+h1{font-size:26px;margin:8px 0 4px}
+p{color:#a09d98;margin:0 0 24px}
+a.app{display:flex;align-items:center;gap:16px;padding:14px;margin-bottom:12px;border:1px solid #2e2e2e;border-radius:16px;background:#1d1d1d;color:inherit;text-decoration:none}
+a.app:hover,a.app:focus-visible{border-color:#5a5a5a;background:#232323}
+a.app img{width:64px;height:64px;border-radius:14px;flex:none}
+a.app b{display:block;font-size:18px}
+a.app span{color:#a09d98;font-size:14px}
+.tip{font-size:14px;border-top:1px solid #2a2a2a;padding-top:16px;margin-top:24px}
+</style>
+</head>
+<body>
+<main>
+<h1>Test apps</h1>
+<p>Single-file web apps. Open one on your iPhone in Safari, tap Share → <b>Add to Home Screen</b> to run it full screen.</p>
+<a class="app" href="paintplan/"><img src="paintplan/icon-192.png" alt=""><div><b>PaintPlan</b><span>Plan &amp; practise paintings from a photo: values, notan, palette, composition grids.</span></div></a>
+<a class="app" href="film-grain-lab/"><img src="film-grain-lab/icon-192.png" alt=""><div><b>Film Grain Lab</b><span>Silver-halide film, lens &amp; darkroom simulator.</span></div></a>
+<p class="tip">Each app works offline after the first visit.</p>
+</main>
+</body>
+</html>

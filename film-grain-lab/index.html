@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0706">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Film Grain">
+<title>Film Grain Lab v2 — silver-halide film, lens & darkroom simulator</title>
+<meta name="description" content="Expose any image onto simulated photographic film: lens optics, Poisson photons on silver-halide crystals, development effects and darkroom paper printing.">
+<style>
+:root{
+  --bg:#0a0706; --panel:#140e0c; --panel2:#1c1411; --line:#33241f; --txt:#e9dcd4; --dim:#9a857a;
+  --red:#ff3b2b; --amber:#ffb347; --glow:rgba(255,59,43,.35);
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{display:flex;flex-direction:column;min-height:100vh;
+  background:radial-gradient(1200px 600px at 30% -10%, rgba(255,40,20,.08), transparent 60%), var(--bg)}
+header{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--line);background:rgba(10,7,6,.85);flex-wrap:wrap}
+.logo{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:16px;display:flex;align-items:center;gap:10px}
+.logo .dot{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:0 0 10px 2px var(--glow)}
+.logo small{font-weight:600;color:var(--dim);letter-spacing:.1em;font-size:11px}
+.sub{color:var(--dim);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.hdr-actions{margin-left:auto;display:flex;gap:8px}
+main{flex:1;display:flex;min-height:0}
+#stage{position:relative;flex:1;min-width:0;min-height:300px;background:#050303;overflow:hidden;touch-action:none}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+#ring{position:absolute;pointer-events:none;border-radius:50%;border:2px solid rgba(255,179,71,.85);
+  box-shadow:0 0 0 1px #000, 0 6px 30px rgba(0,0,0,.8), inset 0 0 12px rgba(0,0,0,.6);display:none}
+#ring span{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font:11px var(--mono);color:var(--amber);
+  background:rgba(0,0,0,.7);padding:1px 6px;border-radius:8px;white-space:nowrap}
+#hud{position:absolute;left:12px;top:10px;right:12px;display:flex;gap:12px;align-items:center;pointer-events:none;font:12px var(--mono);flex-wrap:wrap}
+#phase{padding:2px 9px;border-radius:12px;background:rgba(255,179,71,.08);border:1px solid rgba(255,179,71,.3);color:var(--amber);letter-spacing:.06em}
+#phase.busy{color:#ffb3a8;border-color:rgba(255,59,43,.45);background:rgba(255,59,43,.12)}
+#hudInfo{color:var(--dim);text-shadow:0 1px 2px #000}
+#dropHint{position:absolute;inset:16px;border:2px dashed rgba(255,179,71,.6);border-radius:14px;display:none;align-items:center;justify-content:center;
+  font-size:20px;color:var(--amber);background:rgba(10,7,6,.7);pointer-events:none}
+#stage.drag #dropHint{display:flex}
+#err{position:absolute;inset:auto 16px 16px 16px;padding:12px;border-radius:10px;background:#3a0f0a;border:1px solid var(--red);color:#ffd2cc}
+#panel{width:350px;flex:none;overflow-y:auto;border-left:1px solid var(--line);background:linear-gradient(180deg,var(--panel),#0f0a09);padding:12px 14px 28px}
+.group{margin:0 0 12px}
+.group>label,.lbl{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);margin-bottom:6px}
+output{font:12px var(--mono);color:var(--amber);text-transform:none;letter-spacing:0;white-space:nowrap}
+.seg{display:flex;background:#0b0807;border:1px solid var(--line);border-radius:9px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;color:var(--txt);padding:8px 4px;border-radius:6px;font:600 13px system-ui;cursor:pointer;min-height:34px}
+.seg button.on{background:linear-gradient(180deg,#5a1a12,#3a110c);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,59,43,.6)}
+.seg button:disabled{opacity:.35;cursor:default}
+button{font:inherit}
+header button,.actions button,.toggle{border:1px solid var(--line);background:var(--panel2);color:var(--txt);padding:8px 12px;border-radius:9px;cursor:pointer;font-weight:600}
+header button:hover,.actions button:hover,.toggle:hover{border-color:#6a4a3e}
+.primary{background:linear-gradient(180deg,#d8341f,#9c1d0f)!important;border-color:#ff5a45!important;color:#fff}
+.toggle.on{border-color:rgba(255,179,71,.7);color:var(--amber)}
+.actions{display:flex;gap:8px;margin:0 0 12px}
+.actions button{flex:1;padding:11px 8px}
+.row{display:flex;gap:10px;align-items:center}
+.row input[type=range]{flex:1}
+input[type=range]{width:100%;accent-color:var(--red);height:24px;margin:0}
+select{width:100%;background:#0b0807;color:var(--txt);border:1px solid var(--line);border-radius:7px;padding:7px;font:inherit}
+details.sec{border:1px solid var(--line);border-radius:11px;margin-bottom:10px;background:rgba(0,0,0,.22)}
+details.sec>summary{cursor:pointer;list-style:none;padding:11px 12px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;color:#d9c6bb;user-select:none}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary::before{content:'▸';color:var(--dim);transition:transform .15s}
+details.sec[open]>summary::before{transform:rotate(90deg)}
+details.sec>summary .badge{margin-left:auto;font:11px var(--mono);color:var(--amber);letter-spacing:0;text-transform:none}
+details.sec>.body{padding:2px 12px 10px}
+.stage-note{font-size:11px;color:var(--dim);margin:-2px 0 10px;line-height:1.4}
+.fx{border-top:1px solid #241915;padding:9px 0 4px}
+.fx:first-of-type{border-top:0}
+.fxh{display:flex;align-items:center;gap:9px;cursor:pointer;font-weight:600;font-size:13px}
+.fxh input{width:18px;height:18px;accent-color:var(--red);margin:0;flex:none}
+.fxh .tip{font-weight:400;color:var(--dim);font-size:11px;display:block;margin-top:1px}
+.fxp{padding:6px 0 2px 27px}
+.fx:not(.on) .fxp{display:none}
+.fxp .lbl{margin-bottom:0;margin-top:4px}
+.chk{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px;color:var(--txt)}
+.chk input{width:17px;height:17px;accent-color:var(--red)}
+#chart{width:100%;height:170px;display:block;background:#0b0807;border:1px solid var(--line);border-radius:8px}
+#stats{font:12px/1.6 var(--mono);color:var(--dim)}
+#stats b{color:var(--txt);font-weight:500}
+.about{color:var(--dim);font-size:12px;line-height:1.5}
+.about b{color:var(--txt)}
+@media (max-width: 820px){
+  main{flex-direction:column}
+  #stage{flex:none;height:72vw;max-height:58vh;min-height:250px}
+  #panel{width:auto;border-left:0;border-top:1px solid var(--line);padding-bottom:40px}
+  .sub,#hudInfo{display:none}
+  header{padding:8px 12px}
+  .hdr-actions button{padding:7px 10px}
+  details.sec>summary{padding:13px 12px}
+}
+/* PWA / iPhone safe areas */
+header{padding-top:max(10px,env(safe-area-inset-top));padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+#stage{margin-left:env(safe-area-inset-left)}
+#panel{padding-right:max(14px,env(safe-area-inset-right));padding-bottom:max(28px,env(safe-area-inset-bottom))}
+@media (max-width: 820px){
+  header{padding-top:max(8px,env(safe-area-inset-top));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+  #stage{margin-left:0}
+  #panel{padding-left:max(14px,env(safe-area-inset-left));padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+}
+</style>
+<script>
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('SW registration failed',e))})}
+</script>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="dot"></span>Film Grain Lab <small>v2</small></div>
+  <div class="sub">lens · film · darkroom simulator</div>
+  <div class="hdr-actions">
+    <button id="btnLoad" title="Load an image (or drag & drop onto the film)">Load image</button>
+    <button id="btnSample" title="Use the built-in procedural test scene">Sample</button>
+  </div>
+</header>
+<main>
+  <section id="stage">
+    <canvas id="gl"></canvas>
+    <div id="ring"><span id="ringLbl"></span></div>
+    <div id="hud"><span id="phase">loading</span><span id="hudInfo"></span></div>
+    <div id="dropHint">Drop an image to load it into the camera</div>
+    <div id="err" hidden></div>
+  </section>
+  <aside id="panel">
+    <div class="actions"><button id="btnExpose" class="primary">⟳ Re‑expose</button><button id="btnDownload">⤓ Download PNG</button></div>
+
+    <details class="sec" id="secFilm" open><summary>Film &amp; exposure</summary><div class="body">
+      <div class="group"><label>Film stock</label>
+        <div class="seg" id="segMode"><button data-v="bw">B&amp;W silver</button><button data-v="color">Color (C‑41)</button></div></div>
+      <div class="group"><label>ISO <output id="oIso"></output></label>
+        <div class="seg" id="segIso"><button data-v="100">100</button><button data-v="400">400</button><button data-v="1600">1600</button><button data-v="3200">3200</button></div></div>
+      <div class="group"><label>Exposure <output id="oStops"></output></label>
+        <input type="range" id="rStops" min="-3" max="3" step="0.3333333" value="0"></div>
+      <div class="group"><label>Development time <output id="oDev"></output></label>
+        <input type="range" id="rDev" min="0.5" max="2" step="0.05" value="1"></div>
+      <div class="group"><label>Photons for a latent image (k) <output id="oK"></output></label>
+        <input type="range" id="rK" min="1" max="6" step="1" value="3"></div>
+      <div class="group"><label>Grain size exaggeration <output id="oGs"></output></label>
+        <input type="range" id="rGs" min="0.5" max="2.5" step="0.05" value="1"></div>
+      <div class="group"><label>Working resolution (long side)</label>
+        <select id="selRes"><option>600</option><option>800</option><option>1200</option><option>1600</option><option>2400</option></select></div>
+      <label class="chk"><input type="checkbox" id="cComp" checked> Auto print/scan exposure (compensates film EV)</label>
+    </div></details>
+
+    <details class="sec" id="secLens"><summary>Lens <span class="badge" id="bLens"></span></summary><div class="body">
+      <p class="stage-note">Optical effects shape the light image <b>before</b> it reaches the emulsion.</p>
+      <div class="group"><label>Aperture <output id="oFst"></output></label>
+        <select id="selFst"><option>1.4</option><option>2</option><option>2.8</option><option>4</option><option>5.6</option><option>8</option><option>11</option><option>16</option><option>22</option></select></div>
+      <div id="fxLens"></div>
+    </div></details>
+
+    <details class="sec" id="secCam"><summary>In camera <span class="badge" id="bCam"></span></summary><div class="body">
+      <p class="stage-note">Light that reaches the film plane by other routes: reflections behind the emulsion, leaks, shutter errors.</p>
+      <div id="fxCam"></div>
+    </div></details>
+
+    <details class="sec" id="secEmu"><summary>Emulsion &amp; development <span class="badge" id="bEmu"></span></summary><div class="body">
+      <p class="stage-note">Effects between crystals and in the developer, acting on the grains themselves.</p>
+      <div class="group"><label>Agitation <output id="oAgit"></output></label>
+        <div class="seg" id="segAgit"><button data-v="continuous">Continuous</button><button data-v="intermittent">Intermittent</button><button data-v="stand">Stand</button></div></div>
+      <div id="fxEmu"></div>
+    </div></details>
+
+    <details class="sec" id="secPrint" open><summary>Print / scan <span class="badge" id="bPrint"></span></summary><div class="body">
+      <div class="group"><label>Positive made by</label>
+        <div class="seg" id="segPrint"><button data-v="paper">Darkroom paper</button><button data-v="scan">Scan (digital)</button></div></div>
+      <div id="paperCtl">
+        <div class="group"><label>Paper</label><select id="selPaper"></select></div>
+        <div class="group" id="grpContrast"><label id="lblContrast">Contrast</label><div class="seg" id="segContrast"></div></div>
+        <div class="group"><label>Surface</label>
+          <div class="seg" id="segSurface"><button data-v="glossy">Glossy</button><button data-v="luster">Luster</button><button data-v="matte">Matte</button></div></div>
+        <div class="group"><label>Print exposure <output id="oPexp"></output></label>
+          <input type="range" id="rPexp" min="-2" max="2" step="0.1" value="0"></div>
+        <div id="fxPrint"></div>
+      </div>
+    </div></details>
+
+    <details class="sec" id="secView" open><summary>View &amp; loupe</summary><div class="body">
+      <div class="group"><div class="seg" id="segView"><button data-v="neg">Negative</button><button data-v="pos">Positive</button></div></div>
+      <div class="group"><label>Grain loupe <output id="oMag"></output></label>
+        <div class="row"><button id="btnLoupe" class="toggle">Loupe</button><input type="range" id="rMag" min="2" max="48" step="1" value="12"></div>
+        <p class="stage-note" style="margin-top:6px">Hover (click to pin) or touch-and-drag on the image.</p></div>
+    </div></details>
+
+    <details class="sec" id="secCurve"><summary>Characteristic curves</summary><div class="body">
+      <canvas id="chart"></canvas>
+      <label class="chk"><input type="checkbox" id="cPaperCurve" checked> Show paper curve</label>
+    </div></details>
+
+    <details class="sec" id="secStats"><summary>Stats &amp; about</summary><div class="body">
+      <div id="stats"></div>
+      <p class="about">Each speck is a simulated <b>silver-halide crystal</b>. Light passes through the lens model, then photons hit crystals at random (Poisson) in proportion to the local light and the crystal's size. A crystal that catches <b>k photons</b> holds a latent image; the developer turns it into silver (or dye). The negative is then printed on a modelled paper or scanned.</p>
+    </div></details>
+  </aside>
+</main>
+<input type="file" id="file" accept="image/*" hidden>
+<script>
+"use strict";
+/* =====================================================================
+   Film Grain Lab v2 — physically-inspired film pipeline
+   1. Lens + camera optics act on the linear light image (GPU passes)
+   2. Expected development (developer exhaustion, interimage) → activity map
+   3. Procedural silver-halide crystals: Poisson photons, k-hit latent image, development
+   4. Positive: darkroom paper (enlarger + paper H&D curve) or digital scan
+   ===================================================================== */
+
+// ---------------- Model constants ----------------
+const MOBILE = matchMedia('(max-width: 820px), (pointer: coarse)').matches;
+const ISO_R = {100: 0.06, 400: 0.11, 1600: 0.19, 3200: 0.3}; // median crystal radius, px @1000px frame
+const SIG = 0.45, SIGQ = 1.2;        // log-normal size spread, per-crystal sensitization spread
+const PRINT_CONTRAST = 1.3;          // scan: overall scene→screen log contrast
+const COV = {bw: 2.0, color: 1.5};   // projected crystal area per unit film area (per layer)
+const MID_FRAC = 0.30;               // mid-grey lands at this fraction of max density
+const DYE_K = 1.25;
+const ABS = [[1.0, 0.10, 0.03], [0.12, 1.0, 0.14], [0.03, 0.12, 1.0]]; // film dyes C,M,Y absorption in R,G,B
+const BASE = {bw: [0.93, 0.93, 0.915], color: [0.97, 0.70, 0.47]};
+const MAX_DENS = MOBILE ? 36 : 64;
+const CELL_N = 16;
+const FRAME_MM = 36;                 // long side of the simulated frame
+const devParams = d => ({g: 1.22 * Math.pow(d, 0.3), fog: 0.012 * d * d, tau: Math.pow(d, 0.6)});
+// developer agitation → exhaustion strength e and bromide/developer diffusion radius (mm)
+const AGIT = {continuous: {e: 0.10, mm: 0.08, label: 'minimal edge effects'}, intermittent: {e: 0.25, mm: 0.2, label: 'moderate'},
+  stand: {e: 0.5, mm: 0.45, label: 'strong edge effects'}};
+
+// ---------------- Papers ----------------
+// dmax by surface; contrast as ISO exposure range R (log H from D=0.04 to 0.9·ΔD); tone = per-channel density multiplier
+const GRADES = {'0': 1.5, '1': 1.3, '2': 1.1, '3': 0.95, '4': 0.8, '5': 0.65};
+const FILTERS = {'00': 1.6, '0': 1.45, '1': 1.28, '2': 1.1, '3': 0.95, '4': 0.8, '5': 0.66};
+const PAPERS = {
+  'fb':   {name: 'Fiber-based graded · neutral', bw: true, contrast: 'grade', white: [0.955, 0.945, 0.915], tone: [1, 1, 1.0],
+           dmax: {glossy: 2.15, luster: 1.95, matte: 1.6}, desc: 'baryta fiber, deep blacks, graded 0–5'},
+  'mgrc': {name: 'Multigrade RC · variable contrast', bw: true, contrast: 'filter', white: [0.965, 0.965, 0.955], tone: [1, 1, 1.01],
+           dmax: {glossy: 2.08, luster: 1.9, matte: 1.55}, desc: 'resin-coated VC paper, filters 00–5'},
+  'warm': {name: 'Warm-tone fiber · VC', bw: true, contrast: 'filter', white: [0.965, 0.935, 0.86], tone: [0.94, 1.0, 1.09],
+           dmax: {glossy: 2.0, luster: 1.85, matte: 1.55}, desc: 'cream base, brown-black image tone'},
+  'cold': {name: 'Cold-tone RC · VC', bw: true, contrast: 'filter', white: [0.945, 0.96, 0.985], tone: [1.04, 1.0, 0.955],
+           dmax: {glossy: 2.1, luster: 1.9, matte: 1.55}, desc: 'bright white base, blue-black image tone'},
+  'endura': {name: 'RA-4 · Endura-like (soft, natural)', bw: false, R: 0.98, white: [0.955, 0.948, 0.93],
+           xt: [[1, 0.13, 0.04], [0.20, 1, 0.11], [0.06, 0.24, 1]], bal: [0.0, 0.0, 0.015],
+           dmax: {glossy: 2.25, luster: 2.05, matte: 1.7}, desc: 'lower contrast, gentle saturation, warm'},
+  'crystal': {name: 'RA-4 · Crystal Archive-like (punchy)', bw: false, R: 0.84, white: [0.95, 0.957, 0.968],
+           xt: [[1, 0.07, 0.02], [0.12, 1, 0.06], [0.03, 0.14, 1]], bal: [0.012, -0.012, 0.0],
+           dmax: {glossy: 2.35, luster: 2.15, matte: 1.75}, desc: 'higher contrast & saturation, cooler'},
+};
+const PSH = 1.12;                   // paper shoulder sharpness
+const smin = (a, b, k = 0.06) => -k * Math.log(Math.exp(-a / k) + Math.exp(-b / k));
+const GLARE = {glossy: 0.002, luster: 0.005, matte: 0.01}; // surface reflection limits visible Dmax
+
+// ---------------- Effects ----------------
+const FX_SPEC = {
+  fxLens: [
+    {id: 'vig', name: 'Vignetting', tip: 'cos⁴ natural falloff + mechanical cut-off when wide open', p: [['amt', 'Strength', 0, 1.5, 0.05, 0.7]]},
+    {id: 'soft', name: 'Softness / diffraction', tip: 'aberration blur wide open, Airy diffraction stopped down', p: [['amt', 'Strength', 0, 4, 0.1, 1]]},
+    {id: 'sa', name: 'Spherical aberration glow', tip: 'soft halo around everything, strongest wide open', p: [['amt', 'Strength', 0, 2, 0.05, 0.7]]},
+    {id: 'ca', name: 'Lateral chromatic aberration', tip: 'red/blue images at slightly different scale → colour fringes at the edges', p: [['amt', 'Strength', 0, 2, 0.05, 0.7]]},
+    {id: 'flare', name: 'Veiling flare', tip: 'stray light from lens surfaces lifts shadows, lowers contrast', p: [['amt', 'Strength', 0, 2, 0.05, 0.5]]},
+    {id: 'dist', name: 'Distortion', tip: 'radial barrel (+) or pincushion (−) distortion', p: [['amt', 'Barrel ⟷ pincushion', -1, 1, 0.05, 0.4]]},
+  ],
+  fxCam: [
+    {id: 'hal', name: 'Halation', tip: 'light reflected off the base/pressure plate re-exposes the emulsion → glow around highlights (red-orange in colour)',
+      p: [['amt', 'Strength', 0, 2.5, 0.05, 1], ['ah', 'Anti-halation layer (0 = no remjet, CineStill-like)', 0, 1, 0.05, 0]]},
+    {id: 'leak', name: 'Light leak', tip: 'warm light entering through a worn door seal', p: [['amt', 'Strength', 0, 2, 0.05, 0.8], ['pos', 'Position along edge', 0, 1, 0.01, 0.35]]},
+    {id: 'shut', name: 'Shutter unevenness', tip: 'focal-plane curtains travelling at uneven speed', p: [['amt', 'Stops across frame', 0, 1.5, 0.05, 0.5]]},
+  ],
+  fxEmu: [
+    {id: 'irr', name: 'Irradiation', tip: 'light scattered sideways by crystals inside the emulsion (and the film plane) — softens fine detail', p: [['amt', 'Strength', 0, 2, 0.05, 1]]},
+    {id: 'clump', name: 'Grain clumping', tip: 'crystals coated in clusters → coarser-looking granularity', p: [['amt', 'Strength', 0, 1, 0.05, 0.6]]},
+    {id: 'edge', name: 'Adjacency / edge effects', tip: 'developer exhaustion: border effect, Eberhard & Mackie lines (scaled by agitation)', p: [['amt', 'Strength', 0, 2.5, 0.05, 1]]},
+    {id: 'inter', name: 'Interimage effect (colour)', tip: 'inhibitors from one dye layer restrain its neighbours → more saturation', p: [['amt', 'Strength', 0, 1.5, 0.05, 0.6]], colorOnly: true},
+  ],
+  fxPrint: [
+    {id: 'enl', name: 'Enlarger lens softness', tip: 'blur of the projected negative on the baseboard', p: [['amt', 'Blur', 0, 3, 0.1, 0.8]]},
+    {id: 'ptex', name: 'Paper texture', tip: 'fibre / surface structure of the paper', p: [['amt', 'Strength', 0, 2, 0.05, 1]]},
+  ],
+};
+const state = {mode: 'bw', iso: 400, stops: 0, dev: 1, k: 3, gs: 1, res: MOBILE ? 800 : 1200, view: 'pos',
+  loupe: true, mag: 12, comp: true, fstop: 5.6, agit: 'intermittent',
+  print: 'paper', paperBW: 'mgrc', paperColor: 'endura', grade: '3', filter: '3', surface: 'glossy', pexp: 0, paperCurve: true, fx: {}};
+for (const sec in FX_SPEC) for (const f of FX_SPEC[sec]){ const o = {on: false}; for (const p of f.p) o[p[0]] = p[5]; state.fx[f.id] = o; }
+const paperId = () => state.mode === 'color' ? state.paperColor : state.paperBW;
+
+// ---------------- Analytic characteristic curve ----------------
+const ZG = []; for (let z = -4; z <= 4.0001; z += 0.25) for (let q = -4; q <= 4.0001; q += 0.25)
+  ZG.push([Math.exp(2 * SIG * z), Math.exp(SIGQ * q - 0.5 * SIGQ * SIGQ), Math.exp(-(z * z + q * q) / 2)]);
+function poisTail(k, lam){ if (lam <= 0) return 0; let t = Math.exp(-lam), s = t; for (let j = 1; j < k; j++){ t *= lam / j; s += t; } return Math.max(0, 1 - s); }
+function densFrac(Lrel, lm, k, tau, fog){
+  let num = 0, den = 0;
+  for (const [ar, qe, w] of ZG){ const P = poisTail(k, lm * Lrel * ar * qe * tau); num += w * ar * (P + (1 - P) * fog); den += w * ar; }
+  return num / den;
+}
+const lmCache = {};
+function lamMid(k){
+  if (lmCache[k]) return lmCache[k];
+  const nom = devParams(1); let lo = -8, hi = 8;
+  for (let i = 0; i < 60; i++){ const m = (lo + hi) / 2; densFrac(1, Math.exp(m), k, 1, nom.fog) < MID_FRAC ? lo = m : hi = m; }
+  return lmCache[k] = Math.exp(lo);
+}
+const ppCache = {};
+function scanParams(cov, k){
+  const key = cov + ':' + k; if (ppCache[key]) return ppCache[key];
+  const lm = lamMid(k), nom = devParams(1), Ds = Math.LOG10E * cov * nom.g * nom.g;
+  const D = s => Ds * densFrac(Math.pow(2, s), lm, k, 1, nom.fog);
+  const Dmid = D(0), gamma = (D(0.5) - D(-0.5)) / 0.30103;
+  return ppCache[key] = {Dmid, gam: gamma / PRINT_CONTRAST, gamma};
+}
+// paper curve: D_rel(x) = ΔD / (1 + 10^(−s·x)), x = log10 exposure
+function paperParams(){
+  const P = PAPERS[paperId()], dd = P.dmax[state.surface] - 0.05;
+  const R = P.bw ? (P.contrast === 'grade' ? GRADES[state.grade] : FILTERS[state.filter]) : P.R;
+  const da = dd * PSH, f1 = 0.04 / da, f2 = 0.9 / PSH;   // logistic overshoots ΔD; soft-clipped at Dmax (sharp shoulder)
+  const s = (Math.log10(f2 / (1 - f2)) - Math.log10(f1 / (1 - f1))) / R;
+  const Dt = 0.86;                                    // mid-grey printed slightly down (≈14 % of paper white), as printers do for rich blacks
+  let Dl;
+  if (P.bw) Dl = [Dt, Dt, Dt];
+  else { const X = P.xt, m = inv3([X[0][0], X[0][1], X[0][2], X[1][0], X[1][1], X[1][2], X[2][0], X[2][1], X[2][2]]);
+    Dl = [0, 1, 2].map(r => Dt * (m[r * 3] + m[r * 3 + 1] + m[r * 3 + 2])); }
+  const xmid = Dl.map((d, i) => -Math.log10(da / d - 1) / s + (P.bal ? P.bal[i] : 0));
+  return {P, dd, s, R, xmid, glare: GLARE[state.surface], D: x => smin(da / (1 + Math.pow(10, -s * x)), dd)};
+}
+function inv3(m){
+  const [a, b, c, d, e, f, g, h, i] = m; const A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g;
+  const det = a * A + b * B + c * C;
+  return [A, -(b * i - c * h), b * f - c * e, B, a * i - c * g, -(a * f - c * d), C, -(a * h - b * g), a * e - b * d].map(v => v / det);
+}
+
+// ---------------- DOM helpers ----------------
+const $ = id => document.getElementById(id);
+const canvas = $('gl');
+function showErr(msg){ const e = $('err'); e.hidden = false; e.textContent = msg; console.error(msg); }
+function sci(n){ if (!isFinite(n) || n <= 0) return '0'; const e = Math.floor(Math.log10(n)); const m = n / Math.pow(10, e);
+  const sup = String(e).split('').map(c => '⁰¹²³⁴⁵⁶⁷⁸⁹'[+c] || c).join(''); return m.toFixed(1) + '×10' + sup; }
+function fmtStops(s){ const t = Math.round(s * 3); if (t === 0) return '±0 EV'; const sign = t > 0 ? '+' : '−'; const a = Math.abs(t);
+  const w = Math.floor(a / 3), f = a % 3; return sign + (w ? w : (f ? '' : '0')) + (f === 1 ? '⅓' : f === 2 ? '⅔' : '') + ' EV'; }
+function shutter(){ const t = (1 / 250) * (400 / state.iso) * Math.pow(2, state.stops) * Math.pow(state.fstop / 8, 2);
+  return t >= 1 ? t.toFixed(1) + ' s' : '1/' + Math.round(1 / t) + ' s'; }
+
+// ---------------- WebGL2 ----------------
+const gl = canvas.getContext('webgl2', {antialias: false, alpha: false, preserveDrawingBuffer: true, premultipliedAlpha: false});
+if (!gl) showErr('WebGL2 is not available in this browser — Film Grain Lab needs it to render millions of grains.');
+const hasCBF = gl && !!gl.getExtension('EXT_color_buffer_float');
+
+const VS_QUAD = `#version 300 es
+precision highp float;
+uniform vec4 uSrc; out vec2 vUV; out vec2 vQ;
+void main(){ vec2 q = vec2(float(gl_VertexID & 1), float((gl_VertexID >> 1) & 1)); vQ = q;
+  vUV = mix(uSrc.xy, uSrc.zw, q); gl_Position = vec4(q.x * 2.0 - 1.0, 1.0 - q.y * 2.0, 0.0, 1.0); }`;
+// off-screen passes: texture v == film y / H in every buffer
+const VS_OFF = `#version 300 es
+precision highp float;
+out vec2 vQ;
+void main(){ vec2 q = vec2(float(gl_VertexID & 1), float((gl_VertexID >> 1) & 1)); vQ = q; gl_Position = vec4(q * 2.0 - 1.0, 0.0, 1.0); }`;
+
+// 1) geometric optics: distortion, lateral CA, vignetting, shutter, light leak — on linear light
+const FS_OPTICS = `#version 300 es
+precision highp float;
+in vec2 vQ; out vec4 o;
+uniform sampler2D uSrc; uniform float uAspect, uDist, uCA, uVig, uMech, uLeak, uLeakPos, uShut, uSeedF;
+vec3 sampleAt(vec2 c, float R){ return texture(uSrc, c * R / vec2(uAspect, 1.0) + 0.5).rgb; }
+void main(){
+  float R = 0.5 * sqrt(uAspect * uAspect + 1.0);
+  vec2 c = (vQ - 0.5) * vec2(uAspect, 1.0) / R;          // corner radius = 1
+  float r2 = dot(c, c);
+  vec2 cd = c * (1.0 + uDist * r2) / (1.0 + max(uDist, 0.0));
+  vec3 col = vec3(sampleAt(cd * (1.0 + uCA), R).r, sampleAt(cd, R).g, sampleAt(cd * (1.0 - uCA), R).b);
+  float t2 = r2 * uVig * uVig * 0.5;                      // tan² of the field angle
+  col *= 1.0 / ((1.0 + t2) * (1.0 + t2));                 // cos⁴ law
+  col *= 1.0 - uMech * smoothstep(0.62, 1.1, sqrt(r2));   // mechanical (barrel) vignetting
+  col *= exp2(uShut * (vQ.x - 0.5));                      // uneven curtain travel
+  if (uLeak > 0.0) {
+    vec2 p = vec2(vQ.x * uAspect, vQ.y);
+    float d = length(p - vec2(uAspect + 0.04, uLeakPos));
+    float edge = exp(-(uAspect - p.x) * 7.0) * exp(-pow((vQ.y - uLeakPos) * 2.2, 2.0));
+    float g = exp(-d * d / 0.05) + 0.6 * edge + 0.15 * exp(-d * d / 0.4);
+    col += uLeak * g * vec3(1.0, 0.42, 0.12);
+  }
+  o = vec4(col, 1.0);
+}`;
+// separable gaussian (optionally boosting clipped highlights to model scene highlights > paper white)
+const FS_BLUR = `#version 300 es
+precision highp float;
+in vec2 vQ; out vec4 o;
+uniform sampler2D uSrc; uniform vec2 uStep; uniform float uSig, uLod, uHi; uniform int uR;
+vec3 fetch(vec2 uv){ vec3 c = textureLod(uSrc, uv, uLod).rgb;
+  if (uHi > 0.0) { float m = max(c.r, max(c.g, c.b)); c *= 1.0 + uHi * pow(smoothstep(0.45, 1.0, m), 2.0); } return c; }
+void main(){
+  vec3 a = vec3(0.0); float ws = 0.0;
+  for (int i = -40; i <= 40; i++) { if (i < -uR || i > uR) continue;
+    float w = exp(-float(i * i) / (2.0 * uSig * uSig)); a += w * fetch(vQ + float(i) * uStep); ws += w; }
+  o = vec4(a / ws, 1.0);
+}`;
+// 2) combine: spherical-aberration glow, veiling flare, halation, irradiation → exposure at the emulsion
+const FS_COMBINE = `#version 300 es
+precision highp float;
+in vec2 vQ; out vec4 o;
+uniform sampler2D uO, uBloom, uHalo, uIrr; uniform float uSA, uFlare, uHal, uIrrA, uMaxLod; uniform int uColor;
+void main(){
+  vec3 e = texture(uO, vQ).rgb;
+  if (uSA > 0.0) e = mix(e, texture(uBloom, vQ).rgb, uSA);
+  if (uFlare > 0.0) e += uFlare * textureLod(uO, vec2(0.5), uMaxLod).rgb;
+  if (uHal > 0.0) {
+    vec3 h = texture(uHalo, vQ).rgb;
+    // red light penetrates to the base; it re-exposes mostly the bottom (red-sensitive) layer
+    e += uHal * (uColor == 1 ? vec3(1.0, 0.22, 0.03) * h.r + vec3(0.08, 0.06, 0.0) * h.g : h);
+  }
+  if (uIrrA > 0.0) e = mix(e, texture(uIrr, vQ).rgb, uIrrA);
+  o = vec4(max(e, 0.0), 1.0);
+}`;
+// 3) expected density fraction per layer (for developer-exhaustion / interimage maps)
+const FS_DEXP = `#version 300 es
+precision highp float;
+in vec2 vQ; out vec4 o;
+uniform sampler2D uE, uLut; uniform float uStops; uniform int uColor;
+float fr(float L){ float x = log2(max(L, 1e-7) / 0.18) + uStops;
+  return texture(uLut, vec2(clamp((x + 14.0) / 22.0, 0.0, 1.0) * (511.0 / 512.0) + 0.5 / 512.0, 0.5)).r; }
+void main(){ vec3 e = texture(uE, vQ).rgb;
+  if (uColor == 1) o = vec4(fr(e.r), fr(e.g), fr(e.b), 1.0);
+  else { float f = fr(dot(e, vec3(0.2126, 0.7152, 0.0722))); o = vec4(f, f, f, 1.0); } }`;
+const FS_ACT = `#version 300 es
+precision highp float;
+in vec2 vQ; out vec4 o;
+uniform sampler2D uD, uDB; uniform float uE, uII; uniform int uColor;
+void main(){
+  vec3 f = texture(uD, vQ).rgb, fb = texture(uDB, vQ).rgb, c = vec3(1.0);
+  // local developer strength: exhausted by development in the diffusion neighbourhood (fb),
+  // partially normalised by the local density (f) → border effect, Eberhard & Mackie lines, compensation
+  if (uE > 0.0) c = (1.0 - uE * fb) / pow(max(1.0 - uE * f, 0.05), vec3(0.6));
+  if (uII > 0.0 && uColor == 1) { vec3 oth = vec3(fb.g + fb.b, fb.r + fb.b, fb.r + fb.g) * 0.5;
+    c *= clamp(1.0 - uII * 1.5 * (oth - fb), 0.4, 1.6); }
+  o = vec4(clamp(c, 0.3, 1.8), 1.0);
+}`;
+// 4) the emulsion: procedural crystals, Poisson photons, development
+const FS_FILM = `#version 300 es
+precision highp float; precision highp int;
+uniform sampler2D uImg, uAct;
+uniform vec4 uView; uniform vec2 uRes, uFilm;
+uniform uint uSeed; uniform float uCell, uMeanN, uRMed, uSig, uSigQ, uF;
+uniform int uK, uColor;
+uniform float uGrowth, uFog, uTau, uRmax, uDyeK, uExt, uClump, uClSig, uClMax;
+uniform vec3 uBase; uniform mat3 uAbs;
+out vec4 o;
+uint hash(uint x){ x ^= x >> 16; x *= 0x7feb352du; x ^= x >> 15; x *= 0x846ca68bu; x ^= x >> 16; return x; }
+float u01(uint h){ return (float(h >> 8) + 0.5) * (1.0 / 16777216.0); }
+float rnd(uint g, uint j){ return u01(hash(g ^ (j * 0x9E3779B9u))); }
+void main(){
+  vec2 fp = uView.zw / uRes;
+  vec2 p = uView.xy + gl_FragCoord.xy * fp;
+  vec2 hp = 0.5 * fp;
+  float ppu = 1.0 / fp.x;
+  float reach = uRmax + max(hp.x, hp.y);
+  ivec2 c0 = ivec2(floor((p - reach) / uCell)), c1 = ivec2(floor((p + reach) / uCell));
+  c1 = min(c1, c0 + 7);
+  float expN = exp(-uMeanN);
+  vec3 T = vec3(1.0);
+  int nl = uColor == 1 ? 3 : 1;
+  for (int l = 0; l < 3; l++) {
+    if (l >= nl) break;
+    vec3 ab = uAbs[l];
+    uint ls = hash(uSeed + uint(l) * 1013904223u);
+    for (int cy = c0.y; cy <= c1.y; cy++)
+    for (int cx = c0.x; cx <= c1.x; cx++) {
+      uint cs = hash(uint(cx) * 73856093u ^ hash(uint(cy) * 19349663u ^ ls));
+      int n = 0;
+      if (uMeanN < 12.0) { uint s = cs; float pr = u01(s);
+        for (int j = 0; j < 64; j++) { if (pr <= expN) break; n++; s = hash(s); pr *= u01(s); } }
+      else { float a = u01(cs), b = u01(hash(cs ^ 0x5bd1e995u));
+        n = max(0, int(floor(uMeanN + sqrt(uMeanN) * sqrt(-2.0 * log(a)) * cos(6.2831853 * b) + 0.5))); }
+      for (int i = 0; i < n; i++) {
+        uint g = hash(cs + uint(i) * 2654435761u + 1u);
+        vec2 gp = (vec2(cx, cy) + vec2(rnd(g, 1u), rnd(g, 2u))) * uCell;
+        if (uClump > 0.0 && rnd(g, 13u) < uClump) {             // Thomas cluster process: crystal joins a clump
+          uint pk = uint(rnd(g, 14u) * 3.0);
+          vec2 pc = (vec2(cx, cy) + vec2(u01(hash(cs ^ (pk * 0x27d4eb2du + 7u))), u01(hash(cs ^ (pk * 0x165667b1u + 13u))))) * uCell;
+          float e1 = rnd(g, 15u), e2 = rnd(g, 16u), em = sqrt(-2.0 * log(e1)) * uClSig;
+          gp = pc + clamp(em * vec2(cos(6.2831853 * e2), sin(6.2831853 * e2)), -uClMax, uClMax);
+        }
+        vec2 d = p - gp;
+        if (abs(d.x) > reach || abs(d.y) > reach) continue;
+        float b1 = rnd(g, 3u), b2 = rnd(g, 4u), bm = sqrt(-2.0 * log(b1));
+        float r = uRMed * exp(uSig * clamp(bm * cos(6.2831853 * b2), -2.5, 2.5));
+        float rg = r * uExt + max(hp.x, hp.y);
+        if (abs(d.x) > rg || abs(d.y) > rg) continue;
+        float qe = exp(uSigQ * bm * sin(6.2831853 * b2) - 0.5 * uSigQ * uSigQ);
+        vec2 tuv = gp / uFilm;
+        vec3 img = texture(uImg, tuv).rgb;
+        float lum = uColor == 1 ? img[l] : dot(img, vec3(0.2126, 0.7152, 0.0722));
+        float lam = uF * lum * 3.14159265 * r * r * qe;           // mean photons absorbed
+        float pu = 1.0; for (int q = 0; q < 6; q++) { if (q >= uK) break; pu *= rnd(g, 5u + uint(q)); }
+        float tk = lam > 0.0 ? -log(pu) / lam : 1e30;               // arrival time of the k-th photon
+        float act = texture(uAct, tuv)[l];                           // local developer activity
+        float uf = rnd(g, 11u), seed = rnd(g, 12u);
+        bool devd = tk <= uTau * act || uf < uFog * act;
+        if (!devd) continue;
+        float rad = r * uGrowth * sqrt(act);
+        float radPx = rad * ppu, cov;
+        if (radPx < 1.5) {
+          float h = rad * 0.8862;
+          vec2 ov = max(min(d + h, hp) - max(d - h, -hp), 0.0);
+          cov = ov.x * ov.y / (fp.x * fp.y);
+        } else {
+          vec2 lc = d / rad; float dd = length(lc);
+          if (uColor == 1) cov = exp(-dd * dd);
+          else {
+            float th = atan(lc.y, lc.x), s1 = seed * 6.2832, s2 = fract(seed * 7.31) * 6.2832, s3 = fract(seed * 13.7) * 6.2832;
+            float fil = step(0.55, fract(seed * 3.17));
+            float rr = 0.97 + 0.17 * sin(3.0 * th + s1) + 0.10 * sin(5.0 * th + s2) + 0.06 * sin(9.0 * th + s3);
+            rr += 0.45 * fil * pow(max(0.0, sin(2.0 * th + s3 + 1.8 * dd)), 24.0);
+            float aa = 1.2 / radPx, e = dd / rr;
+            cov = 1.0 - smoothstep(1.0 - aa, 1.0 + aa, e);
+            cov *= 1.0 - 0.15 * fil * smoothstep(0.75, 0.0, e) * step(aa, 0.5);
+          }
+        }
+        cov = clamp(cov, 0.0, 1.0);
+        if (uColor == 1) T *= exp(-cov * ab * uDyeK); else T *= 1.0 - cov;
+      }
+    }
+  }
+  o = vec4(uBase * T, 1.0);
+}`;
+// 5) positive: digital scan or darkroom print on a modelled paper
+const FS_DISPLAY = `#version 300 es
+precision highp float;
+in vec2 vUV; in vec2 vQ;
+uniform sampler2D uTex; uniform int uView, uCircle, uColor, uPrint;
+uniform float uDmid, uGam, uShift, uDfog;
+uniform vec3 uBase; uniform mat3 uUnmix; uniform vec2 uTexel;
+uniform vec3 uTmid, uXmid, uPWhite, uPTone; uniform float uPS, uPDD, uPGlare, uPExp, uPTex; uniform mat3 uPX; uniform vec2 uFilmPx;
+out vec4 o;
+float rawL(float D){ return 0.18 * pow(10.0, (D - uDmid) / uGam - uShift); }
+float scanL(float D){ float b = min(rawL(uDfog) * 1.03, 0.5); return max(rawL(D) - b, 0.0) / (1.0 - b); }
+vec3 srgb(vec3 c){ c = clamp(c, 0.0, 1.0); return mix(c * 12.92, 1.055 * pow(c, vec3(1.0/2.4)) - 0.055, step(0.0031308, c)); }
+float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(h21(i), h21(i + vec2(1, 0)), f.x), mix(h21(i + vec2(0, 1)), h21(i + vec2(1, 1)), f.x), f.y); }
+float pcurve(float x){ float a = uPDD * 1.12 / (1.0 + pow(10.0, -uPS * x)); return -0.06 * log(exp(-a / 0.06) + exp(-uPDD / 0.06)); }
+void main(){
+  if (uCircle == 1 && length(vQ - 0.5) > 0.5) discard;
+  vec3 t = texture(uTex, vUV).rgb;
+  if (uTexel.x > 0.0) {   // scanner optics: small gaussian PSF in transmittance
+    vec3 acc = t * 0.25;
+    acc += 0.125 * (texture(uTex, vUV + vec2(uTexel.x, 0.0)).rgb + texture(uTex, vUV - vec2(uTexel.x, 0.0)).rgb
+                  + texture(uTex, vUV + vec2(0.0, uTexel.y)).rgb + texture(uTex, vUV - vec2(0.0, uTexel.y)).rgb);
+    acc += 0.0625 * (texture(uTex, vUV + uTexel).rgb + texture(uTex, vUV - uTexel).rgb
+                  + texture(uTex, vUV + vec2(uTexel.x, -uTexel.y)).rgb + texture(uTex, vUV + vec2(-uTexel.x, uTexel.y)).rgb);
+    t = acc;
+  }
+  vec3 col;
+  if (uView == 0) col = srgb(t);
+  else if (uPrint == 0) {
+    vec3 Dch = -log2(max(t / uBase, vec3(1e-4))) * 0.30103;
+    vec3 Dl = uUnmix * Dch;
+    vec3 L = uColor == 1 ? vec3(scanL(Dl.r), scanL(Dl.g), scanL(Dl.b)) : vec3(scanL(Dl.r));
+    L = L * 1.25 / (1.0 + 0.25 * L);
+    col = srgb(L);
+  } else {
+    // enlarger: paper exposure ∝ light transmitted by the negative; x = log10 H relative to the mid-grey print
+    vec3 x = log2(max(t, vec3(1e-5)) / uTmid) * 0.30103 + uXmid + uPExp;
+    vec3 R;
+    if (uColor == 1) { vec3 Dl = vec3(pcurve(x.r), pcurve(x.g), pcurve(x.b)); R = uPWhite * pow(vec3(10.0), -(uPX * Dl)); }
+    else R = uPWhite * pow(vec3(10.0), -pcurve(x.r) * uPTone);
+    if (uPTex > 0.0) { vec2 pf = vUV * uFilmPx;
+      float n = vnoise(pf * 0.09) * 0.55 + vnoise(pf * 0.45 + 17.0) * 0.3 + h21(floor(pf * 1.3)) * 0.15;
+      R *= 1.0 + uPTex * (n - 0.5) * 0.09; }
+    col = srgb((R + uPGlare) / max(uPWhite.r, max(uPWhite.g, uPWhite.b)) * 0.985);   // eye adapts to the paper white
+  }
+  o = vec4(col, 1.0);
+}`;
+function compile(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
+function program(vs, fs){ const p = gl.createProgram(); gl.attachShader(p, compile(gl.VERTEX_SHADER, vs)); gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {}; const n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+  for (let i = 0; i < n; i++){ const info = gl.getActiveUniform(p, i); u[info.name.replace(/\[0\]$/, '')] = gl.getUniformLocation(p, info.name); }
+  return {p, u}; }
+let PG, PD, PO, PB, PC, PDX, PACT, emptyVAO, whiteTex, lutTex, okGL = false;
+if (gl){
+  try {
+    PG = program(VS_OFF, FS_FILM); PD = program(VS_QUAD, FS_DISPLAY); PO = program(VS_OFF, FS_OPTICS); PB = program(VS_OFF, FS_BLUR);
+    PC = program(VS_OFF, FS_COMBINE); PDX = program(VS_OFF, FS_DEXP); PACT = program(VS_OFF, FS_ACT); okGL = true;
+  } catch (e){ showErr('Shader error: ' + e.message); }
+  emptyVAO = gl.createVertexArray();
+  whiteTex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, whiteTex);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([255, 255, 255, 255]));
+  lutTex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, lutTex);
+  for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]]) gl.texParameteri(gl.TEXTURE_2D, k, v);
+}
+function makeTarget(w, h, mip, hdr = true){
+  const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+  const f = hdr && hasCBF;
+  if (mip) gl.texStorage2D(gl.TEXTURE_2D, Math.floor(Math.log2(Math.max(w, h))) + 1, f ? gl.RGBA16F : gl.RGBA8, w, h);
+  else gl.texImage2D(gl.TEXTURE_2D, 0, f ? gl.RGBA16F : gl.RGBA8, w, h, 0, gl.RGBA, f ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, mip ? gl.LINEAR_MIPMAP_LINEAR : gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const fb = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  const ok = gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  if (!ok){ gl.deleteTexture(tex); gl.deleteFramebuffer(fb); if (f) return makeTarget(w, h, mip, false); throw new Error('Framebuffer incomplete'); }
+  return {tex, fb, w, h, mip, f16: f};
+}
+function freeTarget(t){ if (t){ gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fb); } }
+const pool = {};
+function tgt(name, w, h, mip = false){ let t = pool[name]; if (!t || t.w !== w || t.h !== h || t.mip !== mip){ freeTarget(t); t = pool[name] = makeTarget(w, h, mip); } return t; }
+function bindTex(unit, tex, loc){ gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform1i(loc, unit); }
+function pass(prog, dst, setup){
+  gl.bindFramebuffer(gl.FRAMEBUFFER, dst.fb); gl.viewport(0, 0, dst.w, dst.h); gl.useProgram(prog.p); setup(prog.u);
+  gl.bindVertexArray(emptyVAO); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); gl.bindVertexArray(null);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  if (dst.mip){ gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, dst.tex); gl.generateMipmap(gl.TEXTURE_2D); }
+}
+// separable gaussian; large kernels run at reduced resolution (mip-prefiltered)
+function blur(src, name, sigmaPx, hi = 0, mipOut = false){
+  const s = Math.max(1, Math.floor(sigmaPx / 4)), w = Math.max(1, Math.round(src.w / s)), h = Math.max(1, Math.round(src.h / s));
+  const sig = Math.max(0.3, sigmaPx / s), R = Math.min(40, Math.ceil(3 * sig)), lod = src.mip ? Math.log2(s) : 0;
+  const a = tgt(name + '_h', w, h), b = tgt(name, w, h, mipOut);
+  pass(PB, a, u => { bindTex(0, src.tex, u.uSrc); gl.uniform2f(u.uStep, 1 / w, 0); gl.uniform1f(u.uSig, sig); gl.uniform1i(u.uR, R); gl.uniform1f(u.uLod, lod); gl.uniform1f(u.uHi, hi); });
+  pass(PB, b, u => { bindTex(0, a.tex, u.uSrc); gl.uniform2f(u.uStep, 0, 1 / h); gl.uniform1f(u.uSig, sig); gl.uniform1i(u.uR, R); gl.uniform1f(u.uLod, 0); gl.uniform1f(u.uHi, 0); });
+  return b;
+}
+
+// ---------------- Source image ----------------
+let srcCanvas = null, srcName = 'sample', working = null, srcTex = null;
+function makeWorking(){
+  const s = Math.min(1, state.res / Math.max(srcCanvas.width, srcCanvas.height));
+  const W = Math.max(2, Math.round(srcCanvas.width * s)), H = Math.max(2, Math.round(srcCanvas.height * s));
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d', {willReadFrequently: true}); x.imageSmoothingQuality = 'high'; x.drawImage(srcCanvas, 0, 0, W, H);
+  working = {W, H, rgba: x.getImageData(0, 0, W, H).data, res: state.res, src: srcCanvas};
+  if (srcTex) gl.deleteTexture(srcTex);
+  srcTex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, srcTex); gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.SRGB8_ALPHA8, W, H, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(working.rgba.buffer));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+}
+function sampleScene(){
+  const W = 1200, H = 800, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  let s = 7; const R = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const sky = x.createLinearGradient(0, 0, 0, 470);
+  sky.addColorStop(0, '#0d2350'); sky.addColorStop(0.45, '#3f6fb0'); sky.addColorStop(0.8, '#f0a35e'); sky.addColorStop(1, '#ffd9a0');
+  x.fillStyle = sky; x.fillRect(0, 0, W, 470);
+  const sun = x.createRadialGradient(820, 400, 5, 820, 400, 260);
+  sun.addColorStop(0, 'rgba(255,255,240,1)'); sun.addColorStop(0.08, 'rgba(255,245,200,1)'); sun.addColorStop(0.12, 'rgba(255,200,120,.7)'); sun.addColorStop(1, 'rgba(255,140,60,0)');
+  x.fillStyle = sun; x.fillRect(0, 0, W, 470);
+  x.filter = 'blur(6px)';
+  for (let i = 0; i < 26; i++){ x.fillStyle = `rgba(255,${200 + R() * 40 | 0},${170 + R() * 60 | 0},${0.25 + R() * 0.35})`;
+    x.beginPath(); x.ellipse(R() * W, 60 + R() * 220, 60 + R() * 140, 8 + R() * 18, 0, 0, 7); x.fill(); }
+  x.filter = 'none';
+  const ridge = (y0, amp, col, rough) => { x.fillStyle = col; x.beginPath(); x.moveTo(0, H); let y = y0;
+    for (let px = 0; px <= W; px += 6){ y += (R() - 0.5) * rough; y += (y0 - y) * 0.03; x.lineTo(px, y - amp * Math.sin(px / 210 + y0)); } x.lineTo(W, H); x.fill(); };
+  ridge(400, 40, '#56608a', 14); ridge(440, 25, '#2f3f5a', 16); ridge(470, 12, '#1d2a2a', 10);
+  x.save(); x.beginPath(); x.rect(0, 480, W, 160); x.clip(); x.translate(0, 960); x.scale(1, -1); x.globalAlpha = 0.6; x.drawImage(c, 0, 0); x.restore();
+  x.fillStyle = 'rgba(10,20,40,.35)'; x.fillRect(0, 480, W, 160);
+  for (let i = 0; i < 90; i++){ x.fillStyle = `rgba(255,230,180,${R() * 0.35})`; x.fillRect(760 + (R() - 0.5) * 220, 480 + R() * 150, 10 + R() * 50, 1.5); }
+  x.fillStyle = '#0d1410'; x.beginPath(); x.moveTo(0, 640); for (let px = 0; px <= W; px += 20) x.lineTo(px, 625 + Math.sin(px / 90) * 8 + R() * 6); x.lineTo(W, 680); x.lineTo(0, 680); x.fill();
+  for (let i = 0; i < 9; i++){ const tx = 40 + i * 55 + R() * 20, th = 90 + R() * 110; x.fillStyle = '#0a100c';
+    x.beginPath(); x.moveTo(tx, 640 - th); x.lineTo(tx - th * 0.22, 640); x.lineTo(tx + th * 0.22, 640); x.fill(); }
+  x.fillStyle = '#000'; x.fillRect(0, 680, W, 120);
+  const n = 12, pw = 64;
+  for (let i = 0; i < n; i++){ const lin = 0.9 * Math.pow(2, -(n - 1 - i) * 0.6667); const v = Math.round(255 * (lin <= 0.0031308 ? lin * 12.92 : 1.055 * Math.pow(lin, 1 / 2.4) - 0.055));
+    x.fillStyle = `rgb(${v},${v},${v})`; x.fillRect(20 + i * pw, 700, pw - 4, 80); }
+  ['#d42a2a', '#2aa83c', '#2a4fd4', '#2ac4d4', '#d42ab4', '#e8d02a'].forEach((cl, i) => { x.fillStyle = cl; x.fillRect(820 + i * 62, 700, 58, 80); });
+  x.fillStyle = 'rgba(255,255,255,.9)'; x.font = 'bold 34px system-ui, sans-serif'; x.fillText('FILM GRAIN LAB', 40, 70);
+  x.font = '14px system-ui, sans-serif'; x.fillStyle = 'rgba(255,255,255,.7)'; x.fillText('step wedge · ⅔ stop per patch', 22, 696);
+  return c;
+}
+function loadFile(f){
+  if (!f || !/^image\//.test(f.type)){ showErr('That does not look like an image file.'); return; }
+  const url = URL.createObjectURL(f); const img = new Image();
+  img.onload = () => { const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight;
+    c.getContext('2d').drawImage(img, 0, 0); URL.revokeObjectURL(url); srcCanvas = c; srcName = f.name.replace(/\.[^.]+$/, ''); $('err').hidden = true; expose(); };
+  img.onerror = () => showErr('Could not decode that image.');
+  img.src = url;
+}
+
+// ---------------- Film parameters & statistics ----------------
+let film = null, stats = null;
+function computeFilm(W, H){
+  const color = state.mode === 'color', sc = Math.max(W, H) / 1000, nL = color ? 3 : 1;
+  let rRef = ISO_R[state.iso] * state.gs * (color ? 1.5 : 1);
+  const cov = color ? COV.color : COV.bw;
+  let nPx = cov / (Math.PI * rRef * rRef * Math.exp(2 * SIG * SIG)) / (sc * sc), capped = false;
+  if (nPx * nL > MAX_DENS){ const f = Math.sqrt(nPx * nL / MAX_DENS); rRef *= f; nPx /= f * f; capped = true; }
+  const rMed = rRef * sc, F = lamMid(state.k) / (0.18 * Math.PI * rMed * rMed);
+  return {W, H, mode: state.mode, iso: state.iso, stops: state.stops, k: state.k, cov, rMed, F, cell: Math.sqrt(CELL_N / nPx), meanN: CELL_N, nPx, nL,
+    capped, grains: Math.round(nPx * W * H * nL), seed: film && film.keepSeed ? film.seed : (Math.random() * 4294967296) >>> 0};
+}
+const LIN = new Float32Array(256); for (let i = 0; i < 256; i++){ const c = i / 255; LIN[i] = c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+const ZS = []; for (let z = -3; z <= 3.0001; z += 0.5) for (let q = -3; q <= 3.0001; q += 0.5)
+  ZS.push([Math.exp(2 * SIG * z), Math.exp(SIGQ * q - 0.5 * SIGQ * SIGQ), Math.exp(-(z * z + q * q) / 2)]);
+function computeStats(f){
+  const {W, H, rgba} = working, step = Math.max(1, Math.floor(Math.sqrt(W * H / 3000))), dp = devParams(state.dev);
+  const lm = lamMid(f.k), g = Math.pow(2, f.stops) / 0.18, aMean = Math.PI * f.rMed * f.rMed * Math.exp(2 * SIG * SIG);
+  let sumL = 0, dev = 0, cnt = 0; const chans = f.mode === 'color' ? [0, 1, 2] : [3];
+  for (let y = step >> 1; y < H; y += step) for (let x = step >> 1; x < W; x += step){
+    const o = (y * W + x) * 4, r = LIN[rgba[o]], gg = LIN[rgba[o + 1]], b = LIN[rgba[o + 2]];
+    for (const ch of chans){
+      const L = ch === 3 ? 0.2126 * r + 0.7152 * gg + 0.0722 * b : [r, gg, b][ch];
+      sumL += L; cnt++;
+      let P = 0, ws = 0; for (const [ar, qe, w] of ZS){ P += w * poisTail(f.k, lm * L * g * ar * qe * dp.tau); ws += w; }
+      dev += P / ws;
+    }
+  }
+  const devFrac = dev / cnt;
+  return {photons: f.F * Math.pow(2, f.stops) * aMean * f.nPx * (sumL / cnt) * W * H * f.nL, dev: devFrac, fog: (1 - devFrac) * dp.fog};
+}
+let lutK = -1;
+function buildLUT(){   // expected density fraction vs log2 relative exposure (nominal development)
+  if (lutK === state.k) return; lutK = state.k;
+  const lm = lamMid(state.k), nom = devParams(1), a = new Float32Array(512);
+  for (let i = 0; i < 512; i++) a[i] = densFrac(Math.pow(2, -14 + 22 * i / 511), lm, state.k, 1, nom.fog);
+  gl.bindTexture(gl.TEXTURE_2D, lutTex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.R16F, 512, 1, 0, gl.RED, gl.FLOAT, a);
+}
+
+// ---------------- Pipeline ----------------
+let expTarget = null, actTex = null, filmTarget = null, printSrc = null, loupeTarget = null;
+const pxPerMm = () => Math.max(film.W, film.H) / FRAME_MM;
+function runOptics(){
+  const W = film.W, H = film.H, fx = state.fx, N = state.fstop, ppm = pxPerMm(), color = film.mode === 'color';
+  const o1 = tgt('o1', W, H, true);
+  pass(PO, o1, u => {
+    bindTex(0, srcTex, u.uSrc); gl.uniform1f(u.uAspect, W / H);
+    gl.uniform1f(u.uDist, fx.dist.on ? fx.dist.amt * 0.25 : 0);
+    gl.uniform1f(u.uCA, fx.ca.on ? fx.ca.amt * 0.004 : 0);
+    gl.uniform1f(u.uVig, fx.vig.on ? fx.vig.amt : 0);
+    gl.uniform1f(u.uMech, fx.vig.on ? Math.min(0.85, fx.vig.amt * 0.7 * Math.max(0, Math.min(1, (5.6 / N - 1) / 3))) : 0);
+    gl.uniform1f(u.uShut, fx.shut.on ? fx.shut.amt : 0);
+    gl.uniform1f(u.uLeak, fx.leak.on ? fx.leak.amt * 1.5 : 0); gl.uniform1f(u.uLeakPos, fx.leak.pos);
+  });
+  let O = o1;
+  if (fx.soft.on){ // aberration blur (∝ N^-1.5 from f/1.4) ⊕ Airy diffraction (σ ≈ 0.42·λ·N)
+    const um = fx.soft.amt * Math.hypot(22 * Math.pow(1.4 / N, 1.5), 0.42 * 0.55 * N * 1.6);
+    const px = um / 1000 * ppm; if (px > 0.2) O = blur(o1, 'lens', px, 0, true);
+  }
+  const saA = fx.sa.on ? Math.min(0.6, fx.sa.amt * 0.3 * Math.pow(2.8 / N, 2)) : 0;
+  const bloom = saA > 0.003 ? blur(O, 'bloom', 0.45 * ppm) : null;
+  const halA = fx.hal.on ? fx.hal.amt * 0.12 * (1 - 0.97 * fx.hal.ah) : 0;
+  const halo = halA > 0 ? blur(O, 'halo', 0.2 * ppm, 7) : null;
+  const irrA = fx.irr.on ? Math.min(0.85, 0.45 * fx.irr.amt) : 0;
+  const irr = irrA > 0 ? blur(O, 'irr', Math.max(0.35, 0.025 * ppm * (0.5 + fx.irr.amt))) : null;
+  expTarget = tgt('exp', W, H);
+  pass(PC, expTarget, u => {
+    bindTex(0, O.tex, u.uO); bindTex(1, (bloom || O).tex, u.uBloom); bindTex(2, (halo || O).tex, u.uHalo); bindTex(3, (irr || O).tex, u.uIrr);
+    gl.uniform1f(u.uSA, bloom ? saA : 0); gl.uniform1f(u.uFlare, fx.flare.on ? fx.flare.amt * 0.06 : 0);
+    gl.uniform1f(u.uHal, halA); gl.uniform1f(u.uIrrA, irrA); gl.uniform1f(u.uMaxLod, Math.floor(Math.log2(Math.max(W, H))));
+    gl.uniform1i(u.uColor, color ? 1 : 0);
+  });
+  // developer activity map (adjacency + interimage)
+  const e = fx.edge.on ? Math.min(0.9, AGIT[state.agit].e * fx.edge.amt) : 0, ii = color && fx.inter.on ? fx.inter.amt : 0;
+  if (e > 0 || ii > 0){
+    buildLUT();
+    const dx = tgt('dx', W, H, true);
+    pass(PDX, dx, u => { bindTex(0, expTarget.tex, u.uE); bindTex(1, lutTex, u.uLut); gl.uniform1f(u.uStops, film.stops); gl.uniform1i(u.uColor, color ? 1 : 0); });
+    const db = blur(dx, 'db', (e > 0 ? AGIT[state.agit].mm : 0.12) * ppm);
+    const act = tgt('act', W, H);
+    pass(PACT, act, u => { bindTex(0, dx.tex, u.uD); bindTex(1, db.tex, u.uDB); gl.uniform1f(u.uE, e); gl.uniform1f(u.uII, ii); gl.uniform1i(u.uColor, color ? 1 : 0); });
+    actTex = act.tex;
+  } else actTex = whiteTex;
+}
+const STRIP_PIXELS = MOBILE ? 50000 : 160000;
+function renderFilm(target, view){
+  const f = film, dp = devParams(state.dev), color = f.mode === 'color', base = BASE[f.mode], cl = state.fx.clump;
+  gl.bindFramebuffer(gl.FRAMEBUFFER, target.fb); gl.viewport(0, 0, target.w, target.h);
+  gl.useProgram(PG.p); const u = PG.u;
+  gl.uniform4f(u.uView, view[0], view[1], view[2], view[3]); gl.uniform2f(u.uRes, target.w, target.h); gl.uniform2f(u.uFilm, f.W, f.H);
+  gl.uniform1ui(u.uSeed, f.seed); gl.uniform1f(u.uCell, f.cell); gl.uniform1f(u.uMeanN, f.meanN);
+  gl.uniform1f(u.uRMed, f.rMed); gl.uniform1f(u.uSig, SIG); gl.uniform1f(u.uSigQ, SIGQ); gl.uniform1f(u.uF, f.F * Math.pow(2, f.stops));
+  gl.uniform1i(u.uK, f.k); gl.uniform1i(u.uColor, color ? 1 : 0);
+  gl.uniform1f(u.uGrowth, dp.g); gl.uniform1f(u.uFog, dp.fog); gl.uniform1f(u.uTau, dp.tau);
+  const ext = dp.g * 1.35 * (color ? 2.0 : 1.5);               // max activity 1.8 → sqrt ≈ 1.34
+  const clSig = Math.max(0.35 * f.cell, 2.5 * f.rMed), clMax = cl.on ? 2.5 * clSig : 0;
+  gl.uniform1f(u.uRmax, f.rMed * Math.exp(2.5 * SIG) * ext + clMax); gl.uniform1f(u.uExt, ext);
+  gl.uniform1f(u.uClump, cl.on ? cl.amt : 0); gl.uniform1f(u.uClSig, clSig); gl.uniform1f(u.uClMax, clMax);
+  gl.uniform1f(u.uDyeK, DYE_K); gl.uniform3f(u.uBase, base[0], base[1], base[2]);
+  gl.uniformMatrix3fv(u.uAbs, false, color ? [].concat(ABS[0], ABS[1], ABS[2]) : [1, 1, 1, 1, 1, 1, 1, 1, 1]);
+  bindTex(0, expTarget.tex, u.uImg); bindTex(1, actTex, u.uAct);
+  gl.bindVertexArray(emptyVAO); gl.enable(gl.SCISSOR_TEST);
+  const strip = Math.max(8, Math.floor(STRIP_PIXELS / target.w));
+  for (let y = 0; y < target.h; y += strip){ gl.scissor(0, y, target.w, Math.min(strip, target.h - y)); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); }
+  gl.disable(gl.SCISSOR_TEST); gl.bindVertexArray(null); gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  if (target.mip){ gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, target.tex); gl.generateMipmap(gl.TEXTURE_2D); }
+}
+function runPrint(){
+  const e = state.fx.enl;
+  printSrc = state.print === 'paper' && e.on && e.amt > 0.05 ? blur(filmTarget, 'enl', e.amt * Math.max(film.W, film.H) / 1200, 0, true) : filmTarget;
+}
+// transmittance of an 18 % grey on this negative (what a test strip / auto exposure would aim at)
+function negMid(){
+  const comp = state.comp, dp = devParams(comp ? state.dev : 1), lm = lamMid(film.k);
+  const Dl = Math.LOG10E * film.cov * dp.g * dp.g * densFrac(Math.pow(2, comp ? film.stops : 0), lm, film.k, dp.tau, dp.fog);
+  const base = BASE[film.mode];
+  if (film.mode !== 'color') return base.map(b => b * Math.pow(10, -Dl));
+  return [0, 1, 2].map(c => base[c] * Math.pow(10, -DYE_K * (ABS[0][c] + ABS[1][c] + ABS[2][c]) * Dl));
+}
+function displayUniforms(viewMode, circle, tex, texture){
+  const u = PD.u, color = film.mode === 'color', base = BASE[film.mode];
+  gl.useProgram(PD.p);
+  gl.uniform1i(u.uView, viewMode === 'pos' ? 1 : 0); gl.uniform1i(u.uCircle, circle ? 1 : 0); gl.uniform1i(u.uColor, color ? 1 : 0);
+  gl.uniform1i(u.uPrint, state.print === 'paper' ? 1 : 0);
+  gl.uniform3f(u.uBase, base[0], base[1], base[2]);
+  const pp = scanParams(film.cov, film.k), dpc = devParams(state.dev);
+  const Dfog = Math.LOG10E * film.cov * dpc.g * dpc.g * densFrac(1e-9, lamMid(film.k), film.k, dpc.tau, dpc.fog);
+  gl.uniform1f(u.uDmid, pp.Dmid); gl.uniform1f(u.uGam, pp.gam); gl.uniform1f(u.uDfog, Dfog);
+  gl.uniform1f(u.uShift, state.comp ? film.stops * 0.30103 * PRINT_CONTRAST : 0);
+  let M; if (color){ const m = []; for (let c = 0; c < 3; c++) for (let l = 0; l < 3; l++) m.push(DYE_K * ABS[l][c]); M = inv3(m); } else M = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+  gl.uniformMatrix3fv(u.uUnmix, false, [M[0], M[3], M[6], M[1], M[4], M[7], M[2], M[5], M[8]]);
+  // paper
+  const P = paperParams(), tm = negMid();
+  gl.uniform3f(u.uTmid, tm[0], tm[1], tm[2]); gl.uniform3f(u.uXmid, P.xmid[0], P.xmid[1], P.xmid[2]);
+  gl.uniform1f(u.uPS, P.s); gl.uniform1f(u.uPDD, P.dd); gl.uniform1f(u.uPGlare, P.glare); gl.uniform1f(u.uPExp, state.pexp * 0.30103);
+  gl.uniform3f(u.uPWhite, P.P.white[0], P.P.white[1], P.P.white[2]);
+  const tone = P.P.tone || [1, 1, 1]; gl.uniform3f(u.uPTone, tone[0], tone[1], tone[2]);
+  const X = P.P.xt || [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+  gl.uniformMatrix3fv(u.uPX, false, [X[0][0], X[1][0], X[2][0], X[0][1], X[1][1], X[2][1], X[0][2], X[1][2], X[2][2]]);
+  gl.uniform1f(u.uPTex, texture && state.fx.ptex.on ? state.fx.ptex.amt * (state.surface === 'matte' ? 1.6 : state.surface === 'luster' ? 1.2 : 1) : 0);
+  const sc = 1200 / Math.max(film.W, film.H); gl.uniform2f(u.uFilmPx, film.W * sc, film.H * sc);
+  gl.uniform4f(u.uSrc, 0, 0, 1, 1);
+  gl.uniform2f(u.uTexel, tex && state.print === 'scan' ? 1 / tex.w : 0, tex && state.print === 'scan' ? 1 / tex.h : 0);
+  gl.bindVertexArray(emptyVAO);
+}
+
+// ---------------- Render orchestration (no animation: final result only) ----------------
+const LV = {view: 1, print: 2, film: 3, optics: 4, expose: 5};
+let level = 0, timer = 0, viewDirty = true, seed = (Math.random() * 4294967296) >>> 0;
+function setPhase(t, busy){ const p = $('phase'); p.textContent = t; p.classList.toggle('busy', !!busy); }
+function invalidate(l, delay = 160){
+  level = Math.max(level, LV[l]);
+  if (!film && level < 5) return;
+  clearTimeout(timer);
+  if (level <= 2){ doRender(); return; }
+  setPhase('rendering…', true);
+  // let the indicator paint before the (synchronous) GPU work
+  timer = setTimeout(() => requestAnimationFrame(() => setTimeout(doRender, 0)), delay);
+}
+function expose(newSeed){ if (newSeed) seed = (Math.random() * 4294967296) >>> 0; invalidate('expose', 30); }
+function doRender(){
+  if (!srcCanvas || !okGL) return;
+  const lv = level; level = 0; const t0 = performance.now();
+  try {
+    if (lv >= 5){
+      if (!working || working.res !== state.res || working.src !== srcCanvas) makeWorking();
+      film = computeFilm(working.W, working.H); film.seed = seed;
+      film.stats = computeStats(film);
+      filmTarget = tgt('film', film.W, film.H, true);
+    }
+    if (lv >= 4) runOptics();
+    if (lv >= 3){ renderFilm(filmTarget, [0, 0, film.W, film.H]); stats = computeStats(film); }
+    if (lv >= 2) runPrint();
+    if (lv >= 3){ const f16 = filmTarget.f16, px = f16 ? new Float32Array(4) : new Uint8Array(4); gl.bindFramebuffer(gl.FRAMEBUFFER, filmTarget.fb); gl.readPixels(0, 0, 1, 1, gl.RGBA, f16 ? gl.FLOAT : gl.UNSIGNED_BYTE, px); gl.bindFramebuffer(gl.FRAMEBUFFER, null); }
+  } catch (e){ showErr('Render failed: ' + e.message); }
+  viewDirty = true;
+  if (lv >= 3){
+    const ms = performance.now() - t0;
+    setPhase('ready · ' + (ms < 1000 ? Math.round(ms) + ' ms' : (ms / 1000).toFixed(1) + ' s'));
+    $('hudInfo').textContent = `ISO ${film.iso} · f/${state.fstop} · ${shutter()} · ${fmtStops(film.stops)}`;
+    updateStats(); drawChart();
+  }
+  window.__fgl.renders++; window.__fgl.done = true;
+}
+
+// ---------------- Display loop (only redraws when something changed) ----------------
+const loupe = {x: 0, y: 0, on: false, pinned: false, touch: false};
+function fitRect(){
+  const cw = canvas.width, ch = canvas.height, pad = Math.round(12 * devicePixelRatio);
+  const s = Math.min((cw - 2 * pad) / film.W, (ch - 2 * pad - 26 * devicePixelRatio) / film.H);
+  const w = Math.round(film.W * s), h = Math.round(film.H * s);
+  return {x: Math.round((cw - w) / 2), y: Math.round((ch - h) / 2 + 12 * devicePixelRatio), w, h, s};
+}
+function frame(){
+  requestAnimationFrame(frame);
+  if (!film || !viewDirty || !printSrc) return; viewDirty = false;
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  gl.viewport(0, 0, canvas.width, canvas.height); gl.clearColor(0.02, 0.012, 0.01, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+  const r = fitRect(), src = state.view === 'pos' ? printSrc : filmTarget;
+  displayUniforms(state.view, false, src, true);
+  gl.viewport(r.x, canvas.height - r.y - r.h, r.w, r.h);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src.tex); gl.uniform1i(PD.u.uTex, 0); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  const ring = $('ring');
+  if (state.loupe && loupe.on){
+    const dpr = devicePixelRatio, R = Math.round(Math.min(130, Math.max(70, canvas.clientWidth * 0.16)) * dpr);
+    const cx = loupe.x * dpr, cy = (loupe.y - (loupe.touch ? 130 : 0)) * dpr;
+    const fx = (loupe.x * dpr - r.x) / r.s, fy = (loupe.y * dpr - r.y) / r.s;
+    const ppu = r.s * state.mag;
+    loupeTarget = tgt('loupe', 2 * R, 2 * R);
+    renderFilm(loupeTarget, [fx - R / ppu, fy - R / ppu, 2 * R / ppu, 2 * R / ppu]);
+    displayUniforms(state.view, true, null, false);
+    gl.viewport(Math.round(cx - R), Math.round(canvas.height - cy - R), 2 * R, 2 * R);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, loupeTarget.tex); gl.uniform1i(PD.u.uTex, 0); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    const css = R / dpr; ring.style.display = 'block';
+    ring.style.left = (cx / dpr - css) + 'px'; ring.style.top = (cy / dpr - css) + 'px'; ring.style.width = ring.style.height = (2 * css) + 'px';
+    const um = FRAME_MM * 1000 / Math.max(film.W, film.H) * (2 * R / ppu);
+    $('ringLbl').textContent = `×${state.mag} · field ${um < 1000 ? um.toFixed(0) + ' µm' : (um / 1000).toFixed(2) + ' mm'}`;
+  } else ring.style.display = 'none';
+}
+
+// ---------------- Download ----------------
+function download(){
+  if (!film || !printSrc) return;
+  const src = state.view === 'pos' ? printSrc : filmTarget;
+  const out = makeTarget(film.W, film.H, false, false);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, out.fb); gl.viewport(0, 0, film.W, film.H);
+  displayUniforms(state.view, false, src, true);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src.tex); gl.uniform1i(PD.u.uTex, 0); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  const px = new Uint8Array(film.W * film.H * 4); gl.readPixels(0, 0, film.W, film.H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+  freeTarget(out); gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  const c = document.createElement('canvas'); c.width = film.W; c.height = film.H; const x = c.getContext('2d');
+  const id = x.createImageData(film.W, film.H), row = film.W * 4;
+  for (let y = 0; y < film.H; y++) id.data.set(px.subarray((film.H - 1 - y) * row, (film.H - y) * row), y * row);
+  x.putImageData(id, 0, 0); viewDirty = true;
+  const what = state.view === 'neg' ? 'negative' : state.print === 'scan' ? 'scan' : paperId();
+  c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b);
+    a.download = `filmgrainlab-${srcName}-${film.mode}-iso${film.iso}-${what}.png`;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); }, 'image/png');
+}
+
+// ---------------- Stats & chart ----------------
+function updateStats(){
+  if (!film) return;
+  const rUm = film.rMed / Math.max(film.W, film.H) * FRAME_MM * 1000;
+  $('stats').innerHTML =
+    `crystals&nbsp; <b>${film.grains.toLocaleString()}</b>${film.capped ? ' (capped)' : ''}<br>` +
+    `median grain <b>${(film.rMed * 2).toFixed(2)} px</b> ≈ ${(rUm * 2).toFixed(1)} µm on 35 mm<br>` +
+    `crystals / pixel <b>${(film.nPx * film.nL).toFixed(1)}</b><br>` +
+    `photons absorbed <b>${sci(film.stats.photons)}</b><br>` +
+    (stats ? `developed <b>${(100 * stats.dev).toFixed(1)}%</b> · fog <b>${(100 * stats.fog).toFixed(2)}%</b><br>` : '') +
+    `working size <b>${film.W}×${film.H}</b> · ${hasCBF ? 'fp16' : '8-bit'} buffers`;
+}
+function drawChart(){
+  const c = $('chart'), dpr = devicePixelRatio, w = c.clientWidth, h = c.clientHeight;
+  if (!w) return; c.width = w * dpr; c.height = h * dpr; const x = c.getContext('2d'); x.scale(dpr, dpr);
+  const color = state.mode === 'color', cov = color ? COV.color : COV.bw, lm = lamMid(state.k), kD = color ? DYE_K : 1;
+  const showP = state.paperCurve && state.print === 'paper';
+  const x0 = -7, x1 = 6, dmax = showP ? 2.45 : Math.LOG10E * cov * Math.pow(devParams(2).g, 2) * kD * 1.02;
+  const X = s => 28 + (s - x0) / (x1 - x0) * (w - 36), Y = d => h - 18 - d / dmax * (h - 28);
+  x.fillStyle = '#0b0807'; x.fillRect(0, 0, w, h);
+  x.strokeStyle = '#2a1d18'; x.lineWidth = 1; x.font = '9px ui-monospace,monospace'; x.fillStyle = '#7a665c';
+  for (let s = x0; s <= x1; s++){ x.beginPath(); x.moveTo(X(s), 8); x.lineTo(X(s), h - 18); x.stroke(); if (s % 2 === 0) x.fillText((s > 0 ? '+' : '') + s, X(s) - 5, h - 6); }
+  for (let d = 0; d <= dmax; d += 0.5){ x.beginPath(); x.moveTo(28, Y(d)); x.lineTo(w - 8, Y(d)); x.stroke(); x.fillText(d.toFixed(1), 4, Y(d) + 3); }
+  const curve = (dev, col, dash) => { const dp = devParams(dev), Ds = Math.LOG10E * cov * dp.g * dp.g * kD;
+    x.strokeStyle = col; x.setLineDash(dash); x.lineWidth = 2; x.beginPath();
+    for (let s = x0; s <= x1; s += 0.1){ const d = Ds * densFrac(Math.pow(2, s), lm, state.k, dp.tau, dp.fog); s === x0 ? x.moveTo(X(s), Y(d)) : x.lineTo(X(s), Y(d)); }
+    x.stroke(); x.setLineDash([]); };
+  const lo = X(Math.max(x0, -5 + state.stops)), hi = X(Math.min(x1, 2.47 + state.stops));
+  x.fillStyle = 'rgba(255,59,43,.10)'; x.fillRect(lo, 8, hi - lo, h - 26);
+  curve(1, '#5b4a42', [4, 3]); curve(state.dev, '#ffb347', []);
+  if (showP){ // paper density vs paper log exposure, centred on the mid-grey print exposure
+    const P = paperParams(), cols = color ? ['#3fd0e0', '#e04fc0', '#e8d040'] : ['#9fd8ff'];
+    cols.forEach((col, i) => { x.strokeStyle = col; x.lineWidth = 1.6; x.beginPath();
+      for (let s = x0; s <= x1; s += 0.1){ const xx = P.xmid[i] + s * 0.30103 + state.pexp * 0.30103; const d = P.D(xx) + 0.05;
+        s === x0 ? x.moveTo(X(s), Y(d)) : x.lineTo(X(s), Y(d)); } x.stroke(); });
+    x.fillStyle = cols[0]; x.fillText('paper', w - 44, 18);
+  }
+  x.strokeStyle = '#ff3b2b'; x.beginPath(); x.moveTo(X(state.stops), 8); x.lineTo(X(state.stops), h - 18); x.stroke();
+  x.fillStyle = '#ffb347'; x.fillText('film', 32, 18); x.fillStyle = '#ff8a7a'; x.fillText('18% grey', Math.min(w - 96, X(state.stops) + 3), 30);
+  x.fillStyle = '#7a665c'; x.fillText('log₂ H (stops)', w - 78, h - 20);
+}
+
+// ---------------- UI ----------------
+const FX_LEVEL = {clump: 'film', enl: 'print', ptex: 'view'};
+function buildFx(){
+  for (const sec in FX_SPEC){
+    const host = $(sec);
+    for (const f of FX_SPEC[sec]){
+      const st = state.fx[f.id], div = document.createElement('div'); div.className = 'fx'; div.id = 'fx_' + f.id;
+      div.innerHTML = `<label class="fxh"><input type="checkbox"><span>${f.name}<span class="tip">${f.tip}</span></span></label><div class="fxp"></div>`;
+      const cb = div.querySelector('input'), box = div.querySelector('.fxp');
+      for (const [k, label, min, max, step] of f.p){
+        const g = document.createElement('div');
+        g.innerHTML = `<div class="lbl"><span>${label}</span><output></output></div><input type="range" min="${min}" max="${max}" step="${step}">`;
+        const r = g.querySelector('input'), o = g.querySelector('output');
+        r.value = st[k]; o.textContent = (+st[k]).toFixed(2);
+        r.addEventListener('input', () => { st[k] = +r.value; o.textContent = st[k].toFixed(2); fxChanged(f.id); });
+        g.dataset.k = k; box.appendChild(g);
+      }
+      cb.addEventListener('change', () => { st.on = cb.checked; fxChanged(f.id); });
+      host.appendChild(div);
+    }
+  }
+}
+function fxChanged(id){ syncUI(); if (id === 'inter' && state.mode !== 'color') return; invalidate(FX_LEVEL[id] || 'optics'); }
+function syncFxUI(){
+  for (const sec in FX_SPEC) for (const f of FX_SPEC[sec]){
+    const st = state.fx[f.id], div = $('fx_' + f.id); div.classList.toggle('on', st.on); div.querySelector('input').checked = st.on;
+    div.querySelectorAll('.fxp>div').forEach(g => { const r = g.querySelector('input'); r.value = st[g.dataset.k]; g.querySelector('output').textContent = (+st[g.dataset.k]).toFixed(2); });
+    if (f.colorOnly) div.style.opacity = state.mode === 'color' ? 1 : 0.45;
+  }
+  const count = ids => { const n = ids.filter(id => state.fx[id].on && !(id === 'inter' && state.mode !== 'color')).length; return n ? n + ' on' : ''; };
+  $('bLens').textContent = count(FX_SPEC.fxLens.map(f => f.id)); $('bCam').textContent = count(FX_SPEC.fxCam.map(f => f.id));
+  $('bEmu').textContent = count(FX_SPEC.fxEmu.map(f => f.id));
+  $('bPrint').textContent = state.print === 'scan' ? 'scan' : PAPERS[paperId()].name.split(' · ')[0];
+}
+const segs = [];
+function seg(id, get, set, cb){
+  const el = $(id); const sync = () => el.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === String(get())));
+  el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b || b.disabled) return; set(b.dataset.v); syncUI(); cb(); });
+  segs.push(sync);
+}
+function buildContrast(){
+  const P = PAPERS[paperId()], el = $('segContrast');
+  if (!P.bw){ $('grpContrast').style.display = 'none'; return; }
+  $('grpContrast').style.display = '';
+  const keys = P.contrast === 'grade' ? Object.keys(GRADES).sort() : ['00', '0', '1', '2', '3', '4', '5'];
+  $('lblContrast').innerHTML = (P.contrast === 'grade' ? 'Paper grade' : 'Multigrade filter') + ' <output id="oContrast"></output>';
+  el.innerHTML = keys.map(k => `<button data-v="${k}">${k}</button>`).join('');
+}
+function buildPaperSelect(){
+  const sel = $('selPaper'), bw = state.mode !== 'color';
+  sel.innerHTML = Object.entries(PAPERS).filter(([, p]) => p.bw === bw).map(([k, p]) => `<option value="${k}">${p.name}</option>`).join('');
+  sel.value = paperId(); buildContrast();
+}
+function syncUI(){
+  segs.forEach(s => s());
+  $('oStops').textContent = fmtStops(state.stops) + ' · ' + shutter();
+  $('oDev').textContent = (8 * state.dev).toFixed(1) + ' min' + (state.dev > 1.05 ? ' (push)' : state.dev < 0.95 ? ' (pull)' : ' (normal)');
+  $('oIso').textContent = {100: 'fine grain', 400: 'all-round', 1600: 'grainy', 3200: 'very grainy'}[state.iso];
+  $('oMag').textContent = state.loupe ? '×' + state.mag : 'off'; $('btnLoupe').classList.toggle('on', state.loupe);
+  $('btnLoupe').textContent = state.loupe ? '🔍 On' : '🔍 Off';
+  $('oK').textContent = state.k + (state.k === 1 ? ' photon' : ' photons'); $('oGs').textContent = '×' + state.gs.toFixed(2);
+  $('oFst').textContent = 'f/' + state.fstop; $('oAgit').textContent = AGIT[state.agit].label;
+  $('oPexp').textContent = (state.pexp > 0 ? '+' : '') + state.pexp.toFixed(1) + ' stops';
+  $('paperCtl').style.display = state.print === 'paper' ? '' : 'none';
+  const P = PAPERS[paperId()], oc = $('oContrast');
+  if (oc && P.bw){ const R = P.contrast === 'grade' ? GRADES[state.grade] : FILTERS[state.filter]; oc.textContent = 'range ' + R.toFixed(2) + ' log H'; }
+  syncFxUI();
+}
+seg('segMode', () => state.mode, v => { state.mode = v; buildPaperSelect(); }, () => invalidate('expose'));
+seg('segIso', () => state.iso, v => state.iso = +v, () => invalidate('expose'));
+seg('segView', () => state.view, v => state.view = v, () => invalidate('view'));
+seg('segAgit', () => state.agit, v => state.agit = v, () => { if (state.fx.edge.on) invalidate('optics'); });
+seg('segPrint', () => state.print, v => state.print = v, () => { invalidate('print'); drawChart(); });
+seg('segSurface', () => state.surface, v => state.surface = v, () => { invalidate('view'); drawChart(); });
+seg('segContrast', () => PAPERS[paperId()].contrast === 'grade' ? state.grade : state.filter,
+  v => { if (PAPERS[paperId()].contrast === 'grade') state.grade = v; else state.filter = v; }, () => { invalidate('view'); drawChart(); });
+$('selPaper').addEventListener('change', e => { if (state.mode === 'color') state.paperColor = e.target.value; else state.paperBW = e.target.value;
+  buildContrast(); syncUI(); invalidate('view'); drawChart(); });
+$('rPexp').addEventListener('input', e => { state.pexp = +e.target.value; syncUI(); invalidate('view'); drawChart(); });
+$('rStops').addEventListener('input', e => { state.stops = Math.round(+e.target.value * 3) / 3; syncUI(); drawChart(); invalidate('expose', 300); });
+$('rDev').addEventListener('input', e => { state.dev = +e.target.value; syncUI(); drawChart(); invalidate('film', 300); });
+$('rK').addEventListener('input', e => { state.k = +e.target.value; syncUI(); drawChart(); invalidate('expose', 300); });
+$('rGs').addEventListener('input', e => { state.gs = +e.target.value; syncUI(); invalidate('expose', 300); });
+$('selRes').addEventListener('change', e => { state.res = +e.target.value; invalidate('expose'); });
+$('selFst').addEventListener('change', e => { state.fstop = +e.target.value; syncUI(); invalidate('optics'); });
+$('cComp').addEventListener('change', e => { state.comp = e.target.checked; invalidate('view'); });
+$('cPaperCurve').addEventListener('change', e => { state.paperCurve = e.target.checked; drawChart(); });
+$('rMag').addEventListener('input', e => { state.mag = +e.target.value; syncUI(); viewDirty = true; });
+$('btnLoupe').addEventListener('click', () => { state.loupe = !state.loupe; syncUI(); viewDirty = true; });
+$('btnExpose').addEventListener('click', () => expose(true));
+$('btnDownload').addEventListener('click', download);
+$('btnLoad').addEventListener('click', () => $('file').click());
+$('file').addEventListener('change', e => loadFile(e.target.files[0]));
+$('btnSample').addEventListener('click', () => { srcCanvas = sampleScene(); srcName = 'sample'; expose(true); });
+$('secCurve').addEventListener('toggle', drawChart);
+const stage = $('stage');
+['dragenter', 'dragover'].forEach(t => stage.addEventListener(t, e => { e.preventDefault(); stage.classList.add('drag'); }));
+['dragleave', 'drop'].forEach(t => stage.addEventListener(t, e => { e.preventDefault(); stage.classList.remove('drag'); }));
+stage.addEventListener('drop', e => { const f = e.dataTransfer.files[0]; if (f) loadFile(f); });
+function pointer(e){ const b = canvas.getBoundingClientRect(); loupe.x = e.clientX - b.left; loupe.y = e.clientY - b.top; loupe.touch = e.pointerType !== 'mouse'; viewDirty = true; }
+canvas.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' ? (!loupe.pinned || e.buttons) : loupe.on){ pointer(e); loupe.on = true; } });
+canvas.addEventListener('pointerdown', e => { pointer(e); loupe.on = true; if (e.pointerType === 'mouse') loupe.pinned = !loupe.pinned; else canvas.setPointerCapture(e.pointerId); });
+canvas.addEventListener('pointerleave', e => { if (!loupe.pinned && e.pointerType === 'mouse'){ loupe.on = false; viewDirty = true; } });
+['pointerup', 'pointercancel'].forEach(t => canvas.addEventListener(t, e => { if (e.pointerType !== 'mouse'){ loupe.on = false; viewDirty = true; } }));
+function resize(){ const dpr = devicePixelRatio || 1; canvas.width = Math.max(2, Math.round(canvas.clientWidth * dpr)); canvas.height = Math.max(2, Math.round(canvas.clientHeight * dpr)); viewDirty = true; drawChart(); }
+new ResizeObserver(resize).observe(canvas);
+if (gl) canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); showErr('The GPU context was lost (too many grains?). Reload the page or lower the working resolution.'); });
+
+// automation / test hook
+window.__fgl = {state, done: false, renders: 0,
+  apply(o){ for (const k in o){ if (k === 'fx'){ for (const id in o.fx) Object.assign(state.fx[id], o.fx[id]); } else state[k] = o[k]; }
+    if ('mode' in o) buildPaperSelect(); else buildContrast();
+    $('rStops').value = state.stops; $('rDev').value = state.dev; $('rPexp').value = state.pexp; $('selRes').value = String(state.res); $('selFst').value = String(state.fstop);
+    syncUI(); window.__fgl.done = false; invalidate('expose', 0); },
+  setLoupe(xf, yf, mag){ const r = fitRect(), dpr = devicePixelRatio; loupe.x = (r.x + xf * r.w) / dpr; loupe.y = (r.y + yf * r.h) / dpr; loupe.on = true; loupe.pinned = true; loupe.touch = false; if (mag) state.mag = mag; syncUI(); viewDirty = true; },
+  hideLoupe(){ loupe.on = false; loupe.pinned = false; viewDirty = true; },
+  expose, download};
+
+// URL overrides, e.g. ?iso=1600&mode=color&res=800&ev=-1&dev=1.5&print=scan
+(() => { const q = new URLSearchParams(location.search);
+  if (q.has('iso') && ISO_R[+q.get('iso')]) state.iso = +q.get('iso');
+  if (q.get('mode') === 'color') state.mode = 'color';
+  if (q.has('res')) state.res = +q.get('res') || state.res;
+  if (q.has('ev')) state.stops = Math.max(-3, Math.min(3, +q.get('ev') || 0));
+  if (q.has('dev')) state.dev = Math.max(0.5, Math.min(2, +q.get('dev') || 1));
+  if (q.get('print') === 'scan') state.print = 'scan';
+  $('rStops').value = state.stops; $('rDev').value = state.dev; $('selRes').value = String(state.res); $('selFst').value = String(state.fstop);
+})();
+buildFx(); buildPaperSelect(); syncUI(); resize();
+srcCanvas = sampleScene();
+if (okGL){ requestAnimationFrame(frame); expose(); }
+</script>
+</body>
+</html>
