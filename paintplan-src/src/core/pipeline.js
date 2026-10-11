@@ -15,7 +15,7 @@ const nParams=()=>levelParams({steps:S.nThree?3:2,black:0,white:100,mid:S.nMid,b
 const pParams=()=>({k:S.pK,blur:S.pBlur,smooth:S.pSmooth});
 function modeParams(){const m=S.mode;
   if(m==='squint')return{squint:S.squint};if(m==='values')return vParams();if(m==='notan')return nParams();
-  if(m==='palette')return pParams();if(m==='remap')return{pigs:S.pigments.map(p=>p.c),mix:S.rMix,blur:S.rBlur};
+  if(m==='palette')return pParams();if(m==='remap')return{pigs:S.pigments.map(p=>p.c),ts:S.pigments.map(pigStrength),mix:S.rMix,blur:S.rBlur};
   if(m==='temp')return{s:S.tStrength};if(m==='chroma')return{s:S.cStrength};return{};}
 function edgeParams(){return{src:S.lineSrc,blur:S.lineBlur,detail:S.lineDetail,clean:S.lineClean,thick:S.lineThick,
   v:S.lineSrc==='values'?(S.mode==='notan'?nParams():vParams()):null,pal:S.lineSrc==='colors'?pParams():null};}

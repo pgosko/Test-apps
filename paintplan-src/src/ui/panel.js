@@ -129,11 +129,15 @@ function applyPigPreset(){
 function renderPigs(){
   const el=$('#pigList');if(!el)return;
   const sig=JSON.stringify(S.pigments);if(el.dataset.sig===sig)return;el.dataset.sig=sig;
-  el.innerHTML=S.pigments.map((p,i)=>`<div class="pig"><input type="color" value="${p.c}" data-pi="${i}" data-f="c" aria-label="Paint colour"><input type="text" value="${esc(p.n)}" data-pi="${i}" data-f="n" aria-label="Paint name"><button data-del="${i}" title="Remove" aria-label="Remove paint">×</button></div>`).join('');
+  el.innerHTML=S.pigments.map((p,i)=>{const L=p.id&&PAINT_BY_ID[p.id];
+    const meta=L?`${esc(L.code)} · ${PAINT_OPA[L.op]||''}${L.src==='approx'?' · approx':''}`:'custom colour';
+    return`<div class="pig"><input type="color" value="${p.c}" data-pi="${i}" data-f="c" aria-label="Paint colour (custom)"><button type="button" class="pig-name" data-pick="${i}" aria-haspopup="dialog" title="Choose paint"><b>${esc(p.n)}</b><small>${meta}</small></button><button data-del="${i}" title="Remove" aria-label="Remove paint">×</button></div>`;}).join('');
 }
 function onPig(e){
   const el=e.target,i=el.dataset.pi;if(i===undefined)return;
-  S.pigments=S.pigments.map((p,j)=>j==i?Object.assign({},p,{[el.dataset.f]:el.value}):p);
-  S.rPreset='custom';$('#pigList').dataset.sig=JSON.stringify(S.pigments);syncControls();save();
+  S.pigments=S.pigments.map((p,j)=>{if(j!=i)return p;const q=Object.assign({},p,{[el.dataset.f]:el.value});if(el.dataset.f==='c'&&q.id&&PAINT_BY_ID[q.id]&&PAINT_BY_ID[q.id].c!==q.c)delete q.id;return q;});
+  S.rPreset='custom';const pl=$('#pigList');pl.dataset.sig=JSON.stringify(S.pigments);   // update in place: re-rendering would kill the open colour picker
+  if(!S.pigments[i].id){const sm=el.parentNode.querySelector('.pig-name small');if(sm)sm.textContent='custom colour';}
+  syncControls();save();
   if(el.dataset.f==='c')update();else renderModeInfo();
 }

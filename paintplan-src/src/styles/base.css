@@ -112,3 +112,42 @@ header{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env
 #toast{position:fixed;z-index:50;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.35);font-size:13.5px;max-width:calc(100% - 24px)}
 #toast button{min-height:30px;padding:3px 12px}
 #toast #toastX{background:transparent;border-color:transparent;padding:3px 8px}
+/* Limited palette: paint slots + paint picker (ui/paint-picker.js). Desktop = centred dialog, phones = bottom sheet. */
+.pig .pig-name{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:0;text-align:left;padding:3px 9px;line-height:1.2}
+.pig .pig-name b{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pig .pig-name small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.psheet{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+.ps-card{display:flex;flex-direction:column;width:min(440px,calc(100% - 24px));max-height:min(640px,82vh);background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.5);overflow:hidden}
+.ps-grab{display:none}
+.ps-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 4px}
+.ps-hd button{min-height:32px;padding:3px 12px}
+.ps-search{padding:6px 12px 8px;border-bottom:1px solid var(--line)}
+.ps-search input{width:100%;box-sizing:border-box;min-height:36px;font-size:15px;padding:6px 10px;background:var(--field);color:var(--text);border:1px solid var(--line);border-radius:8px}
+.ps-list{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:4px 6px 8px}
+.ps-gh{position:sticky;top:-4px;z-index:1;padding:8px 8px 4px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+.prow{display:flex;align-items:center;gap:10px;width:100%;min-height:40px;padding:4px 8px;margin:0;text-align:left;background:transparent;border:0;border-radius:8px;color:var(--text);cursor:pointer}
+.prow:hover,.prow.act{background:var(--btnh)}
+.prow.cur{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.ps-sw{flex:none;width:28px;height:28px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 0 1px rgba(0,0,0,.35)}
+.ps-n{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.ps-n b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-n small{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-op{flex:none;font-size:10.5px;line-height:1;padding:3px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.ps-op-O{color:var(--text)}
+.ps-op-T{border-style:dashed}
+.ps-custom{border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:2px}
+.ps-empty{color:var(--muted);padding:6px 10px;margin:0}
+.ps-foot{margin:0;padding:6px 12px 10px;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
+@media (max-width:760px){
+  .psheet{align-items:flex-end}
+  .ps-card{width:100%;max-height:86vh;height:86vh;border-radius:16px 16px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom)}
+  .ps-grab{display:block;width:38px;height:5px;border-radius:3px;background:var(--line);margin:7px auto 0}
+  .ps-hd{padding:6px 14px 2px}.ps-hd b{font-size:16px}.ps-hd button{min-height:44px;padding:4px 16px;font-size:16px}
+  .ps-search input{min-height:44px;font-size:16px}
+  .prow{min-height:52px;padding:6px 10px}
+  .ps-sw{width:34px;height:34px}
+  .ps-n b{font-size:16px}.ps-n small{font-size:12.5px}
+  .pig .pig-name{min-height:44px}
+  .pig input[type=color]{width:44px;height:44px}
+  .pig button[data-del]{min-height:44px;min-width:40px}
+}

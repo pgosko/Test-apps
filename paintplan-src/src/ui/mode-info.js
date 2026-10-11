@@ -23,6 +23,6 @@ function renderModeInfo(){
     const r=lastRemap;
     $('#mixes').innerHTML=r.mixes.map(x=>{const L=local.util.Lstar(0.2126*local.util.S2L[x.rgb[0]]+0.7152*local.util.S2L[x.rgb[1]]+0.0722*local.util.S2L[x.rgb[2]]);
       return`<button class="sw wide${hl===x.idx?' sel':''}" data-hl="${x.idx}"><i style="background:${hex2(x.rgb)}"></i><span><b>${recipe(x.w,S.pigments)}</b><br>${hex2(x.rgb)} · value ${Math.round(L)}% · ${(x.pct*100).toFixed(1)}%</span></button>`;}).join('');
-    $('#remapNote').textContent=`${r.used} distinct mixes used (of ${r.gamutSize} possible${S.rMix?`, ratios in ${r.S}ths`:''}). Mixing is a simple simulation; real pigments vary — treat it as a starting point.`;
+    $('#remapNote').textContent=`${r.used} distinct mixes used (of ${r.gamutSize} possible${S.rMix?`, ratios in ${r.S}ths`:''}). Recipes are approximate: a simulated mix (reflectance blend weighted by each paint’s typical tinting strength) using reference colours; real tubes vary — treat it as a starting point.`;
   }
 }

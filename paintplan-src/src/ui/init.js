@@ -7,8 +7,9 @@ function init(){
   pb.addEventListener('change',e=>{if(e.target.dataset.pi!==undefined)return;if(e.target.tagName==='SELECT'||e.target.type==='checkbox'||e.target.type==='number')onControl(e);});
   pb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
     if(b.dataset.hl!==undefined)setHL(+b.dataset.hl);
+    else if(b.dataset.pick!==undefined)openPaintPicker(+b.dataset.pick);
     else if(b.dataset.del!==undefined){if(S.pigments.length>1){S.pigments=S.pigments.filter((_,i)=>i!=b.dataset.del);S.rPreset='custom';syncControls();save();update();}}
-    else if(b.id==='bAddPig'){if(S.pigments.length<12){S.pigments=S.pigments.concat([{n:'New paint',c:'#808080'}]);S.rPreset='custom';syncControls();save();update();}}
+    else if(b.id==='bAddPig'){if(S.pigments.length<12){S.pigments=S.pigments.concat([{n:'New paint',c:'#808080'}]);S.rPreset='custom';syncControls();save();update();openPaintPicker(S.pigments.length-1);}}
     else if(b.id==='bUsePal'){if(lastPalette){S.rPreset='extracted';applyPigPreset();setState('mode','remap');}}
     else if(b.id==='bCopyHex'){if(lastPalette){const t=lastPalette.cols.map(c=>hex2(c.rgb)).join(' ');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy hex list',1500);},()=>prompt('Hex colours:',t));}}
     else if(b.id==='bPos2')setPosMode(true);else if(b.id==='bClearImg')clearSaved();

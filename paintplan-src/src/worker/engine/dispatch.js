@@ -14,7 +14,7 @@
         for(let i=0;i<n;i++){const c=r.cols[r.labels[i]].rgb;put(i,c[0],c[1],c[2]);}
         labels=r.labels.slice();info={cols:r.cols.map(c=>({rgb:c.rgb,L:c.L,pct:c.pct}))};break;}
       case 'remap':{
-        const g=gamut(p.pigs,p.mix,p.mix?(p.pigs.length>8?6:8):1,3),lut=lutOf(g);
+        const g=gamut(p.pigs,p.mix,p.mix?(p.pigs.length>8?6:8):1,3,p.ts),lut=lutOf(g);
         const [R,G,B]=rgbB(p.blur*sc),l16=new Uint16Array(n),cnt=new Uint32Array(g.ws.length);
         for(let i=0;i<n;i++){const k=lut[(R[i]>>3)<<10|(G[i]>>3)<<5|(B[i]>>3)];l16[i]=k;cnt[k]++;const c=g.rgb[k];put(i,c[0],c[1],c[2]);}
         const idx=[];for(let k=0;k<cnt.length;k++)if(cnt[k]>0)idx.push(k);
@@ -38,7 +38,7 @@
   function handle(m){
     if(m.type==='setImage'){setImage(m);return {res:{type:'ack'},tr:[]};}
     if(m.type==='suggest'){
-      const g=gamut(m.pigs,true,10,3),o=toLab(S2L[m.rgb[0]],S2L[m.rgb[1]],S2L[m.rgb[2]],[0,0,0]),[k,d]=nearest(g,o[0],o[1],o[2]);
+      const g=gamut(m.pigs,true,10,3,m.ts),o=toLab(S2L[m.rgb[0]],S2L[m.rgb[1]],S2L[m.rgb[2]],[0,0,0]),[k,d]=nearest(g,o[0],o[1],o[2]);
       return {res:{type:'suggest',w:g.ws[k],rgb:g.rgb[k],dE:d*100,S:10},tr:[]};
     }
     if(!img||img.id!==m.imageId)return {res:{type:'stale',kind:m.type},tr:[]};

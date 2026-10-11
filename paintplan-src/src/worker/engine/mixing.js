@@ -1,8 +1,11 @@
   /* worker/engine/mixing.js — Limited palette: simulated paint mixing gamut, nearest mix, LUT. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
-  /* --- limited-palette gamut: simulated paint mixing (weighted geometric mean of reflectance) --- */
+  /* --- limited-palette gamut: simulated paint mixing ---
+     Weighted geometric mean of linear-RGB reflectance (a cheap stand-in for single-constant Kubelka-Munk). Recipe ratios are
+     parts by volume; each paint's share is scaled by its relative tinting strength ts (from core/paint-library.js, 1 for custom
+     colours) so strong pigments (phthalos, Prussian, dioxazine) dominate a mix the way they do on the palette. */
   const GC=new Map();
-  function gamut(pigs,mix,S,maxN){
-    const key=pigs.join(',')+'|'+mix+'|'+S+'|'+maxN;
+  function gamut(pigs,mix,S,maxN,ts){
+    const T=pigs.map((_,i)=>ts&&ts[i]>0?+ts[i]:1),key=pigs.join(',')+'|'+mix+'|'+S+'|'+maxN+'|'+T.join(',');
     if(GC.has(key))return GC.get(key);
     if(GC.size>16)GC.clear();
     const P=pigs.length,lg=pigs.map(h=>hexLin(h).map(v=>Math.log(Math.max(v,0.0025))));
@@ -19,7 +22,8 @@
     }
     const seen=new Set(),ws=[],labs=[],rgbs=[],o=[0,0,0];
     for(const w of W){
-      const lin=[0,1,2].map(c=>{let s=0;for(let i=0;i<P;i++)if(w[i])s+=w[i]/S*lg[i][c];return Math.exp(s);});
+      let tw=0;for(let i=0;i<P;i++)tw+=w[i]*T[i];
+      const lin=[0,1,2].map(c=>{let s=0;for(let i=0;i<P;i++)if(w[i])s+=w[i]*T[i]/tw*lg[i][c];return Math.exp(s);});
       const rgb=lin.map(l2s),k=rgb.join(',');if(seen.has(k))continue;seen.add(k);
       toLab(lin[0],lin[1],lin[2],o);ws.push(w);labs.push(o[0],o[1],o[2]);rgbs.push(rgb);
     }

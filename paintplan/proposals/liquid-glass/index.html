@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="PaintPlan">
 <meta name="theme-color" content="#3a3a3a">
-<meta name="paintplan-build" content="liquid-glass@09bd28dc8642">
+<meta name="paintplan-build" content="liquid-glass@7fa078fca40d">
 <title>PaintPlan · Liquid Glass proposal · — plan &amp; practise paintings from a photo</title>
 <style id="base">
 /* styles/base.css — structure + component styles shared by every theme.
@@ -128,6 +128,45 @@ header{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env
 #toast{position:fixed;z-index:50;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.35);font-size:13.5px;max-width:calc(100% - 24px)}
 #toast button{min-height:30px;padding:3px 12px}
 #toast #toastX{background:transparent;border-color:transparent;padding:3px 8px}
+/* Limited palette: paint slots + paint picker (ui/paint-picker.js). Desktop = centred dialog, phones = bottom sheet. */
+.pig .pig-name{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:0;text-align:left;padding:3px 9px;line-height:1.2}
+.pig .pig-name b{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pig .pig-name small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.psheet{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+.ps-card{display:flex;flex-direction:column;width:min(440px,calc(100% - 24px));max-height:min(640px,82vh);background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.5);overflow:hidden}
+.ps-grab{display:none}
+.ps-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 4px}
+.ps-hd button{min-height:32px;padding:3px 12px}
+.ps-search{padding:6px 12px 8px;border-bottom:1px solid var(--line)}
+.ps-search input{width:100%;box-sizing:border-box;min-height:36px;font-size:15px;padding:6px 10px;background:var(--field);color:var(--text);border:1px solid var(--line);border-radius:8px}
+.ps-list{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:4px 6px 8px}
+.ps-gh{position:sticky;top:-4px;z-index:1;padding:8px 8px 4px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+.prow{display:flex;align-items:center;gap:10px;width:100%;min-height:40px;padding:4px 8px;margin:0;text-align:left;background:transparent;border:0;border-radius:8px;color:var(--text);cursor:pointer}
+.prow:hover,.prow.act{background:var(--btnh)}
+.prow.cur{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.ps-sw{flex:none;width:28px;height:28px;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 0 1px rgba(0,0,0,.35)}
+.ps-n{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.ps-n b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-n small{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-op{flex:none;font-size:10.5px;line-height:1;padding:3px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.ps-op-O{color:var(--text)}
+.ps-op-T{border-style:dashed}
+.ps-custom{border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:2px}
+.ps-empty{color:var(--muted);padding:6px 10px;margin:0}
+.ps-foot{margin:0;padding:6px 12px 10px;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
+@media (max-width:760px){
+  .psheet{align-items:flex-end}
+  .ps-card{width:100%;max-height:86vh;height:86vh;border-radius:16px 16px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom)}
+  .ps-grab{display:block;width:38px;height:5px;border-radius:3px;background:var(--line);margin:7px auto 0}
+  .ps-hd{padding:6px 14px 2px}.ps-hd b{font-size:16px}.ps-hd button{min-height:44px;padding:4px 16px;font-size:16px}
+  .ps-search input{min-height:44px;font-size:16px}
+  .prow{min-height:52px;padding:6px 10px}
+  .ps-sw{width:34px;height:34px}
+  .ps-n b{font-size:16px}.ps-n small{font-size:12.5px}
+  .pig .pig-name{min-height:44px}
+  .pig input[type=color]{width:44px;height:44px}
+  .pig button[data-del]{min-height:44px;min-width:40px}
+}
 </style>
 <style id="theme-liquid-glass">
 /* themes/liquid-glass/theme.css — iOS 26 "Liquid Glass" look: neutral (untinted) translucent floating toolbar,
@@ -226,6 +265,15 @@ body.noimg #bPos,body.noimg #bMirror,body.noimg #bFit,body.noimg #bPng{opacity:.
 
 /* "Updated — reload" toast */
 #toast{background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(1.5);backdrop-filter:blur(30px) saturate(1.5);border:1px solid var(--edge);border-radius:999px;box-shadow:0 10px 40px rgba(0,0,0,.35),var(--hi);padding:5px 5px 5px 16px;top:max(70px,calc(env(safe-area-inset-top) + 64px));bottom:auto}
+/* Paint picker (ui/paint-picker.js) in glass */
+.psheet{background:rgba(0,0,0,.28)}
+.ps-card{background:rgba(40,40,42,.84);-webkit-backdrop-filter:blur(40px) saturate(1.6);backdrop-filter:blur(40px) saturate(1.6);border:1px solid var(--edge);border-radius:26px;box-shadow:0 18px 60px rgba(0,0,0,.45),var(--hi)}
+.ps-gh{background:rgba(38,38,40,.92);border-radius:10px}
+.ps-search input{border-radius:12px;background:rgba(118,118,128,.24);border-color:transparent}
+.ps-hd button{border-radius:999px;background:rgba(255,255,255,.14)}
+.prow{border-radius:14px}
+.ps-search,.ps-custom,.ps-foot{border-color:var(--line)}
+@media (max-width:760px){.ps-card{border-radius:30px 30px 0 0;border-bottom:0}.ps-grab{background:rgba(255,255,255,.35)}}
 /* Setup sections (generated from theme.json → runtime.setup) */
 body:not(.setup) #secSetup,body:not(.setup) #dCanvas,body:not(.setup) #dComp,body:not(.setup) #dGrid,body:not(.setup) #dExport,body:not(.setup) #dTips{display:none!important}
 body.setup #secMode,body.setup #dLines,body.setup #dView{display:none!important}
@@ -267,8 +315,8 @@ body.setup #secMode,body.setup #dLines,body.setup #dView{display:none!important}
 <div id="printArea"><img id="printImg" alt="Grid reference"></div>
 <script>
 'use strict';
-/* PaintPlan · theme "liquid-glass" · build 09bd28dc8642 — generated by build.mjs from src/ (edit the source, not this file) */
-const THEME={"id":"liquid-glass","build":"09bd28dc8642","sample":false,"setup":{"title":"Setup","hint":"Canvas size, photo placement and composition guides. Guides you turn on stay on the canvas after you close Setup.","sections":["dCanvas","dComp","dGrid","dExport","dTips"],"hide":["secMode","dLines","dView"],"open":["dCanvas","dComp"]}};
+/* PaintPlan · theme "liquid-glass" · build 7fa078fca40d — generated by build.mjs from src/ (edit the source, not this file) */
+const THEME={"id":"liquid-glass","build":"7fa078fca40d","sample":false,"setup":{"title":"Setup","hint":"Canvas size, photo placement and composition guides. Guides you turn on stay on the canvas after you close Setup.","sections":["dCanvas","dComp","dGrid","dExport","dTips"],"hide":["secMode","dLines","dView"],"open":["dCanvas","dComp"]}};
 /* ===== Image engine: pure functions, runs in a Web Worker (or on the main thread as fallback) ===== */
 function ENGINE(){
   /* worker/engine/color.js — Colour science: sRGB <-> linear, CIE L*, OKLab, gray LUTs. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
@@ -426,10 +474,13 @@ function ENGINE(){
     });
   }
   /* worker/engine/mixing.js — Limited palette: simulated paint mixing gamut, nearest mix, LUT. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
-  /* --- limited-palette gamut: simulated paint mixing (weighted geometric mean of reflectance) --- */
+  /* --- limited-palette gamut: simulated paint mixing ---
+     Weighted geometric mean of linear-RGB reflectance (a cheap stand-in for single-constant Kubelka-Munk). Recipe ratios are
+     parts by volume; each paint's share is scaled by its relative tinting strength ts (from core/paint-library.js, 1 for custom
+     colours) so strong pigments (phthalos, Prussian, dioxazine) dominate a mix the way they do on the palette. */
   const GC=new Map();
-  function gamut(pigs,mix,S,maxN){
-    const key=pigs.join(',')+'|'+mix+'|'+S+'|'+maxN;
+  function gamut(pigs,mix,S,maxN,ts){
+    const T=pigs.map((_,i)=>ts&&ts[i]>0?+ts[i]:1),key=pigs.join(',')+'|'+mix+'|'+S+'|'+maxN+'|'+T.join(',');
     if(GC.has(key))return GC.get(key);
     if(GC.size>16)GC.clear();
     const P=pigs.length,lg=pigs.map(h=>hexLin(h).map(v=>Math.log(Math.max(v,0.0025))));
@@ -446,7 +497,8 @@ function ENGINE(){
     }
     const seen=new Set(),ws=[],labs=[],rgbs=[],o=[0,0,0];
     for(const w of W){
-      const lin=[0,1,2].map(c=>{let s=0;for(let i=0;i<P;i++)if(w[i])s+=w[i]/S*lg[i][c];return Math.exp(s);});
+      let tw=0;for(let i=0;i<P;i++)tw+=w[i]*T[i];
+      const lin=[0,1,2].map(c=>{let s=0;for(let i=0;i<P;i++)if(w[i])s+=w[i]*T[i]/tw*lg[i][c];return Math.exp(s);});
       const rgb=lin.map(l2s),k=rgb.join(',');if(seen.has(k))continue;seen.add(k);
       toLab(lin[0],lin[1],lin[2],o);ws.push(w);labs.push(o[0],o[1],o[2]);rgbs.push(rgb);
     }
@@ -524,7 +576,7 @@ function ENGINE(){
         for(let i=0;i<n;i++){const c=r.cols[r.labels[i]].rgb;put(i,c[0],c[1],c[2]);}
         labels=r.labels.slice();info={cols:r.cols.map(c=>({rgb:c.rgb,L:c.L,pct:c.pct}))};break;}
       case 'remap':{
-        const g=gamut(p.pigs,p.mix,p.mix?(p.pigs.length>8?6:8):1,3),lut=lutOf(g);
+        const g=gamut(p.pigs,p.mix,p.mix?(p.pigs.length>8?6:8):1,3,p.ts),lut=lutOf(g);
         const [R,G,B]=rgbB(p.blur*sc),l16=new Uint16Array(n),cnt=new Uint32Array(g.ws.length);
         for(let i=0;i<n;i++){const k=lut[(R[i]>>3)<<10|(G[i]>>3)<<5|(B[i]>>3)];l16[i]=k;cnt[k]++;const c=g.rgb[k];put(i,c[0],c[1],c[2]);}
         const idx=[];for(let k=0;k<cnt.length;k++)if(cnt[k]>0)idx.push(k);
@@ -548,7 +600,7 @@ function ENGINE(){
   function handle(m){
     if(m.type==='setImage'){setImage(m);return {res:{type:'ack'},tr:[]};}
     if(m.type==='suggest'){
-      const g=gamut(m.pigs,true,10,3),o=toLab(S2L[m.rgb[0]],S2L[m.rgb[1]],S2L[m.rgb[2]],[0,0,0]),[k,d]=nearest(g,o[0],o[1],o[2]);
+      const g=gamut(m.pigs,true,10,3,m.ts),o=toLab(S2L[m.rgb[0]],S2L[m.rgb[1]],S2L[m.rgb[2]],[0,0,0]),[k,d]=nearest(g,o[0],o[1],o[2]);
       return {res:{type:'suggest',w:g.ws[k],rgb:g.rgb[k],dE:d*100,S:10},tr:[]};
     }
     if(!img||img.id!==m.imageId)return {res:{type:'stale',kind:m.type},tr:[]};
@@ -572,6 +624,76 @@ const rgba=(h,a)=>{const c=hexRgb(h);return`rgba(${c[0]},${c[1]},${c[2]},${a})`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 const HOOKS=[];   // functions run at the end of init() (theme/optional modules push here)
+/* core/paint-library.js — Standard artist oil paints for the Limited Palette picker. GENERATED by research/build-library.py — edit that, not this.
+   Fields: id, n name, f family, code Colour Index pigment(s), c reference sRGB (used for swatch + mixing), lab CIE L*a*b* (D65) when published,
+   op opacity (O / SO / ST / T), ts relative tinting strength (approximate, used by the mixing model), mass approximate thick-film masstone
+   for dark transparent paints (display only), src 'ref' = average of published per-brand L*a*b* values for artist-grade oils (k brands,
+   dE = largest ΔE76 of a brand from that average; source mixura.app, method undisclosed — see research/oil-paints.md) or 'approx' = estimate.
+   47 ref / 13 approx of 60 paints. */
+const PAINT_FAMILIES=[['whites','Whites'],['blacks','Blacks & grays'],['earths','Earths'],['yellows','Yellows'],['oranges','Oranges'],['reds','Reds'],['violets','Violets'],['blues','Blues'],['greens','Greens']];
+const PAINTS=[
+{"id":"titanium-white","n":"Titanium White","f":"whites","code":"PW6","c":"#fefdfd","lab":[99.5,-0.1,0.5],"op":"O","ts":1.0,"src":"ref","k":10,"dE":0.7,"al":"white,titanium"},
+{"id":"zinc-white","n":"Zinc White","f":"whites","code":"PW4","c":"#fcfcfa","lab":[98.8,-0.3,0.8],"op":"ST","ts":0.45,"src":"ref","k":13,"dE":0.6,"al":"mixing white"},
+{"id":"flake-white","n":"Flake White (Lead)","f":"whites","code":"PW1","c":"#f4efe3","op":"O","ts":0.6,"src":"approx","al":"lead white,cremnitz,flake white hue","note":"Warm lead white; hues use PW6/PW4."},
+{"id":"ivory-black","n":"Ivory Black","f":"blacks","code":"PBk9","c":"#222223","lab":[13.2,0.2,-0.4],"op":"O","ts":1.5,"src":"ref","k":12,"dE":2.0,"al":"bone black"},
+{"id":"mars-black","n":"Mars Black","f":"blacks","code":"PBk11","c":"#1f1f20","lab":[11.9,0.1,-0.2],"op":"O","ts":2.5,"src":"ref","k":8,"dE":3.5,"al":"iron oxide black"},
+{"id":"lamp-black","n":"Lamp Black","f":"blacks","code":"PBk6/PBk7","c":"#1c1c1d","lab":[10.4,0.1,-0.3],"op":"O","ts":2.2,"src":"ref","k":9,"dE":1.8,"al":"carbon black"},
+{"id":"paynes-gray","n":"Payne’s Gray","f":"blacks","code":"PB29+PBk9","c":"#30343f","lab":[21.8,1.5,-7.6],"op":"ST","ts":2.0,"src":"ref","k":10,"dE":3.8,"al":"paynes grey,payne grey"},
+{"id":"yellow-ochre","n":"Yellow Ochre","f":"earths","code":"PY43/PY42","c":"#c39c48","lab":[66.4,5.2,48.7],"op":"O","ts":1.0,"src":"ref","k":12,"dE":2.4,"al":"ochre,gold ochre"},
+{"id":"raw-sienna","n":"Raw Sienna","f":"earths","code":"PBr7","c":"#b1753d","lab":[54.4,18.1,40.0],"op":"T","ts":0.9,"src":"ref","k":12,"dE":4.4,"al":"sienna"},
+{"id":"burnt-sienna","n":"Burnt Sienna","f":"earths","code":"PBr7/PR101","c":"#974a31","lab":[40.8,30.0,29.3],"op":"T","ts":1.1,"src":"ref","k":12,"dE":6.1,"al":"sienna"},
+{"id":"raw-umber","n":"Raw Umber","f":"earths","code":"PBr7","c":"#63543d","lab":[36.7,2.5,16.0],"op":"T","ts":1.3,"src":"ref","k":12,"dE":2.7,"al":"umber"},
+{"id":"burnt-umber","n":"Burnt Umber","f":"earths","code":"PBr7","c":"#573828","lab":[26.7,11.8,15.5],"op":"ST","ts":1.3,"src":"ref","k":12,"dE":2.3,"al":"umber"},
+{"id":"vandyke-brown","n":"Van Dyke Brown","f":"earths","code":"PBr7+PBk9","c":"#463026","lab":[22.2,8.5,10.4],"op":"T","ts":1.4,"src":"ref","k":3,"dE":3.3,"al":"vandyke"},
+{"id":"venetian-red","n":"Venetian Red","f":"earths","code":"PR101","c":"#8f3a35","lab":[36.2,35.5,21.3],"op":"O","ts":1.8,"src":"ref","k":11,"dE":5.9,"al":"red oxide,light red"},
+{"id":"indian-red","n":"Indian Red","f":"earths","code":"PR101","c":"#8c3439","lab":[34.7,37.7,16.9],"op":"O","ts":2.0,"src":"ref","k":9,"dE":3.9,"al":"red oxide"},
+{"id":"english-red","n":"English Red","f":"earths","code":"PR101","c":"#a7452e","op":"O","ts":1.8,"src":"approx","al":"english red light,light red","note":"Lighter, more orange PR101 than Indian Red."},
+{"id":"transparent-red-oxide","n":"Transparent Red Oxide","f":"earths","code":"PR101 (transparent)","c":"#8e3b1f","op":"T","ts":1.6,"src":"approx","mass":"#4a1d10","al":"transparent oxide red,transparent earth red","note":"Transparent synthetic iron oxide; glazing substitute for Burnt Sienna."},
+{"id":"transparent-yellow-oxide","n":"Transparent Yellow Oxide","f":"earths","code":"PY42 (transparent)","c":"#b9782c","op":"T","ts":1.3,"src":"approx","mass":"#6a3f15","al":"transparent oxide yellow,transparent earth yellow","note":"Transparent synthetic iron oxide."},
+{"id":"naples-yellow","n":"Naples Yellow","f":"yellows","code":"PY41 / PW+PY42+PR101 (hue)","c":"#f8da8c","lab":[88.0,0.3,42.0],"op":"O","ts":0.8,"src":"ref","k":10,"dE":8.4,"al":"naples yellow hue,naples"},
+{"id":"cadmium-lemon","n":"Cadmium Lemon","f":"yellows","code":"PY35","c":"#fff000","op":"O","ts":1.4,"src":"approx","al":"cadmium yellow lemon","note":"Greenish cadmium; value interpolated from Cadmium Yellow Light."},
+{"id":"cadmium-yellow-light","n":"Cadmium Yellow Light","f":"yellows","code":"PY35/PY37","c":"#ffe80d","lab":[91.1,-10.1,89.1],"op":"O","ts":1.5,"src":"ref","k":11,"dE":5.9,"al":"cad yellow light"},
+{"id":"cadmium-yellow-medium","n":"Cadmium Yellow Medium","f":"yellows","code":"PY35/PY37","c":"#ffd30d","lab":[85.9,0.3,85.3],"op":"O","ts":1.5,"src":"ref","k":8,"dE":4.2,"al":"cad yellow medium,cadmium yellow"},
+{"id":"cadmium-yellow-deep","n":"Cadmium Yellow Deep","f":"yellows","code":"PY37/PO20","c":"#ffb806","lab":[79.3,14.3,81.3],"op":"O","ts":1.5,"src":"ref","k":11,"dE":4.9,"al":"cad yellow deep"},
+{"id":"lemon-yellow","n":"Hansa Yellow Light (Lemon)","f":"yellows","code":"PY3","c":"#fff728","lab":[95.1,-17.2,88.2],"op":"ST","ts":1.4,"src":"ref","k":7,"dE":5.1,"al":"lemon yellow,hansa yellow light,hansa lemon"},
+{"id":"hansa-yellow","n":"Hansa Yellow Medium","f":"yellows","code":"PY74/PY97","c":"#ffe121","lab":[89.5,-6.6,85.1],"op":"SO","ts":1.5,"src":"ref","k":2,"dE":3.9,"al":"hansa yellow,primary yellow,azo yellow"},
+{"id":"indian-yellow","n":"Indian Yellow","f":"yellows","code":"PY83/PY153","c":"#ffb228","lab":[77.9,17.9,74.2],"op":"T","ts":1.3,"src":"ref","k":11,"dE":1.6},
+{"id":"cadmium-orange","n":"Cadmium Orange","f":"oranges","code":"PO20","c":"#ff7a2d","lab":[66.0,46.5,62.1],"op":"O","ts":1.5,"src":"ref","k":12,"dE":13.9,"al":"cad orange"},
+{"id":"transparent-orange","n":"Transparent Pyrrole Orange","f":"oranges","code":"PO71","c":"#ff7d2b","lab":[66.7,44.8,63.5],"op":"T","ts":1.8,"src":"ref","k":8,"dE":5.8,"al":"transparent orange,pyrrole orange"},
+{"id":"cadmium-red-light","n":"Cadmium Red Light","f":"reds","code":"PR108","c":"#f74138","lab":[56.0,67.8,46.9],"op":"O","ts":1.5,"src":"ref","k":11,"dE":6.4,"al":"cad red light,cadmium scarlet"},
+{"id":"cadmium-red-medium","n":"Cadmium Red Medium","f":"reds","code":"PR108","c":"#e03333","lab":[50.0,65.0,42.2],"op":"O","ts":1.5,"src":"ref","k":8,"dE":4.2,"al":"cad red,cadmium red"},
+{"id":"cadmium-red-deep","n":"Cadmium Red Deep","f":"reds","code":"PR108","c":"#b62531","lab":[40.4,56.6,30.5],"op":"O","ts":1.5,"src":"ref","k":12,"dE":8.2,"al":"cad red deep"},
+{"id":"pyrrole-red","n":"Pyrrole Red","f":"reds","code":"PR254","c":"#d32d33","lab":[47.0,63.1,38.4],"op":"SO","ts":2.0,"src":"ref","k":6,"dE":6.2,"al":"napthol,winsor red,permanent red"},
+{"id":"alizarin-crimson","n":"Alizarin Crimson","f":"reds","code":"PR83","c":"#9a2236","op":"T","ts":2.0,"src":"approx","mass":"#3e1018","al":"alizarin,rose madder genuine","note":"Fugitive PR83; average of brand-chart colours, approximate."},
+{"id":"permanent-alizarin","n":"Permanent Alizarin Crimson","f":"reds","code":"PR177/PV19 (varies)","c":"#9c2238","op":"T","ts":2.0,"src":"approx","mass":"#401119","al":"alizarin permanent,alizarin hue,anthraquinone red","note":"Lightfast substitute; formulas vary by brand."},
+{"id":"quinacridone-red","n":"Quinacridone Red","f":"reds","code":"PV19","c":"#c42845","lab":[43.8,60.8,23.1],"op":"T","ts":2.0,"src":"ref","k":5,"dE":2.1,"al":"quin red,permanent rose"},
+{"id":"quinacridone-rose","n":"Quinacridone Rose","f":"reds","code":"PV19 (gamma)","c":"#d1365f","op":"T","ts":2.0,"src":"approx","al":"quin rose,permanent rose","note":"Bluish PV19; between Quin Red and Quin Magenta."},
+{"id":"quinacridone-magenta","n":"Quinacridone Magenta","f":"reds","code":"PR122","c":"#b52c5f","lab":[41.9,57.3,3.9],"op":"T","ts":2.0,"src":"ref","k":7,"dE":1.9,"mass":"#52122b","al":"quin magenta,magenta"},
+{"id":"quinacridone-violet","n":"Quinacridone Violet","f":"violets","code":"PV19","c":"#7a2e54","lab":[31.2,37.4,-6.1],"op":"T","ts":2.0,"src":"ref","k":10,"dE":12.1,"mass":"#35121f","al":"quin violet"},
+{"id":"dioxazine-purple","n":"Dioxazine Purple","f":"violets","code":"PV23","c":"#4e2767","lab":[23.8,30.6,-30.4],"op":"T","ts":3.5,"src":"ref","k":3,"dE":2.4,"mass":"#1c0f26","al":"dioxazine violet,carbazole violet,winsor violet"},
+{"id":"ultramarine-violet","n":"Ultramarine Violet","f":"violets","code":"PV15","c":"#593a74","lab":[30.6,25.9,-28.3],"op":"ST","ts":0.7,"src":"ref","k":11,"dE":5.6},
+{"id":"cobalt-violet","n":"Cobalt Violet","f":"violets","code":"PV14/PV49","c":"#8b4f9f","op":"ST","ts":0.5,"src":"approx","al":"cobalt violet hue","note":"Weak, expensive pigment; hues common."},
+{"id":"ultramarine-blue","n":"Ultramarine Blue","f":"blues","code":"PB29","c":"#263b97","lab":[28.8,25.4,-52.6],"op":"ST","ts":1.2,"src":"ref","k":5,"dE":2.0,"mass":"#1a1f5a","al":"french ultramarine,ultramarine"},
+{"id":"cobalt-blue","n":"Cobalt Blue","f":"blues","code":"PB28","c":"#0155a7","lab":[36.6,11.0,-49.7],"op":"ST","ts":0.7,"src":"ref","k":11,"dE":4.5,"al":"cobalt"},
+{"id":"cerulean-blue","n":"Cerulean Blue","f":"blues","code":"PB35/PB36","c":"#2988b9","lab":[53.6,-10.1,-33.7],"op":"O","ts":0.8,"src":"ref","k":11,"dE":6.8,"al":"cerulean"},
+{"id":"prussian-blue","n":"Prussian Blue","f":"blues","code":"PB27","c":"#122c53","lab":[18.1,5.9,-26.9],"op":"T","ts":3.5,"src":"ref","k":12,"dE":6.6,"mass":"#0e1626","al":"paris blue,berlin blue,milori"},
+{"id":"phthalo-blue-gs","n":"Phthalo Blue (Green Shade)","f":"blues","code":"PB15:3","c":"#003795","lab":[26.5,24.2,-55.3],"op":"T","ts":4.0,"src":"ref","k":6,"dE":2.2,"mass":"#0b1838","al":"phthalo blue,phthalocyanine blue,winsor blue green shade"},
+{"id":"phthalo-blue-rs","n":"Phthalo Blue (Red Shade)","f":"blues","code":"PB15:1/PB15:6","c":"#16318f","op":"T","ts":4.0,"src":"approx","mass":"#0d1440","al":"phthalo blue,winsor blue red shade","note":"Redder PB15; shifted from the PB15:3 data toward Ultramarine."},
+{"id":"indigo","n":"Indigo","f":"blues","code":"PB15+PBk/PV mixes","c":"#252f4a","lab":[19.5,4.5,-18.2],"op":"T","ts":2.5,"src":"ref","k":7,"dE":6.6,"al":"indigo hue"},
+{"id":"cobalt-turquoise","n":"Cobalt Turquoise","f":"blues","code":"PB36","c":"#00989f","lab":[56.9,-30.2,-13.6],"op":"O","ts":0.8,"src":"ref","k":6,"dE":2.9,"al":"cobalt teal"},
+{"id":"manganese-blue-hue","n":"Manganese Blue Hue","f":"blues","code":"PB15+PG7(+PW6)","c":"#1d97c3","op":"T","ts":2.5,"src":"approx","al":"manganese blue","note":"Original PB33 discontinued; phthalo-based hue."},
+{"id":"phthalo-green-bs","n":"Phthalo Green (Blue Shade)","f":"greens","code":"PG7","c":"#00625a","lab":[36.7,-26.3,-2.7],"op":"T","ts":4.0,"src":"ref","k":6,"dE":1.2,"mass":"#0b221d","al":"phthalo green,winsor green,phthalocyanine green"},
+{"id":"phthalo-green-ys","n":"Phthalo Green (Yellow Shade)","f":"greens","code":"PG36","c":"#00785a","op":"T","ts":3.5,"src":"approx","mass":"#0f2a1c","al":"phthalo green,winsor green yellow shade","note":"PG36; yellower than PG7."},
+{"id":"viridian","n":"Viridian","f":"greens","code":"PG18","c":"#0d7360","lab":[42.9,-31.5,2.6],"op":"T","ts":0.8,"src":"ref","k":11,"dE":6.6,"mass":"#0f2f28"},
+{"id":"chromium-oxide-green","n":"Chromium Oxide Green","f":"greens","code":"PG17","c":"#5a774f","lab":[47.0,-19.1,19.1],"op":"O","ts":1.2,"src":"ref","k":7,"dE":1.3,"al":"oxide of chromium,chrome oxide green"},
+{"id":"cobalt-green","n":"Cobalt Green","f":"greens","code":"PG50/PG26","c":"#15876b","lab":[50.1,-37.0,6.7],"op":"ST","ts":0.6,"src":"ref","k":11,"dE":9.3},
+{"id":"permanent-green-light","n":"Permanent Green Light","f":"greens","code":"PG36+PY3","c":"#84ba44","lab":[69.7,-36.5,52.5],"op":"ST","ts":2.0,"src":"ref","k":8,"dE":19.7,"al":"permanent green"},
+{"id":"sap-green","n":"Sap Green","f":"greens","code":"mixed (PG7/36 + yellows/browns)","c":"#52652f","lab":[40.0,-16.6,28.1],"op":"T","ts":1.5,"src":"ref","k":10,"dE":2.4,"mass":"#26301a","al":"sap green permanent"},
+{"id":"green-gold","n":"Green Gold","f":"greens","code":"PY129","c":"#948f33","lab":[58.3,-10.2,48.1],"op":"T","ts":1.2,"src":"ref","k":5,"dE":5.6},
+{"id":"olive-green","n":"Olive Green","f":"greens","code":"mixed","c":"#626237","lab":[40.4,-7.1,24.4],"op":"ST","ts":1.4,"src":"ref","k":8,"dE":1.9},
+{"id":"terre-verte","n":"Terre Verte","f":"greens","code":"PG23","c":"#717c5d","op":"ST","ts":0.3,"src":"approx","al":"green earth,verona green earth","note":"Very weak tinter; brand hues vary widely."}
+];
+const PAINT_BY_ID=Object.fromEntries(PAINTS.map(p=>[p.id,p]));
 /* core/config.js — Static config: modes, presets, paint palettes, default state DEF. */
 const MODES=[['photo','Photo'],['gray','Value'],['squint','Squint'],['values','Values'],['notan','Notan'],['palette','Palette'],['remap','Limited'],['temp','Temp'],['chroma','Chroma']];
 const MODE_INFO={
@@ -586,9 +708,19 @@ const MODE_INFO={
   chroma:['Chroma','Brighter = more saturated. Most of a scene is lower chroma than it looks.']
 };
 const PRESETS=[['custom','Custom'],['5x7','5 × 7 in',5,7,'in'],['6x8','6 × 8 in',6,8,'in'],['8x10','8 × 10 in',8,10,'in'],['9x12','9 × 12 in',9,12,'in'],['11x14','11 × 14 in',11,14,'in'],['12x16','12 × 16 in',12,16,'in'],['16x20','16 × 20 in',16,20,'in'],['18x24','18 × 24 in',18,24,'in'],['24x30','24 × 30 in',24,30,'in'],['24x36','24 × 36 in',24,36,'in'],['30x40c','30 × 40 cm',30,40,'cm'],['40x50c','40 × 50 cm',40,50,'cm'],['50x70c','50 × 70 cm',50,70,'cm'],['A5','A5 (14.8 × 21 cm)',14.8,21,'cm'],['A4','A4 (21 × 29.7 cm)',21,29.7,'cm'],['A3','A3 (29.7 × 42 cm)',29.7,42,'cm'],['A2','A2 (42 × 59.4 cm)',42,59.4,'cm'],['A1','A1 (59.4 × 84.1 cm)',59.4,84.1,'cm'],['sq8','Square 8 × 8 in',8,8,'in'],['sq12','Square 12 × 12 in',12,12,'in'],['sq20','Square 20 × 20 in',20,20,'in'],['sq30c','Square 30 × 30 cm',30,30,'cm'],['photo','Match photo aspect']];
-const PIG={white:['Titanium White','#f4f2ec'],black:['Ivory Black','#1a1c21'],ochre:['Yellow Ochre','#c9952f'],cadRedL:['Cadmium Red Light','#dc3d2a'],cadYelM:['Cadmium Yellow Medium','#f4b400'],cadYelL:['Cadmium Yellow Light','#f8d81c'],hansa:['Hansa Yellow','#f6d10b'],quinMag:['Quinacridone Magenta','#a3245e'],phthalo:['Phthalo Blue','#16478a'],ultra:['Ultramarine Blue','#273e9f'],aliz:['Alizarin Crimson','#8f1d2c'],bSienna:['Burnt Sienna','#8c4120'],bUmber:['Burnt Umber','#4b3223'],rUmber:['Raw Umber','#5c4b37'],viridian:['Viridian','#1f6f5b'],cerulean:['Cerulean Blue','#2b80b9']};
-const PALS={zorn:['Zorn (white, ochre, cad red, black)',['white','ochre','cadRedL','black']],triad:['Primary triad',['white','hansa','quinMag','phthalo']],split:['Split primary (6 + white)',['white','cadYelM','hansa','cadRedL','quinMag','ultra','phthalo']],earth:['Earth palette',['white','ochre','bSienna','bUmber','ultra']],mono:['Monochrome (umber + white)',['white','bUmber']],extracted:['From extracted palette',null],custom:['Custom',null]};
-const pigsOf=id=>PALS[id][1].map(k=>({n:PIG[k][0],c:PIG[k][1]}));
+/* Limited-palette presets reference paints in core/paint-library.js by name. A pigment slot is {n,c} plus id when it is a library paint. */
+const PAINT_BY_NAME=Object.fromEntries(PAINTS.map(p=>[p.n.toLowerCase(),p]));
+const paintSlot=p=>({id:p.id,n:p.n,c:p.c});
+const PALS={zorn:['Zorn (white, ochre, cad red, black)',['Titanium White','Yellow Ochre','Cadmium Red Light','Ivory Black']],
+  triad:['Primary triad',['Titanium White','Hansa Yellow Medium','Quinacridone Magenta','Phthalo Blue (Green Shade)']],
+  split:['Split primary (6 + white)',['Titanium White','Cadmium Yellow Medium','Hansa Yellow Light (Lemon)','Cadmium Red Light','Quinacridone Magenta','Ultramarine Blue','Phthalo Blue (Green Shade)']],
+  earth:['Earth palette',['Titanium White','Yellow Ochre','Burnt Sienna','Burnt Umber','Ultramarine Blue']],
+  mono:['Monochrome (umber + white)',['Titanium White','Burnt Umber']],extracted:['From extracted palette',null],custom:['Custom',null]};
+const pigsOf=id=>PALS[id][1].map(n=>paintSlot(PAINT_BY_NAME[n.toLowerCase()]));
+const pigStrength=p=>(p&&p.id&&PAINT_BY_ID[p.id]&&p.c===PAINT_BY_ID[p.id].c)?PAINT_BY_ID[p.id].ts:1;
+/* Saved settings from before the paint library: slots that still carry an old preset paint (same name + old hex) become library paints. */
+const LEGACY_PIG={'Titanium White|#f4f2ec':'titanium-white','Ivory Black|#1a1c21':'ivory-black','Yellow Ochre|#c9952f':'yellow-ochre','Cadmium Red Light|#dc3d2a':'cadmium-red-light','Cadmium Yellow Medium|#f4b400':'cadmium-yellow-medium','Cadmium Yellow Light|#f8d81c':'cadmium-yellow-light','Hansa Yellow|#f6d10b':'hansa-yellow','Quinacridone Magenta|#a3245e':'quinacridone-magenta','Phthalo Blue|#16478a':'phthalo-blue-gs','Ultramarine Blue|#273e9f':'ultramarine-blue','Alizarin Crimson|#8f1d2c':'alizarin-crimson','Burnt Sienna|#8c4120':'burnt-sienna','Burnt Umber|#4b3223':'burnt-umber','Raw Umber|#5c4b37':'raw-umber','Viridian|#1f6f5b':'viridian','Cerulean Blue|#2b80b9':'cerulean-blue'};
+const migratePigs=a=>Array.isArray(a)?a.filter(p=>p&&typeof p.c==='string').map(p=>{if(p.id&&PAINT_BY_ID[p.id])return p;const id=LEGACY_PIG[p.n+'|'+p.c];return id?paintSlot(PAINT_BY_ID[id]):{n:String(p.n||'Paint'),c:p.c};}):a;
 
 const DEF={mode:'photo',unit:'in',cw:12,ch:16,preset:'12x16',orient:'portrait',workRes:1200,
   thirds:false,phi:false,spiral:true,spiralRot:0,spiralFlip:false,spiralSq:false,diag:'off',recip:false,armature:false,center:false,
@@ -606,6 +738,7 @@ const DEF={mode:'photo',unit:'in',cw:12,ch:16,preset:'12x16',orient:'portrait',w
 const SAVE_KEY='paintplan.v1';
 function loadSaved(){try{const o=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}');const r={};for(const k in DEF)if(k in o&&typeof o[k]===typeof DEF[k])r[k]=o[k];return r;}catch(e){return{};}}
 const S=Object.assign(JSON.parse(JSON.stringify(DEF)),loadSaved());
+if(Array.isArray(S.pigments)){S.pigments=migratePigs(S.pigments);if(!S.pigments.length)S.pigments=pigsOf('zorn');}
 let saveT=0;function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(SAVE_KEY,JSON.stringify(S));}catch(e){}},400);}
 /* worker/client.js — Worker client: spawns the engine as a Blob worker (iOS-safe), main-thread fallback, job queue. */
 /* ---------- engine / worker ---------- */
@@ -659,7 +792,7 @@ const nParams=()=>levelParams({steps:S.nThree?3:2,black:0,white:100,mid:S.nMid,b
 const pParams=()=>({k:S.pK,blur:S.pBlur,smooth:S.pSmooth});
 function modeParams(){const m=S.mode;
   if(m==='squint')return{squint:S.squint};if(m==='values')return vParams();if(m==='notan')return nParams();
-  if(m==='palette')return pParams();if(m==='remap')return{pigs:S.pigments.map(p=>p.c),mix:S.rMix,blur:S.rBlur};
+  if(m==='palette')return pParams();if(m==='remap')return{pigs:S.pigments.map(p=>p.c),ts:S.pigments.map(pigStrength),mix:S.rMix,blur:S.rBlur};
   if(m==='temp')return{s:S.tStrength};if(m==='chroma')return{s:S.cStrength};return{};}
 function edgeParams(){return{src:S.lineSrc,blur:S.lineBlur,detail:S.lineDetail,clean:S.lineClean,thick:S.lineThick,
   v:S.lineSrc==='values'?(S.mode==='notan'?nParams():vParams()):null,pal:S.lineSrc==='colors'?pParams():null};}
@@ -858,12 +991,16 @@ function applyPigPreset(){
 function renderPigs(){
   const el=$('#pigList');if(!el)return;
   const sig=JSON.stringify(S.pigments);if(el.dataset.sig===sig)return;el.dataset.sig=sig;
-  el.innerHTML=S.pigments.map((p,i)=>`<div class="pig"><input type="color" value="${p.c}" data-pi="${i}" data-f="c" aria-label="Paint colour"><input type="text" value="${esc(p.n)}" data-pi="${i}" data-f="n" aria-label="Paint name"><button data-del="${i}" title="Remove" aria-label="Remove paint">×</button></div>`).join('');
+  el.innerHTML=S.pigments.map((p,i)=>{const L=p.id&&PAINT_BY_ID[p.id];
+    const meta=L?`${esc(L.code)} · ${PAINT_OPA[L.op]||''}${L.src==='approx'?' · approx':''}`:'custom colour';
+    return`<div class="pig"><input type="color" value="${p.c}" data-pi="${i}" data-f="c" aria-label="Paint colour (custom)"><button type="button" class="pig-name" data-pick="${i}" aria-haspopup="dialog" title="Choose paint"><b>${esc(p.n)}</b><small>${meta}</small></button><button data-del="${i}" title="Remove" aria-label="Remove paint">×</button></div>`;}).join('');
 }
 function onPig(e){
   const el=e.target,i=el.dataset.pi;if(i===undefined)return;
-  S.pigments=S.pigments.map((p,j)=>j==i?Object.assign({},p,{[el.dataset.f]:el.value}):p);
-  S.rPreset='custom';$('#pigList').dataset.sig=JSON.stringify(S.pigments);syncControls();save();
+  S.pigments=S.pigments.map((p,j)=>{if(j!=i)return p;const q=Object.assign({},p,{[el.dataset.f]:el.value});if(el.dataset.f==='c'&&q.id&&PAINT_BY_ID[q.id]&&PAINT_BY_ID[q.id].c!==q.c)delete q.id;return q;});
+  S.rPreset='custom';const pl=$('#pigList');pl.dataset.sig=JSON.stringify(S.pigments);   // update in place: re-rendering would kill the open colour picker
+  if(!S.pigments[i].id){const sm=el.parentNode.querySelector('.pig-name small');if(sm)sm.textContent='custom colour';}
+  syncControls();save();
   if(el.dataset.f==='c')update();else renderModeInfo();
 }
 /* ui/mode-info.js — Mode info: value strip/histogram, palette swatches, mixes. */
@@ -891,7 +1028,7 @@ function renderModeInfo(){
     const r=lastRemap;
     $('#mixes').innerHTML=r.mixes.map(x=>{const L=local.util.Lstar(0.2126*local.util.S2L[x.rgb[0]]+0.7152*local.util.S2L[x.rgb[1]]+0.0722*local.util.S2L[x.rgb[2]]);
       return`<button class="sw wide${hl===x.idx?' sel':''}" data-hl="${x.idx}"><i style="background:${hex2(x.rgb)}"></i><span><b>${recipe(x.w,S.pigments)}</b><br>${hex2(x.rgb)} · value ${Math.round(L)}% · ${(x.pct*100).toFixed(1)}%</span></button>`;}).join('');
-    $('#remapNote').textContent=`${r.used} distinct mixes used (of ${r.gamutSize} possible${S.rMix?`, ratios in ${r.S}ths`:''}). Mixing is a simple simulation; real pigments vary — treat it as a starting point.`;
+    $('#remapNote').textContent=`${r.used} distinct mixes used (of ${r.gamutSize} possible${S.rMix?`, ratios in ${r.S}ths`:''}). Recipes are approximate: a simulated mix (reflectance blend weighted by each paint’s typical tinting strength) using reference colours; real tubes vary — treat it as a starting point.`;
   }
 }
 /* ui/histogram.js — Value histogram with draggable step boundaries (Values + Notan).
@@ -1227,7 +1364,7 @@ function showPick(){
   let extra='';const lok=labels&&labels.length===w*h;if(lok&&(S.mode==='values'||S.mode==='notan')&&lastValues)extra=` · step <b>${labels[py*w+px]+1}</b> of ${lastValues.N}`;
   if(lok&&S.mode==='palette'&&lastPalette)extra=` · palette colour <b>${labels[py*w+px]+1}</b>`;
   let mixHtml='';
-  if(S.pigments.length){const m=local({type:'suggest',pigs:S.pigments.map(p=>p.c),rgb}).res;const q=m.dE<3?'very close':m.dE<6?'close':m.dE<12?'approximate':'outside this palette';
+  if(S.pigments.length){const m=local({type:'suggest',pigs:S.pigments.map(p=>p.c),ts:S.pigments.map(pigStrength),rgb}).res;const q=m.dE<3?'very close':m.dE<6?'close':m.dE<12?'approximate':'outside this palette';
     mixHtml=`<div style="margin-top:4px">Mix (${esc(PALS[S.rPreset]?PALS[S.rPreset][0].split(' (')[0]:'palette')}): <b>${recipe(m.w,S.pigments)}</b><br><span style="color:var(--muted)">simulated · ${q} (ΔE ${m.dE.toFixed(1)})</span></div>`;
     $('#pick').dataset.mix=hex2(m.rgb);}
   const hx=hex2(rgb);
@@ -1236,6 +1373,81 @@ function showPick(){
    <button class="pk-x" aria-label="Close">×</button>`;
   $('#pick').hidden=false;
 }
+/* ui/paint-picker.js — Searchable paint picker for Limited Palette slots (library: core/paint-library.js).
+   Desktop: centred dialog. Phones (≤760px): bottom sheet with a search field and 52px rows. Type-ahead matches name, aliases
+   and Colour Index codes ("pb29", "PB 15:3", "phthalo"); results are grouped by family. Picking a paint sets the slot's name +
+   colour; "Custom colour…" opens the slot's colour input; a typed name with no match can be kept as a custom label. */
+const PAINT_OPA={O:'opaque',SO:'semi-opaque',ST:'semi-transparent',T:'transparent'};
+const normQ=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\u2019']/g,'');
+const codeKey=s=>normQ(s).replace(/[^a-z0-9]/g,'');
+const PAINT_INDEX=PAINTS.map(p=>({p,txt:normQ(p.n+' '+(p.al||'')+' '+p.f),code:codeKey(p.code)}));
+function searchPaints(q){
+  const cq=codeKey(q),toks=/^p[a-z]{1,2}\d+$/.test(cq)?[cq]:normQ(q).split(/[\s,]+/).filter(Boolean);if(!toks.length)return PAINTS.slice();   // "PB 15:3" → one code token
+  const hits=[];
+  for(const x of PAINT_INDEX){let score=0,ok=true;
+    for(const t of toks){const ct=codeKey(t);
+      if(x.txt.includes(t))score+=normQ(x.p.n).startsWith(t)?3:(' '+x.txt).includes(' '+t)?2:1;
+      else if(ct&&/[a-z]{1,3}\d/.test(ct)&&x.code.includes(ct))score+=x.code===ct?6:x.code.split(/(?=p[a-z]{1,2}\d)/).some(c=>c.startsWith(ct))?4:2;
+      else{ok=false;break;}}
+    if(ok)hits.push([score,x.p]);}
+  return hits.sort((a,b)=>b[0]-a[0]).map(h=>h[1]);
+}
+let ppSlot=-1,ppActive=0;
+function ppEl(){
+  let el=document.getElementById('paintSheet');if(el)return el;
+  el=document.createElement('div');el.id='paintSheet';el.className='psheet';el.hidden=true;
+  el.innerHTML=`<div class="ps-card" role="dialog" aria-modal="true" aria-labelledby="psTitle"><div class="ps-grab" aria-hidden="true"></div>
+    <div class="ps-hd"><b id="psTitle">Choose paint</b><button type="button" id="psDone">Done</button></div>
+    <div class="ps-search"><input type="search" id="psQ" placeholder="Search name or pigment code (e.g. PB29)" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search paints" aria-controls="psList"></div>
+    <div class="ps-list" id="psList" role="listbox" aria-label="Paints"></div>
+    <p class="ps-foot">Colours are reference values (brand averages or estimates, see research notes). Real tubes vary; mixes are simulated.</p></div>`;
+  document.body.appendChild(el);
+  el.addEventListener('click',e=>{if(e.target===el)closePaintPicker();const b=e.target.closest('button');if(!b)return;
+    if(b.id==='psDone')closePaintPicker();else if(b.dataset.pid)pickPaint(b.dataset.pid);
+    else if(b.dataset.act==='color')pickCustomColour();else if(b.dataset.act==='name')pickCustomName();});
+  const q=el.querySelector('#psQ');
+  q.addEventListener('input',()=>{ppActive=0;renderPaintList();});
+  el.addEventListener('keydown',e=>{e.stopPropagation();   // keep app shortcuts (and Setup's Escape) out of the sheet
+    const rows=[...el.querySelectorAll('.prow')];
+    if(e.key==='Escape'){e.preventDefault();closePaintPicker();}
+    else if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!rows.length)return;ppActive=clamp(ppActive+(e.key==='ArrowDown'?1:-1),0,rows.length-1);ppMark(rows);}
+    else if(e.key==='Enter'&&e.target===q){e.preventDefault();const r=rows[ppActive];if(r)r.click();}
+  });
+  return el;
+}
+function ppMark(rows){rows.forEach((r,i)=>{r.classList.toggle('act',i===ppActive);r.setAttribute('aria-selected',i===ppActive);});const r=rows[ppActive];if(r)r.scrollIntoView({block:'nearest'});}
+function paintRow(p,cur){
+  const sw=p.mass?`<i class="ps-sw" style="background:linear-gradient(135deg,${p.c} 0 62%,${p.mass} 62%)" title="Reference colour · corner: approx. masstone"></i>`:`<i class="ps-sw" style="background:${p.c}"></i>`;
+  return`<button type="button" class="prow${cur?' cur':''}" role="option" data-pid="${p.id}">${sw}<span class="ps-n"><b>${esc(p.n)}</b><small>${esc(p.code)}${p.src==='approx'?' · approx colour':''}</small></span><span class="ps-op ps-op-${p.op}">${PAINT_OPA[p.op]||''}</span></button>`;
+}
+function renderPaintList(){
+  const el=ppEl(),q=el.querySelector('#psQ').value.trim(),list=searchPaints(q),cur=(S.pigments[ppSlot]||{}).id;
+  let h='';
+  const exact=q&&list.some(p=>normQ(p.n)===normQ(q));
+  h+=`<div class="ps-grp ps-custom"><button type="button" class="prow" data-act="color"><i class="ps-sw ps-sw-custom" style="background:${(S.pigments[ppSlot]||{}).c||'#808080'}"></i><span class="ps-n"><b>Custom colour…</b><small>pick any colour by hand</small></span></button>${q&&!exact?`<button type="button" class="prow" data-act="name"><i class="ps-sw ps-sw-custom" style="background:${(S.pigments[ppSlot]||{}).c||'#808080'}"></i><span class="ps-n"><b>Use “${esc(q)}”</b><small>keep the current colour, custom name</small></span></button>`:''}</div>`;
+  if(q){h+=list.length?'':`<p class="ps-empty">No paint matches “${esc(q)}”.</p>`;}
+  const fams=q?[...new Set(list.map(p=>p.f))].map(f=>PAINT_FAMILIES.find(x=>x[0]===f)):PAINT_FAMILIES;   // searching: the group with the best match comes first
+  for(const [f,label] of fams){const ps=list.filter(p=>p.f===f);if(!ps.length)continue;
+    h+=`<div class="ps-grp" role="group" aria-label="${label}"><div class="ps-gh">${label}</div>${ps.map(p=>paintRow(p,p.id===cur)).join('')}</div>`;}
+  const L=el.querySelector('#psList');L.innerHTML=h;
+  const rows=[...L.querySelectorAll('.prow')];if(q){const first=rows.findIndex(r=>r.dataset.pid);ppActive=Math.max(ppActive,first);}ppMark(rows);
+  if(!q){const c=L.querySelector('.prow.cur');if(c)c.scrollIntoView({block:'center'});}
+}
+function openPaintPicker(i){
+  if(!S.pigments[i])return;ppSlot=i;ppActive=0;
+  const el=ppEl(),q=el.querySelector('#psQ');q.value='';
+  el.querySelector('#psTitle').textContent=`Paint ${i+1} of ${S.pigments.length}`;
+  el.hidden=false;document.body.classList.add('psheet-open');renderPaintList();
+  if(!matchMedia('(pointer:coarse)').matches)q.focus();
+}
+function closePaintPicker(){const el=document.getElementById('paintSheet');if(!el||el.hidden)return;el.hidden=true;document.body.classList.remove('psheet-open');
+  const b=document.querySelector(`#pigList [data-pick="${ppSlot}"]`);if(b)b.focus({preventScroll:true});}
+function setPigment(i,obj){
+  S.pigments=S.pigments.map((p,j)=>j===i?obj:p);S.rPreset='custom';syncControls();save();update();renderModeInfo();
+}
+function pickPaint(id){const p=PAINT_BY_ID[id];if(!p)return;const i=ppSlot;closePaintPicker();setPigment(i,paintSlot(p));}
+function pickCustomName(){const q=$('#psQ').value.trim();const i=ppSlot,c=S.pigments[i].c;closePaintPicker();if(q)setPigment(i,{n:q,c});}
+function pickCustomColour(){const i=ppSlot;closePaintPicker();const inp=document.querySelector(`#pigList input[data-pi="${i}"][data-f="c"]`);if(inp){try{inp.showPicker?inp.showPicker():inp.click();}catch(e){inp.click();}}}
 /* ui/export.js — PNG export, grid sheet, print. */
 /* ---------- export ---------- */
 function download(canvas,name){
@@ -1277,8 +1489,9 @@ function init(){
   pb.addEventListener('change',e=>{if(e.target.dataset.pi!==undefined)return;if(e.target.tagName==='SELECT'||e.target.type==='checkbox'||e.target.type==='number')onControl(e);});
   pb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
     if(b.dataset.hl!==undefined)setHL(+b.dataset.hl);
+    else if(b.dataset.pick!==undefined)openPaintPicker(+b.dataset.pick);
     else if(b.dataset.del!==undefined){if(S.pigments.length>1){S.pigments=S.pigments.filter((_,i)=>i!=b.dataset.del);S.rPreset='custom';syncControls();save();update();}}
-    else if(b.id==='bAddPig'){if(S.pigments.length<12){S.pigments=S.pigments.concat([{n:'New paint',c:'#808080'}]);S.rPreset='custom';syncControls();save();update();}}
+    else if(b.id==='bAddPig'){if(S.pigments.length<12){S.pigments=S.pigments.concat([{n:'New paint',c:'#808080'}]);S.rPreset='custom';syncControls();save();update();openPaintPicker(S.pigments.length-1);}}
     else if(b.id==='bUsePal'){if(lastPalette){S.rPreset='extracted';applyPigPreset();setState('mode','remap');}}
     else if(b.id==='bCopyHex'){if(lastPalette){const t=lastPalette.cols.map(c=>hex2(c.rgb)).join(' ');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy hex list',1500);},()=>prompt('Hex colours:',t));}}
     else if(b.id==='bPos2')setPosMode(true);else if(b.id==='bClearImg')clearSaved();

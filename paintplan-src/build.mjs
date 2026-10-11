@@ -18,10 +18,10 @@ const read = p => fs.readFileSync(path.join(SRC, p), 'utf8');
 const ENGINE_PARTS = ['color', 'image-cache', 'filters', 'values', 'palette', 'mixing', 'edges', 'dispatch'].map(n => `worker/engine/${n}.js`);
 // App modules, in load order (they share one script scope). `if` = include only when the theme's runtime config says so.
 const MODULES = [
-  'core/util.js', 'core/config.js', 'core/store.js', 'worker/client.js', 'core/pipeline.js',
+  'core/util.js', 'core/paint-library.js', 'core/config.js', 'core/store.js', 'worker/client.js', 'core/pipeline.js',
   'core/levels.js', 'ui/panel.js', 'ui/mode-info.js', 'ui/histogram.js', 'ui/scale-info.js',
   'core/storage.js', 'core/image.js', { file: 'core/sample.js', if: rt => rt.sample }, 'core/placement.js',
-  'ui/render.js', 'core/geometry.js', 'ui/overlays.js', 'ui/gestures.js', 'ui/picker.js', 'ui/export.js', 'ui/init.js',
+  'ui/render.js', 'core/geometry.js', 'ui/overlays.js', 'ui/gestures.js', 'ui/picker.js', 'ui/paint-picker.js', 'ui/export.js', 'ui/init.js',
   { file: 'ui/empty.js', if: rt => !rt.sample }, { file: 'ui/setup.js', if: rt => !!rt.setup },
   'ui/pwa.js', 'ui/boot.js',
 ];
@@ -97,6 +97,7 @@ if (DEPLOY) {
   fs.rmSync(srcDest, { recursive: true, force: true });
   copyTree(SRC, path.join(srcDest, 'src'));
   for (const f of ['build.mjs', 'README.md', '.gitignore']) if (fs.existsSync(path.join(ROOT, f))) fs.copyFileSync(path.join(ROOT, f), path.join(srcDest, f));
+  if (fs.existsSync(path.join(ROOT, 'research'))) copyTree(path.join(ROOT, 'research'), path.join(srcDest, 'research'));
   copyTree(path.join(ROOT, 'test'), path.join(srcDest, 'test'), (n) => n === 'node_modules' || n === 'out' || /\.(png|jpe?g)$/i.test(n) && n !== 'photo.jpg' && n !== 'replace.jpg');
   console.log('source → paintplan-src/');
 }

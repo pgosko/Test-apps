@@ -15,7 +15,7 @@ function showPick(){
   let extra='';const lok=labels&&labels.length===w*h;if(lok&&(S.mode==='values'||S.mode==='notan')&&lastValues)extra=` · step <b>${labels[py*w+px]+1}</b> of ${lastValues.N}`;
   if(lok&&S.mode==='palette'&&lastPalette)extra=` · palette colour <b>${labels[py*w+px]+1}</b>`;
   let mixHtml='';
-  if(S.pigments.length){const m=local({type:'suggest',pigs:S.pigments.map(p=>p.c),rgb}).res;const q=m.dE<3?'very close':m.dE<6?'close':m.dE<12?'approximate':'outside this palette';
+  if(S.pigments.length){const m=local({type:'suggest',pigs:S.pigments.map(p=>p.c),ts:S.pigments.map(pigStrength),rgb}).res;const q=m.dE<3?'very close':m.dE<6?'close':m.dE<12?'approximate':'outside this palette';
     mixHtml=`<div style="margin-top:4px">Mix (${esc(PALS[S.rPreset]?PALS[S.rPreset][0].split(' (')[0]:'palette')}): <b>${recipe(m.w,S.pigments)}</b><br><span style="color:var(--muted)">simulated · ${q} (ΔE ${m.dE.toFixed(1)})</span></div>`;
     $('#pick').dataset.mix=hex2(m.rgb);}
   const hx=hex2(rgb);

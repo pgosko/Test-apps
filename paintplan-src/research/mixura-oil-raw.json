@@ -1,0 +1,6616 @@
+{
+ "burnt-sienna": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#984e34",
+   "41.8, 28.6, 29.1",
+   "PR101",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#984e34",
+   "41.8, 28.6, 29.1",
+   "PR101,PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#944730",
+   "39.6, 30.5, 28.7",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#984b34",
+   "41.1, 30.2, 28.3",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#964830",
+   "40.1, 30.8, 29.4",
+   "PR101",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#964830",
+   "40.1, 30.8, 29.4",
+   "PR101",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#964832",
+   "40.2, 30.9, 28.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#a05230",
+   "43.8, 29.5, 34.0",
+   "PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#a05532",
+   "44.5, 28.0, 33.7",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#96462d",
+   "39.7, 31.7, 30.6",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#a05230",
+   "43.8, 29.5, 34.0",
+   "PR64, PY83",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#a05230",
+   "43.8, 29.5, 34.0",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#a05230",
+   "43.8, 29.5, 34.0",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#984e34",
+   "41.8, 28.6, 29.1",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#984e34",
+   "41.8, 28.6, 29.1",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#a55032",
+   "44.2, 32.7, 33.5",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#964b32",
+   "40.8, 29.3, 29.0",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#964b32",
+   "40.8, 29.3, 29.0",
+   "PR101, PBk7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#984e34",
+   "41.8, 28.6, 29.1",
+   "PR102",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#a5502d",
+   "44.1, 32.5, 36.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#914632",
+   "39.0, 29.9, 26.6",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#a5502d",
+   "44.1, 32.5, 36.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "burnt-umber": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#583a2a",
+   "27.5, 11.2, 15.3",
+   "PR101,PR101,PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#583a2a",
+   "27.5, 11.2, 15.3",
+   "PR101,PR101,PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#563627",
+   "26.1, 12.4, 15.3",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#583a2a",
+   "27.5, 11.2, 15.3",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#553726",
+   "26.2, 11.2, 16.1",
+   "PY42, PR101, PBk7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#553726",
+   "26.2, 11.2, 16.1",
+   "PR101, PR101, PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#583728",
+   "26.6, 12.8, 15.4",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#523726",
+   "25.8, 9.8, 15.5",
+   "PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#553a28",
+   "27.1, 9.5, 15.9",
+   "PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#553728",
+   "26.2, 11.4, 14.8",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#523726",
+   "25.8, 9.8, 15.5",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#523726",
+   "25.8, 9.8, 15.5",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#523726",
+   "25.8, 9.8, 15.5",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#583a2a",
+   "27.5, 11.2, 15.3",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#583a2a",
+   "27.5, 11.2, 15.3",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#5a3c28",
+   "28.3, 10.6, 17.6",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#5a3728",
+   "26.9, 13.8, 15.9",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#5a3728",
+   "26.9, 13.8, 15.9",
+   "PY42, PR101, PY74, PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#583a2a",
+   "27.5, 11.2, 15.3",
+   "PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#694128",
+   "31.7, 14.6, 22.3",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#553728",
+   "26.2, 11.4, 14.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#694128",
+   "31.7, 14.6, 22.3",
+   "PBr7",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "cadmium-orange": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ff6b35",
+   "63.4, 53.7, 56.5",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#ff7034",
+   "64.2, 51.3, 57.7",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#ff802a",
+   "67.2, 43.4, 64.4",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#ff6e32",
+   "63.9, 52.2, 58.3",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ff9128",
+   "70.6, 34.8, 68.0",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#ff6e32",
+   "63.9, 52.2, 58.3",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#ff9128",
+   "70.6, 34.8, 68.0",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#ff802a",
+   "67.2, 43.4, 64.4",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ff7a2a",
+   "66.0, 46.3, 63.4",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ff8723",
+   "68.5, 39.8, 67.9",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#ff8c1e",
+   "69.5, 37.2, 70.2",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ff7828",
+   "65.6, 47.2, 63.9",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ff802a",
+   "67.2, 43.4, 64.4",
+   "PO20, PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#ff7332",
+   "64.8, 49.9, 59.1",
+   "PO20",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-red-deep": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#b91f31",
+   "40.4, 59.2, 30.7",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#b62634",
+   "40.5, 56.6, 28.9",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#bc2630",
+   "41.7, 58.2, 32.9",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#b42332",
+   "39.8, 56.8, 29.1",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#a52830",
+   "37.4, 50.7, 26.7",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#a52832",
+   "37.4, 50.8, 25.5",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#b4232d",
+   "39.7, 56.6, 32.1",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#b93237",
+   "42.6, 53.8, 29.6",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#bc2630",
+   "41.7, 58.2, 32.9",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#bc2630",
+   "41.7, 58.2, 32.9",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#bc2d34",
+   "42.5, 56.3, 31.4",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#c32332",
+   "42.8, 61.1, 33.4",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#b9232d",
+   "40.8, 58.1, 33.5",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#bc2630",
+   "41.7, 58.2, 32.9",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#b42332",
+   "39.8, 56.8, 29.1",
+   "PR108",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-red-light": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ff4040",
+   "57.4, 70.5, 44.8",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#f83e3a",
+   "55.8, 68.9, 46.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#ff443a",
+   "57.8, 69.1, 48.4",
+   "PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#fa3c37",
+   "55.9, 70.0, 47.8",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#e64132",
+   "52.8, 62.3, 46.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#e64132",
+   "52.8, 62.3, 46.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#ff4137",
+   "57.4, 69.9, 49.6",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#e14132",
+   "51.9, 60.7, 44.8",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#ff443a",
+   "57.8, 69.1, 48.4",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ff443a",
+   "57.8, 69.1, 48.4",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ee4437",
+   "54.6, 63.9, 45.8",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#eb322d",
+   "52.0, 68.3, 48.2",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ff4137",
+   "57.4, 69.9, 49.6",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ff443a",
+   "57.8, 69.1, 48.4",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#ff321e",
+   "55.7, 73.5, 59.8",
+   "PR108",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-red-medium": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#e72f34",
+   "51.0, 68.2, 43.2",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#e13034",
+   "50.0, 66.2, 41.7",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#d73730",
+   "48.8, 61.0, 42.1",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#d73730",
+   "48.8, 61.0, 42.1",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#e43434",
+   "50.9, 65.9, 43.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#e43434",
+   "50.9, 65.9, 43.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#da3434",
+   "49.0, 63.0, 40.4",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#e13232",
+   "50.1, 65.6, 43.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#e43434",
+   "50.9, 65.9, 43.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#d71e1e",
+   "46.3, 67.1, 49.0",
+   "PR108",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-yellow-deep-hue": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY83,PY3",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY83,PO34",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY83, PO34",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffb419",
+   "78.5, 16.4, 78.0",
+   "PY154, PY83",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#ffb400",
+   "78.4, 16.1, 81.2",
+   "Azo pigments",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#ffb700",
+   "79.1, 14.5, 81.7",
+   "PY83, PO73",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#ffb700",
+   "79.1, 14.5, 81.7",
+   "PY83, PO73",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-yellow-deep": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ffb700",
+   "79.1, 14.5, 81.7",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffb400",
+   "78.4, 16.1, 81.2",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#ffc323",
+   "82.1, 8.7, 78.7",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ffbe1e",
+   "80.8, 11.2, 78.9",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#ffbe00",
+   "80.8, 10.9, 82.9",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#ffb423",
+   "78.5, 16.5, 75.9",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ffb600",
+   "78.9, 15.1, 81.6",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ffaf00",
+   "77.2, 18.7, 80.5",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#ffbe00",
+   "80.8, 10.9, 82.9",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffb400",
+   "78.4, 16.1, 81.2",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#ffb900",
+   "79.6, 13.5, 82.0",
+   "PY37",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-yellow-light": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ffe900",
+   "91.5, -10.9, 90.4",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#ffeb00",
+   "92.0, -11.9, 90.7",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#ffe800",
+   "91.2, -10.4, 90.2",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffeb00",
+   "92.0, -11.9, 90.7",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#ffee32",
+   "92.9, -12.6, 84.0",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ffee32",
+   "92.9, -12.6, 84.0",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#ffe600",
+   "90.7, -9.4, 89.8",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#ffe132",
+   "89.5, -6.2, 81.2",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#ffe400",
+   "90.2, -8.4, 89.5",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ffe100",
+   "89.5, -7.0, 88.9",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ffe400",
+   "90.2, -8.4, 89.5",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#ffd700",
+   "86.9, -1.9, 87.1",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffe100",
+   "89.5, -7.0, 88.9",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ffe400",
+   "90.2, -8.4, 89.5",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#ffe300",
+   "90.0, -8.0, 89.3",
+   "PY37",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cadmium-yellow-medium": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ffd300",
+   "85.9, 0.1, 86.4",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffd700",
+   "86.9, -1.9, 87.1",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ffd728",
+   "87.0, -1.4, 81.6",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#ffcd2d",
+   "84.5, 3.8, 78.3",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#ffd000",
+   "85.2, 1.6, 85.9",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ffd000",
+   "85.2, 1.6, 85.9",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ffd000",
+   "85.2, 1.6, 85.9",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffcd00",
+   "84.5, 3.2, 85.4",
+   "PY37",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ffd000",
+   "85.2, 1.6, 85.9",
+   "PY35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#ffd300",
+   "85.9, 0.1, 86.4",
+   "PY37, PO20",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cerulean-blue-hue": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#4e9bc3",
+   "60.8, -11.8, -27.8",
+   "PW4, PB15:4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#2a8ab9",
+   "54.2, -11.3, -32.4",
+   "PW6, PB15:1, PB16",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#2a8ab9",
+   "54.2, -11.3, -32.4",
+   "PB15:3, PW6, PG7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#3791c3",
+   "57.1, -10.1, -33.6",
+   "PB15:3, PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#4191c3",
+   "57.4, -8.6, -33.1",
+   "PB15:4, PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#2391c8",
+   "56.9, -10.6, -36.8",
+   "PB15:3, PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#3494ca",
+   "58.2, -9.8, -35.8",
+   "PB15:3, PW6",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cerulean-blue": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#2686ba",
+   "53.0, -9.1, -34.9",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#2887bc",
+   "53.4, -8.8, -35.4",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#2687b2",
+   "52.9, -12.5, -30.4",
+   "PW5, PB36",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#2684b9",
+   "52.3, -8.3, -35.4",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#3791b9",
+   "56.6, -13.5, -28.6",
+   "PB36, PB15:1",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#3791b9",
+   "56.6, -13.5, -28.6",
+   "PB36",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#288cbe",
+   "55.0, -10.9, -34.0",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#3791b9",
+   "56.6, -13.5, -28.6",
+   "PB15",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#3791b9",
+   "56.6, -13.5, -28.6",
+   "PB35",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#2a8abc",
+   "54.3, -10.2, -33.9",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#2a8abc",
+   "54.3, -10.2, -33.9",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#3291c3",
+   "57.0, -10.8, -33.8",
+   "PB36, PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#2887b9",
+   "53.2, -9.8, -33.9",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#2a8abc",
+   "54.3, -10.2, -33.9",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#007db9",
+   "49.7, -6.6, -39.5",
+   "PB35",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#2382b9",
+   "51.6, -7.5, -36.4",
+   "PB35",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "chromium-oxide-green": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#58754b",
+   "46.0, -19.0, 19.9",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#5a784e",
+   "47.2, -19.4, 19.7",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#58764e",
+   "46.4, -19.1, 18.6",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#58764e",
+   "46.4, -19.1, 18.6",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#5c7a52",
+   "48.0, -19.0, 18.5",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#5c7a52",
+   "48.0, -19.0, 18.5",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#5a7d50",
+   "48.8, -21.6, 20.7",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#5a7850",
+   "47.2, -19.0, 18.6",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#5f7d55",
+   "49.2, -18.9, 18.4",
+   "PG17",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#5c7a52",
+   "48.0, -19.0, 18.5",
+   "PG17",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "cobalt-blue-hue": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#235ca8",
+   "39.3, 9.5, -46.1",
+   "PB29,PG7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#235ca8",
+   "39.3, 9.5, -46.1",
+   "PG7,PB29,PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#0050a2",
+   "34.7, 12.6, -50.0",
+   "PB29, PB15:3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#2d5fa5",
+   "40.3, 7.7, -42.6",
+   "PW6, PB29, PG7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#1c5fac",
+   "40.3, 8.4, -47.0",
+   "PB15:3, PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#1e5aaa",
+   "38.7, 11.1, -48.3",
+   "PB29, PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#2864b4",
+   "42.5, 9.6, -48.0",
+   "PB29, PB15:3, PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#005fb4",
+   "40.4, 10.1, -51.5",
+   "PB29, PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#005fb4",
+   "40.4, 10.1, -51.5",
+   "PB29, PW6",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "cobalt-blue": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#005faf",
+   "40.0, 8.1, -49.1",
+   "PB28,PB29",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#0053a5",
+   "35.8, 11.9, -50.0",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#0055a8",
+   "36.6, 11.8, -50.5",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#0058a8",
+   "37.5, 9.8, -49.0",
+   "PB28",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#0052a2",
+   "35.3, 11.3, -49.0",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#0055a5",
+   "36.4, 10.5, -49.0",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#0058a8",
+   "37.5, 9.8, -49.0",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#0058a8",
+   "37.5, 9.8, -49.0",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#0055a5",
+   "36.4, 10.5, -49.0",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#0058a8",
+   "37.5, 9.8, -49.0",
+   "PB28",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#0055af",
+   "37.1, 14.7, -53.8",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#0050a5",
+   "34.9, 13.9, -51.4",
+   "PB28",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "cobalt-green": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#008367",
+   "48.5, -37.7, 6.6",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#00876c",
+   "50.0, -38.1, 5.8",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#008a6c",
+   "51.0, -39.4, 7.2",
+   "PG26",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#008269",
+   "48.2, -36.7, 5.0",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#4b9173",
+   "55.1, -29.5, 9.2",
+   "PG26",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#008c69",
+   "51.6, -41.0, 9.8",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#419b7d",
+   "58.1, -34.3, 7.8",
+   "PG50",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#008a6c",
+   "51.0, -39.4, 7.2",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#008a6c",
+   "51.0, -39.4, 7.2",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#008769",
+   "49.9, -38.9, 7.4",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#008a6c",
+   "51.0, -39.4, 7.2",
+   "PG50",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#007d69",
+   "46.6, -34.5, 2.6",
+   "PG26",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "cobalt-turquoise": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#00949e",
+   "55.7, -28.8, -14.7",
+   "PB36",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#00989b",
+   "56.9, -31.7, -11.2",
+   "PG50",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#009ea8",
+   "59.2, -30.4, -15.1",
+   "PB36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#009ba5",
+   "58.2, -29.9, -14.9",
+   "PB36",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#009ba5",
+   "58.2, -29.9, -14.9",
+   "PG50, PB28",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#009ea8",
+   "59.2, -30.4, -15.1",
+   "PB36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#009196",
+   "54.5, -30.0, -11.9",
+   "PB36",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "dioxazine-purple": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#4e2567",
+   "23.4, 31.9, -31.2",
+   "PV23",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#502869",
+   "24.5, 31.3, -30.8",
+   "PV23",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#4b2864",
+   "23.4, 28.6, -29.2",
+   "PV23",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#4b2864",
+   "23.4, 28.6, -29.2",
+   "PV23",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#551e73",
+   "24.0, 40.2, -37.9",
+   "PV23",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#551e73",
+   "24.0, 40.2, -37.9",
+   "PV23",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "green-gold": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#919137",
+   "58.5, -12.1, 46.4",
+   "PY129",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#9b9132",
+   "59.4, -8.0, 49.7",
+   "PY129",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#988e30",
+   "58.3, -7.8, 49.3",
+   "PY129",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#8a9137",
+   "58.0, -15.2, 45.6",
+   "PY129",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#968c2d",
+   "57.5, -7.8, 49.7",
+   "PY129",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "hookers-green": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#1e5537",
+   "31.9, -26.0, 12.3",
+   "PG7,PR101",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#2d6437",
+   "37.8, -29.0, 20.1",
+   "PG36, PY83",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "indian-red": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#8e3437",
+   "35.0, 38.4, 18.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#8c343a",
+   "34.7, 37.9, 16.1",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#8a373c",
+   "34.9, 35.9, 15.1",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#8c3437",
+   "34.6, 37.7, 17.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#873237",
+   "33.4, 36.8, 16.1",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#913737",
+   "36.0, 38.1, 19.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#913737",
+   "36.0, 38.1, 19.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#913437",
+   "35.5, 39.5, 19.2",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#8e3437",
+   "35.0, 38.4, 18.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#913237",
+   "35.2, 40.4, 18.8",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#913237",
+   "35.2, 40.4, 18.8",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#913437",
+   "35.5, 39.5, 19.2",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#91322d",
+   "35.0, 39.8, 24.8",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#87373c",
+   "34.4, 34.7, 14.3",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#91322d",
+   "35.0, 39.8, 24.8",
+   "PR101",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "indian-yellow": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ffb225",
+   "78.0, 17.6, 75.0",
+   "PY83",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#ffaf26",
+   "77.3, 19.2, 74.2",
+   "PY83",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#ffaf23",
+   "77.3, 19.1, 74.9",
+   "PY83, PO36",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffb428",
+   "78.5, 16.6, 74.6",
+   "PY83",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#ffaf2d",
+   "77.3, 19.4, 72.1",
+   "PY97, PO43",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ffb42d",
+   "78.5, 16.8, 73.1",
+   "PY65",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#ffb428",
+   "78.5, 16.6, 74.6",
+   "PY153",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#ffb941",
+   "79.8, 14.9, 67.4",
+   "PY83, PR101",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ffb22a",
+   "78.0, 17.8, 73.6",
+   "PY153",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ffb428",
+   "78.5, 16.6, 74.6",
+   "PY150",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#ffaf28",
+   "77.3, 19.3, 73.6",
+   "PY150",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#ffb428",
+   "78.5, 16.6, 74.6",
+   "PY153",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#ffaf2d",
+   "77.3, 19.4, 72.1",
+   "PY65",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ffb225",
+   "78.0, 17.6, 75.0",
+   "PY83",
+   "Transparent",
+   "III"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#ffaf23",
+   "77.3, 19.1, 74.9",
+   "PY83",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "indigo": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#232d41",
+   "18.4, 1.9, -14.0",
+   "PB15:3, PV15, PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#262d48",
+   "19.0, 5.3, -17.8",
+   "PB60, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#232d4b",
+   "19.0, 5.5, -19.9",
+   "PR176, PB15:1, PB29, PBk7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#233755",
+   "22.8, 2.1, -20.6",
+   "PB15, PBk7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#233755",
+   "22.8, 2.1, -20.6",
+   "PB15, PBk7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#26304e",
+   "20.4, 5.3, -19.8",
+   "PB60, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#263055",
+   "20.8, 7.8, -23.8",
+   "PB60, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#2d3250",
+   "21.6, 6.7, -19.1",
+   "PB60, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#232d4b",
+   "19.0, 5.5, -19.9",
+   "PB60, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#233044",
+   "19.6, 0.9, -14.2",
+   "PB27, Bk7",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "ivory-black": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#262626",
+   "15.2, -0.0, -0.0",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#262626",
+   "15.2, -0.0, -0.0",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#1e1e1e",
+   "11.3, -0.0, -0.0",
+   "PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#232326",
+   "13.8, 0.8, -2.0",
+   "PBk9, PBk7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#232326",
+   "13.8, 0.8, -2.0",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#1e1e1e",
+   "11.3, -0.0, -0.0",
+   "PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#262626",
+   "15.2, -0.0, -0.0",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#262626",
+   "15.2, -0.0, -0.0",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#262628",
+   "15.2, 0.5, -1.3",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#232323",
+   "13.7, -0.0, -0.0",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#232326",
+   "13.8, 0.8, -2.0",
+   "PBk9, PBk7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#232323",
+   "13.7, -0.0, -0.0",
+   "PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#28282d",
+   "16.3, 1.3, -3.3",
+   "PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#28282d",
+   "16.3, 1.3, -3.3",
+   "PBk9",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "lamp-black": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#1c1c1c",
+   "10.3, -0.0, -0.0",
+   "PBk7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#191919",
+   "8.8, -0.0, -0.0",
+   "PBk7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#1c1c1c",
+   "10.3, -0.0, -0.0",
+   "PBk6",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk7",
+   "Semi-Opaque",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk7",
+   "Semi-Opaque",
+   "II"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#1c1c1e",
+   "10.3, 0.5, -1.4",
+   "PBk6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#1c1c1c",
+   "10.3, -0.0, -0.0",
+   "PBk6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#232328",
+   "13.9, 1.3, -3.3",
+   "PBk6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#1c1c1c",
+   "10.3, -0.0, -0.0",
+   "PBk7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#232328",
+   "13.9, 1.3, -3.3",
+   "PBk6",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "lemon-yellow": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#fff837",
+   "95.4, -17.3, 85.0",
+   "PY3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#fff837",
+   "95.4, -17.3, 85.0",
+   "PY3,PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#fff823",
+   "95.4, -17.8, 89.4",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#fffc32",
+   "96.5, -19.4, 87.1",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#fff800",
+   "95.3, -18.2, 93.2",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#fff837",
+   "95.4, -17.3, 85.0",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#fff832",
+   "95.4, -17.4, 86.2",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#fff53c",
+   "94.7, -15.7, 82.9",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#fff532",
+   "94.7, -16.0, 85.6",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#fff532",
+   "94.7, -16.0, 85.6",
+   "PY3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#fffa34",
+   "96.0, -18.4, 86.2",
+   "PY3",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#fff51e",
+   "94.6, -16.5, 89.6",
+   "PY3",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "mars-black": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#1c1c1c",
+   "10.3, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#1c1c1c",
+   "10.3, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#262628",
+   "15.2, 0.5, -1.3",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#262628",
+   "15.2, 0.5, -1.3",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#191919",
+   "8.8, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#262628",
+   "15.2, 0.5, -1.3",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#232323",
+   "13.7, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#202023",
+   "12.4, 0.8, -2.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#202020",
+   "12.2, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#1e1e1e",
+   "11.3, -0.0, -0.0",
+   "PBk11",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "naples-yellow": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#fada87",
+   "88.1, 0.5, 44.8",
+   "PW4,PY83,PR9,PY42,PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#fada87",
+   "88.1, 0.5, 44.8",
+   "PW6,PY73,PY83",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#f8d88c",
+   "87.5, 1.2, 41.5",
+   "PW4, PY42, PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#fadc91",
+   "88.7, 0.5, 40.6",
+   "PW4, PY42, PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#f8dc91",
+   "88.5, -0.3, 40.4",
+   "PW5, PY3, PY42, PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#f8dc91",
+   "88.5, -0.3, 40.4",
+   "PW6, PY42, PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#f8da8e",
+   "88.0, 0.4, 41.2",
+   "PW4, PY42, PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#f5e1a0",
+   "89.8, -2.4, 34.3",
+   "PY53",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#f8dc91",
+   "88.5, -0.3, 40.4",
+   "PY41",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#fad28c",
+   "86.2, 5.1, 39.9",
+   "PY37, PY42, PO20, PW4",
+   "Opaque",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#f8dc91",
+   "88.5, -0.3, 40.4",
+   "PY42, PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#fad782",
+   "87.3, 1.6, 46.2",
+   "PW6, PY42, PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#ffd782",
+   "87.7, 3.6, 46.9",
+   "PW6, PY42, PY74",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#f8e191",
+   "89.8, -2.9, 42.0",
+   "PW6, PY42, PR101, PY65, PY15, PV19, PY175",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#f5cd78",
+   "84.2, 3.8, 47.3",
+   "PY41",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "olive-green": [
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#626234",
+   "40.5, -7.5, 26.1",
+   "PY73,PR177,PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#5f5f37",
+   "39.4, -6.7, 22.9",
+   "PBr7, PY1, PB29",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#64643a",
+   "41.4, -7.0, 23.8",
+   "PY129, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#5c5c34",
+   "38.2, -6.7, 23.0",
+   "PY129, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#62623a",
+   "40.6, -6.8, 22.8",
+   "PY129, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#646437",
+   "41.4, -7.4, 25.5",
+   "PY42, PG7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#556937",
+   "41.7, -16.8, 25.6",
+   "PG17, PY83, PBk7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#626234",
+   "40.5, -7.5, 26.1",
+   "PY129, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#5f6932",
+   "42.4, -13.0, 29.4",
+   "PY129, PG7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#5f5f32",
+   "39.3, -7.3, 25.6",
+   "PY129, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#5f5f37",
+   "39.4, -6.7, 22.9",
+   "PY129, PY42, PG36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#737348",
+   "47.5, -7.2, 23.8",
+   "PY129, PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#5f5f37",
+   "39.4, -6.7, 22.9",
+   "PY129, PBk9",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "paynes-gray": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#3a3a48",
+   "24.9, 3.5, -8.6",
+   "PBk7,PB29",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#3a3a48",
+   "24.9, 3.5, -8.6",
+   "PB29,PBk7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#282d37",
+   "18.4, 0.6, -7.1",
+   "PB29, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#2d343e",
+   "21.4, -0.3, -7.3",
+   "PBk9, PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#30343e",
+   "21.7, 0.9, -6.8",
+   "PR264, PG7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#30343e",
+   "21.7, 0.9, -6.8",
+   "PB29, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#2a303a",
+   "19.7, 0.1, -7.2",
+   "PBk9, PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#343741",
+   "23.1, 1.3, -6.6",
+   "PB29, PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#2d323c",
+   "20.7, 0.5, -7.0",
+   "PB29, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#343741",
+   "23.1, 1.3, -6.6",
+   "PG29, PBk7",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#3a3a48",
+   "24.9, 3.5, -8.6",
+   "PBk9, PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#373c4b",
+   "25.4, 1.8, -9.8",
+   "PB29, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#373746",
+   "23.6, 3.8, -9.2",
+   "PBk9, PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#323746",
+   "23.2, 1.9, -10.0",
+   "PB29, PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#373744",
+   "23.6, 3.2, -8.0",
+   "PB29, PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#414655",
+   "29.8, 1.7, -9.6",
+   "PBk9, PB15, PV19",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#2d323c",
+   "20.7, 0.5, -7.0",
+   "PBk9, PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#414655",
+   "29.8, 1.7, -9.6",
+   "PBk9, PB15, PV19",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "permanent-green-deep": [
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#2d7630",
+   "43.8, -38.0, 31.5",
+   "PG7, PY3",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#377d41",
+   "46.8, -35.7, 26.1",
+   "PY175, PG7, PB15:1",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#23733c",
+   "42.7, -37.1, 23.5",
+   "PG36, PY42",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#377d34",
+   "46.6, -37.6, 32.8",
+   "PG36, PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#3c8241",
+   "48.6, -36.5, 28.5",
+   "PG36, PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#377d34",
+   "46.6, -37.6, 32.8",
+   "PG36, PY3",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "permanent-green-light": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#94c03e",
+   "72.5, -33.7, 58.1",
+   "PY3,PG7,PY42",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#94c03e",
+   "72.5, -33.7, 58.1",
+   "PY3,PG7,PY42",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#8fba38",
+   "70.3, -33.3, 58.2",
+   "PY3, PG36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#94c03e",
+   "72.5, -33.7, 58.1",
+   "PY3, PG36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#55af48",
+   "64.2, -47.1, 43.9",
+   "PY3, PG7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#7dc369",
+   "72.5, -39.1, 38.3",
+   "PY175, PW6, PG7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#55af5a",
+   "64.4, -44.8, 35.4",
+   "PG36, PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#94c03e",
+   "72.5, -33.7, 58.1",
+   "PY3, PG36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#91be3c",
+   "71.7, -34.1, 58.1",
+   "PY3, PG36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#94c03e",
+   "72.5, -33.7, 58.1",
+   "PY3, PG36",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#91be3c",
+   "71.7, -34.1, 58.1",
+   "PG36, PY3",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#5aaa46",
+   "62.8, -43.8, 43.3",
+   "PG36, PY3",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "phthalo-blue": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#003594",
+   "25.8, 25.5, -56.0",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#003a98",
+   "27.6, 23.6, -55.5",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#003594",
+   "25.8, 25.5, -56.0",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#003491",
+   "25.3, 24.9, -55.0",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#003796",
+   "26.6, 24.9, -56.0",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#00378c",
+   "25.6, 20.7, -51.3",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#003791",
+   "26.1, 22.8, -53.6",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#003594",
+   "25.8, 25.5, -56.0",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#003791",
+   "26.1, 22.8, -53.6",
+   "PB15:3",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "phthalo-green": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#00625c",
+   "36.9, -25.9, -3.6",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#006158",
+   "36.5, -26.7, -1.8",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#00645c",
+   "37.6, -26.9, -2.6",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#005f58",
+   "35.8, -25.7, -2.9",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#005f58",
+   "35.8, -25.7, -2.9",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#00625a",
+   "36.9, -26.5, -2.5",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#195f48",
+   "35.7, -27.6, 7.0",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#00645a",
+   "37.6, -27.5, -1.4",
+   "PG7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#00625c",
+   "36.9, -25.9, -3.6",
+   "PG7",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "primary-yellow": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#ffe100",
+   "89.5, -7.0, 88.9",
+   "PY73",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#ffe100",
+   "89.5, -7.0, 88.9",
+   "PY73",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#ffe637",
+   "90.8, -8.5, 80.9",
+   "PY97, PY175",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ffe132",
+   "89.5, -6.2, 81.2",
+   "PY97",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#ffdc00",
+   "88.2, -4.5, 88.0",
+   "PY74",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "prussian-blue": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB15,PBk9",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#0f2b54",
+   "17.8, 6.2, -28.0",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#0f2a52",
+   "17.3, 6.1, -27.4",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#122d55",
+   "18.6, 5.7, -27.3",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#192d4b",
+   "18.3, 2.9, -21.0",
+   "PB27",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#192d4b",
+   "18.3, 2.9, -21.0",
+   "PB27",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#0f2855",
+   "16.9, 8.9, -30.1",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#192d4b",
+   "18.3, 2.9, -21.0",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#192d4b",
+   "18.3, 2.9, -21.0",
+   "PB27",
+   "Transparent",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#192d4b",
+   "18.3, 2.9, -21.0",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#0f2855",
+   "16.9, 8.9, -30.1",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#142d55",
+   "18.7, 6.0, -27.1",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#19325a",
+   "20.9, 5.4, -26.9",
+   "PB27",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#123058",
+   "19.8, 4.8, -27.4",
+   "PB27",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#002350",
+   "14.3, 8.6, -30.9",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#0f2850",
+   "16.5, 6.7, -27.3",
+   "PB27",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#002350",
+   "14.3, 8.6, -30.9",
+   "PB27",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "pyrrole-red": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#dc2d2d",
+   "48.6, 65.4, 43.9",
+   "PR254",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#d02a34",
+   "46.1, 63.0, 36.6",
+   "PR254",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#d22d37",
+   "46.8, 62.9, 35.7",
+   "PR254",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#d03034",
+   "46.7, 61.3, 37.2",
+   "PR254",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#d22d32",
+   "46.7, 62.7, 38.5",
+   "PR254",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#cd2d32",
+   "45.8, 61.2, 37.2",
+   "PR254",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#d22d37",
+   "46.8, 62.9, 35.7",
+   "PR254",
+   "Semi-Opaque",
+   "I"
+  ]
+ ],
+ "quinacridone-magenta": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#b62a5d",
+   "41.8, 58.1, 5.0",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#b92d62",
+   "42.9, 58.5, 3.4",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#af285a",
+   "40.2, 56.6, 4.3",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#b63062",
+   "42.7, 56.6, 3.0",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#b42d5f",
+   "41.9, 56.8, 3.7",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#b62a5d",
+   "41.8, 58.1, 5.0",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#b42d5f",
+   "41.9, 56.8, 3.7",
+   "PR122",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "quinacridone-red": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#c72845",
+   "44.4, 61.8, 23.9",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#c32a48",
+   "43.8, 60.3, 21.2",
+   "PR209",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#c33741",
+   "45.2, 55.6, 27.3",
+   "PR209",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#c32841",
+   "43.5, 60.5, 25.1",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#cd3755",
+   "47.5, 59.9, 18.4",
+   "PV19",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#c72845",
+   "44.4, 61.8, 23.9",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#c32846",
+   "43.6, 60.7, 22.1",
+   "PV19",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "quinacridone-violet": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#73294e",
+   "28.9, 36.5, -5.9",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#763055",
+   "30.9, 35.1, -7.3",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#762d52",
+   "30.2, 36.2, -6.3",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#9b3769",
+   "39.1, 46.5, -7.2",
+   "PR122",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#782850",
+   "29.6, 38.9, -5.9",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#9b3773",
+   "39.5, 47.9, -12.8",
+   "PV55",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#763052",
+   "30.8, 34.6, -5.5",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#763052",
+   "30.8, 34.6, -5.5",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#782d50",
+   "30.5, 36.6, -4.6",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#763052",
+   "30.8, 34.6, -5.5",
+   "PV19",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#732d50",
+   "29.7, 34.9, -6.0",
+   "PV19",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "raw-sienna": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#b2763e",
+   "54.8, 18.0, 39.8",
+   "PY42,PR101",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#b2763e",
+   "54.8, 18.0, 39.8",
+   "PR101,PY42,PBk9",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ae6f38",
+   "52.6, 19.8, 40.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#b4763e",
+   "55.1, 18.9, 40.1",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#af733a",
+   "53.7, 18.1, 40.4",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#af733a",
+   "53.7, 18.1, 40.4",
+   "PBr7, PY42",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#b2733a",
+   "54.1, 19.4, 41.0",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#b98746",
+   "60.0, 12.2, 41.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#af733c",
+   "53.7, 18.3, 39.4",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#b98744",
+   "59.9, 12.0, 42.8",
+   "PY42, PBr2?, PY83",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#b98744",
+   "59.9, 12.0, 42.8",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#b98744",
+   "59.9, 12.0, 42.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#b2763e",
+   "54.8, 18.0, 39.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#b2763e",
+   "54.8, 18.0, 39.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#b27d44",
+   "56.6, 14.5, 38.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#b47d37",
+   "56.7, 14.6, 45.4",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#af733c",
+   "53.7, 18.3, 39.4",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#af733c",
+   "53.7, 18.3, 39.4",
+   "PY42, PR101, PBk11",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#b2763e",
+   "54.8, 18.0, 39.8",
+   "PY43",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#b48237",
+   "58.0, 11.8, 46.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#af733c",
+   "53.7, 18.3, 39.4",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#b48237",
+   "58.0, 11.8, 46.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "raw-umber": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#66583e",
+   "38.1, 1.5, 17.2",
+   "PBr7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#66583e",
+   "38.1, 1.5, 17.2",
+   "PBr7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#62533c",
+   "36.2, 2.5, 15.8",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#665841",
+   "38.2, 1.9, 15.5",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#62523a",
+   "35.9, 2.8, 16.6",
+   "PR101",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#62523a",
+   "35.9, 2.8, 16.6",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#64553e",
+   "37.0, 2.4, 15.7",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#5f4e37",
+   "34.3, 3.5, 16.3",
+   "PG17, PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#5f4e37",
+   "34.3, 3.5, 16.3",
+   "PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#645541",
+   "37.1, 2.9, 14.0",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#5f4e37",
+   "34.3, 3.5, 16.3",
+   "PBr7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#66583e",
+   "38.1, 1.5, 17.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#66583e",
+   "38.1, 1.5, 17.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#695537",
+   "37.4, 3.8, 20.6",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#64553c",
+   "37.0, 2.2, 16.9",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#645037",
+   "35.5, 4.6, 17.9",
+   "PBk11, PY42, PR101, PY74",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#66583e",
+   "38.1, 1.5, 17.2",
+   "PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#82643c",
+   "44.5, 6.9, 27.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#645541",
+   "37.1, 2.9, 14.0",
+   "PBr7",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#82643c",
+   "44.5, 6.9, 27.2",
+   "PBr7",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "sap-green": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#586630",
+   "40.9, -14.7, 28.5",
+   "PG7,PY73,PR101",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#586630",
+   "40.9, -14.7, 28.5",
+   "PG7,PR101,PY73",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#50622b",
+   "38.9, -16.6, 28.7",
+   "PY153, PBr5:1",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#556930",
+   "41.6, -17.6, 29.3",
+   "PY129, PG36",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#4e622d",
+   "38.8, -17.2, 27.5",
+   "PY42, PY83, PG7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#4e622d",
+   "38.8, -17.2, 27.5",
+   "PG7, PY129",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#52642d",
+   "39.7, -16.6, 28.7",
+   "PY129, PG36",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#5f6937",
+   "42.5, -12.4, 26.7",
+   "PG7, PY42, PR101",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#506432",
+   "39.7, -16.9, 25.8",
+   "PG36, PY110",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#5f7d41",
+   "48.9, -21.9, 29.2",
+   "PG8, PY83",
+   "Transparent",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#5f7d41",
+   "48.9, -21.9, 29.2",
+   "PG8, PY83",
+   "Transparent",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#556937",
+   "41.7, -16.8, 25.6",
+   "PG7, PY42",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#586630",
+   "40.9, -14.7, 28.5",
+   "PY129, PG36",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#586630",
+   "40.9, -14.7, 28.5",
+   "PY129, PG36",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#506e2d",
+   "42.8, -22.7, 32.2",
+   "PG36, PY150",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#55642d",
+   "40.0, -15.3, 29.0",
+   "PY129, PG36",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#5a6e32",
+   "43.6, -17.9, 30.7",
+   "PY150, PG7, PBr23",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#506630",
+   "40.3, -18.2, 27.6",
+   "PY42, PY129, PG7",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#55732d",
+   "44.8, -23.2, 34.6",
+   "PG36, PY110",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "titanium-white": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6,PW4",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6,PW4",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW4, PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6, PW4",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6, PW4",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6, PW4",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW6",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#ffffff",
+   "100.0, -0.0, -0.0",
+   "PW6",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "transparent-orange": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#ff731e",
+   "64.7, 49.4, 66.5",
+   "PY93, PR145",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#ff8034",
+   "67.2, 43.7, 60.6",
+   "PO71",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#ff7d32",
+   "66.6, 45.1, 60.8",
+   "PO71",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#ff782d",
+   "65.7, 47.4, 62.0",
+   "PO71",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#ff7d23",
+   "66.6, 44.7, 66.3",
+   "PO71",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#ff8023",
+   "67.2, 43.2, 66.8",
+   "PO71",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#ff822d",
+   "67.6, 42.5, 63.7",
+   "PO71",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#ff8232",
+   "67.6, 42.6, 61.7",
+   "PO71",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "ultramarine-blue": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#243c96",
+   "28.9, 24.1, -52.0",
+   "PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#283a96",
+   "28.6, 25.9, -52.6",
+   "PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#263a94",
+   "28.3, 24.9, -51.8",
+   "PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#283c9b",
+   "29.5, 26.5, -54.1",
+   "PB29",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#243c96",
+   "28.9, 24.1, -52.0",
+   "PB29",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "ultramarine-violet": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#583973",
+   "30.0, 26.0, -28.3",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#5a3c78",
+   "31.3, 26.1, -29.5",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#583a76",
+   "30.4, 26.2, -29.6",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#583a76",
+   "30.4, 26.2, -29.6",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#5f4173",
+   "32.8, 23.3, -23.8",
+   "PV15",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#5a3773",
+   "29.8, 27.8, -28.7",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#694b87",
+   "37.5, 25.3, -28.9",
+   "PV15",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#583a76",
+   "30.4, 26.2, -29.6",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#583a76",
+   "30.4, 26.2, -29.6",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#553773",
+   "29.2, 26.3, -29.7",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#583a76",
+   "30.4, 26.2, -29.6",
+   "PV15",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#5a3c78",
+   "31.3, 26.1, -29.5",
+   "PV15",
+   "Semi-Transparent",
+   "I"
+  ]
+ ],
+ "vandyke-brown": [
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#48342a",
+   "23.7, 7.4, 9.8",
+   "PBr7, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#3a2a20",
+   "18.6, 5.8, 9.4",
+   "PBk9, PBk7, PBr7",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#3a2a20",
+   "18.6, 5.8, 9.4",
+   "PBr7",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#3a2a20",
+   "18.6, 5.8, 9.4",
+   "PBr7",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#442a20",
+   "20.0, 10.7, 11.5",
+   "PBr7, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#463223",
+   "22.7, 6.8, 13.1",
+   "PBr7, PBk9",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#463228",
+   "22.8, 7.5, 9.9",
+   "PBr7, PBk9",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#553723",
+   "26.1, 10.9, 17.9",
+   "PBr7, PBk9",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "venetian-red": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#8e3a34",
+   "36.0, 35.2, 21.6",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#8a3734",
+   "34.8, 35.2, 19.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#8e3c37",
+   "36.5, 34.4, 20.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#913732",
+   "36.0, 37.7, 22.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#8c3a37",
+   "35.8, 34.7, 19.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#9b3c34",
+   "38.6, 39.1, 25.4",
+   "PR101, PY42, PBr7",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#9b3c34",
+   "38.6, 39.1, 25.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#8c3732",
+   "35.1, 35.8, 21.6",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#913730",
+   "35.9, 37.6, 24.1",
+   "PR102, PR187",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#913a34",
+   "36.5, 36.4, 22.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#8e3a34",
+   "36.0, 35.2, 21.6",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#8c3732",
+   "35.1, 35.8, 21.6",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#913732",
+   "36.0, 37.7, 22.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#913a34",
+   "36.5, 36.4, 22.4",
+   "PR101",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#8c3c37",
+   "36.1, 33.6, 19.9",
+   "PR101",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "viridian": [
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#006e5c",
+   "41.1, -31.6, 2.5",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#007362",
+   "43.0, -32.1, 1.6",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#00705c",
+   "41.8, -32.5, 3.5",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#00705f",
+   "41.9, -31.6, 1.8",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#377d69",
+   "47.6, -27.2, 4.3",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#00735f",
+   "42.9, -33.0, 3.3",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#377d69",
+   "47.6, -27.2, 4.3",
+   "PG8, PY1",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#377d69",
+   "47.6, -27.2, 4.3",
+   "PG8, PY1",
+   "Semi-Transparent",
+   "II"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#007662",
+   "44.0, -33.4, 3.1",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#007662",
+   "44.0, -33.4, 3.1",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#00735f",
+   "42.9, -33.0, 3.3",
+   "PG18",
+   "Transparent",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#00735f",
+   "42.9, -33.0, 3.3",
+   "PG18",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#006e5f",
+   "41.2, -30.7, 0.8",
+   "PG18",
+   "Transparent",
+   "I"
+  ]
+ ],
+ "yellow-ochre": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#c39b48",
+   "66.2, 5.7, 48.1",
+   "PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#c39b48",
+   "66.2, 5.7, 48.1",
+   "PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#c09844",
+   "65.0, 5.7, 48.7",
+   "PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#c69e48",
+   "67.2, 5.3, 49.4",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#c39b46",
+   "66.1, 5.5, 49.1",
+   "PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Lukas",
+   "Berlin Water-Mixable Oil",
+   "oil",
+   "#c39b46",
+   "66.1, 5.5, 49.1",
+   "PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#c39b46",
+   "66.1, 5.5, 49.1",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#c3a04b",
+   "67.5, 3.1, 48.2",
+   "PY42, PY43",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#c3a04b",
+   "67.5, 3.1, 48.2",
+   "PY43",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#be9641",
+   "64.3, 5.7, 49.2",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#c3a04b",
+   "67.5, 3.1, 48.2",
+   "PY43, PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#c3a04b",
+   "67.5, 3.1, 48.2",
+   "PY43, PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Sonnet",
+   "oil",
+   "#c3a04b",
+   "67.5, 3.1, 48.2",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#c69e4b",
+   "67.2, 5.5, 48.0",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#c39b48",
+   "66.2, 5.7, 48.1",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#c39b46",
+   "66.1, 5.5, 49.1",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#c39b46",
+   "66.1, 5.5, 49.1",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#c39b46",
+   "66.1, 5.5, 49.1",
+   "PY42",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#c69e4b",
+   "67.2, 5.5, 48.0",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#cc9a37",
+   "66.7, 9.1, 56.6",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#c8a04b",
+   "68.0, 5.3, 48.9",
+   "PY43",
+   "Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#cc9a37",
+   "66.7, 9.1, 56.6",
+   "PY43",
+   "Opaque",
+   "I"
+  ]
+ ],
+ "zinc-white": [
+  [
+   "Daler-Rowney",
+   "Georgian Oil Colors",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Daler-Rowney",
+   "Georgian Water Mixable Oil",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Gamblin",
+   "Artist's Oil Colors",
+   "oil",
+   "#fdfdfc",
+   "99.3, -0.2, 0.5",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Holbein",
+   "Artists' Oil Color",
+   "oil",
+   "#fdfdfc",
+   "99.3, -0.2, 0.5",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Lukas",
+   "1862 Artists' Oil",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW4",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "M. Graham",
+   "Artists' Oil Colors",
+   "oil",
+   "#fdfdfc",
+   "99.3, -0.2, 0.5",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Classico",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4, PW6",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Maimeri",
+   "Puro",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW4",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Michael Harding",
+   "Artists Oil Colours",
+   "oil",
+   "#fdfdfc",
+   "99.3, -0.2, 0.5",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Ladoga",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Nevskaya Palitra",
+   "Master Class",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Old Holland",
+   "Classic Oil Colors",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Royal Talens",
+   "Rembrandt Oil Colors",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Mussini Oil Colors",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Schmincke",
+   "Norma Professional",
+   "oil",
+   "#fcfcfa",
+   "98.9, -0.3, 0.9",
+   "PW4",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Artists' Oil Colors",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Sennelier",
+   "Rive Gauche",
+   "oil",
+   "#fafaf8",
+   "98.2, -0.3, 0.9",
+   "PW4",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Williamsburg",
+   "Handmade Oil Colors",
+   "oil",
+   "#fdfdfc",
+   "99.3, -0.2, 0.5",
+   "PW4",
+   "Semi-Opaque",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artisan Water Mixable Oil",
+   "oil",
+   "#fcfcfc",
+   "99.0, -0.0, -0.0",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Artists' Oil Colour",
+   "oil",
+   "#fdfdfc",
+   "99.3, -0.2, 0.5",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ],
+  [
+   "Winsor & Newton",
+   "Winton Oil Colour",
+   "oil",
+   "#fcfcfc",
+   "99.0, -0.0, -0.0",
+   "PW4",
+   "Semi-Transparent",
+   "I"
+  ]
+ ]
+}
