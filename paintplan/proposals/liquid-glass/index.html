@@ -3,16 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="PaintPlan">
 <meta name="theme-color" content="#3a3a3a">
+<meta name="paintplan-build" content="liquid-glass@6f2c87bf1841">
 <title>PaintPlan · Liquid Glass proposal · — plan &amp; practise paintings from a photo</title>
-<style>
-:root{--bg:#242424;--panel:#2c2c2c;--line:#3b3b3b;--text:#e7e5e1;--muted:#a7a49e;--accent:#c8b48f;--btn:#363636;--btnh:#414141;--field:#1f1f1f}
+<style id="base">
+/* styles/base.css — structure + component styles shared by every theme.
+   Uses design tokens (CSS custom properties) that each theme defines in its theme.css (:root{…}).
+   Themes override anything here; keep app-structure rules (positioning that JS relies on) in this file. */
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh}
@@ -111,9 +115,17 @@ header{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env
 #panel{padding-right:env(safe-area-inset-right);padding-bottom:env(safe-area-inset-bottom)}
 #stage{margin-left:env(safe-area-inset-left)}
 @media (max-width:760px){#stage{margin-left:0;margin-right:0}#panelBody{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}}
+/* Empty state overlay (themes without the sample provide #empty) */
+#empty{display:none}
+/* "Updated — reload" toast (ui/pwa.js) */
+#toast{position:fixed;z-index:50;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.35);font-size:13.5px;max-width:calc(100% - 24px)}
+#toast button{min-height:30px;padding:3px 12px}
+#toast #toastX{background:transparent;border-color:transparent;padding:3px 8px}
 </style>
-<style id="proposal-liquid-glass">
-/* ===== Proposal: Liquid Glass — visual layer only ===== */
+<style id="theme-liquid-glass">
+/* themes/liquid-glass/theme.css — iOS 26 "Liquid Glass" look: neutral (untinted) translucent floating toolbar,
+   mode dock and panel over the canvas surround. Design tokens in :root, then component + layout overrides on top of
+   styles/base.css. The token icon:NAME in double braces is replaced by build.mjs with themes/liquid-glass/icons/<name>.svg as a data URI. */
 #modes [data-mode=photo]::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3 16l5-5 4 4 3-3 6 6'/%3E%3Ccircle cx='16' cy='9' r='1.5'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3 16l5-5 4 4 3-3 6 6'/%3E%3Ccircle cx='16' cy='9' r='1.5'/%3E%3C/svg%3E")}
 #modes [data-mode=gray]::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Cpath d='M12 4a8 8 0 0 1 0 16z' fill='black'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Cpath d='M12 4a8 8 0 0 1 0 16z' fill='black'/%3E%3C/svg%3E")}
 #modes [data-mode=squint]::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z'/%3E%3Cpath d='M7.5 12h9'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z'/%3E%3Cpath d='M7.5 12h9'/%3E%3C/svg%3E")}
@@ -131,7 +143,7 @@ header label.btn::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns
 #bPanel::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h9M19 7h1M4 17h3M13 17h7'/%3E%3Ccircle cx='16' cy='7' r='2.2'/%3E%3Ccircle cx='10' cy='17' r='2.2'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h9M19 7h1M4 17h3M13 17h7'/%3E%3Ccircle cx='16' cy='7' r='2.2'/%3E%3Ccircle cx='10' cy='17' r='2.2'/%3E%3C/svg%3E")}
 header button::before,header label.btn::before,#modes button::before{content:'';display:block;flex:none;width:var(--ico,18px);height:var(--ico,18px);background:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
 
-:root{--text:#f5f5f7;--muted:rgba(235,235,245,.62);--accent:#ffffff;--line:rgba(255,255,255,.10);--glass:rgba(44,44,46,.52);--glass2:rgba(70,70,74,.38);--edge:rgba(255,255,255,.18);--hi:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.25);--btn:transparent;--btnh:rgba(255,255,255,.10);--field:rgba(0,0,0,.28)}
+:root{--bg:#242424;--panel:#2c2c2c;--text:#f5f5f7;--muted:rgba(235,235,245,.62);--accent:#ffffff;--line:rgba(255,255,255,.10);--glass:rgba(44,44,46,.52);--glass2:rgba(70,70,74,.38);--edge:rgba(255,255,255,.18);--hi:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.25);--btn:transparent;--btnh:rgba(255,255,255,.10);--field:rgba(0,0,0,.28)}
 html,body,#app{background:var(--stage,#3a3a3a);font:15px/1.4 -apple-system,"SF Pro Text","Inter",system-ui,sans-serif;letter-spacing:-.01em}
 #app{position:relative;overflow:hidden}
 #body{position:absolute;inset:0;display:block}
@@ -189,8 +201,7 @@ kbd{background:rgba(0,0,0,.3);border-color:rgba(255,255,255,.15)}
 }
 /* ---- v2: Setup toggle ---- */
 #bSetup::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 3v14h14'/%3E%3Cpath d='M3 7h14v14'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 3v14h14'/%3E%3Cpath d='M3 7h14v14'/%3E%3C/svg%3E")}
-body:not(.setup) #secSetup,body:not(.setup) #dCanvas,body:not(.setup) #dComp,body:not(.setup) #dGrid,body:not(.setup) #dExport,body:not(.setup) #dTips{display:none!important}
-body.setup #secMode,body.setup #dLines,body.setup #dView{display:none!important}
+/* which sections belong to Setup: theme.json → setup.sections / setup.hide (build.mjs appends the show/hide CSS) */
 #secSetup .su-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 #secSetup .su-head button{min-height:32px;padding:4px 16px}
 body.setup #modes button.on{background:rgba(255,255,255,.16);color:#fff}
@@ -206,6 +217,11 @@ body.noimg #empty{position:absolute;inset:0;z-index:2;display:flex;align-items:c
 #empty .em-sub{font-size:13px;color:var(--muted);font-weight:400}
 body.noimg #bPos,body.noimg #bMirror,body.noimg #bFit,body.noimg #bPng{opacity:.4}
 
+/* "Updated — reload" toast */
+#toast{background:var(--glass);-webkit-backdrop-filter:blur(30px) saturate(1.5);backdrop-filter:blur(30px) saturate(1.5);border:1px solid var(--edge);border-radius:999px;box-shadow:0 10px 40px rgba(0,0,0,.35),var(--hi);padding:5px 5px 5px 16px;top:max(70px,calc(env(safe-area-inset-top) + 64px));bottom:auto}
+/* Setup sections (generated from theme.json → runtime.setup) */
+body:not(.setup) #secSetup,body:not(.setup) #dCanvas,body:not(.setup) #dComp,body:not(.setup) #dGrid,body:not(.setup) #dExport,body:not(.setup) #dTips{display:none!important}
+body.setup #secMode,body.setup #dLines,body.setup #dView{display:none!important}
 </style>
 </head>
 <body class="noimg">
@@ -236,16 +252,19 @@ body.noimg #bPos,body.noimg #bMirror,body.noimg #bFit,body.noimg #bPng{opacity:.
     </div>
   </div>
   <aside id="panel">
-    <nav id="modes" aria-label="View mode"></nav>
     <div id="panelBody"></div>
   </aside>
 </div>
+<nav id="modes" aria-label="View mode"></nav>
 </div>
 <div id="printArea"><img id="printImg" alt="Grid reference"></div>
 <script>
 'use strict';
+/* PaintPlan · theme "liquid-glass" · build 6f2c87bf1841 — generated by build.mjs from src/ (edit the source, not this file) */
+const THEME={"id":"liquid-glass","build":"6f2c87bf1841","sample":false,"setup":{"title":"Setup","hint":"Canvas size, photo placement and composition guides. Guides you turn on stay on the canvas after you close Setup.","sections":["dCanvas","dComp","dGrid","dExport","dTips"],"hide":["secMode","dLines","dView"],"open":["dCanvas","dComp"]}};
 /* ===== Image engine: pure functions, runs in a Web Worker (or on the main thread as fallback) ===== */
 function ENGINE(){
+  /* worker/engine/color.js — Colour science: sRGB <-> linear, CIE L*, OKLab, gray LUTs. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   const S2L=new Float32Array(256);
   for(let i=0;i<256;i++){const c=i/255;S2L[i]=c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
   const L2S=new Uint8Array(4097);
@@ -270,7 +289,7 @@ function ENGINE(){
   const GRAY=new Uint8Array(1001);for(let i=0;i<=1000;i++)GRAY[i]=l2s(YofL(i/10));
   const grayOfL=L=>GRAY[L<=0?0:L>=100?1000:(L*10+0.5)|0];
   const hexLin=h=>{const v=parseInt(h.slice(1),16);return[S2L[v>>16&255],S2L[v>>8&255],S2L[v&255]];};
-
+  /* worker/engine/image-cache.js — Current working image (planes) + per-image memo cache; setImage(). (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   let img=null;
   function cached(key,fn){let v=img.cache.get(key);if(v===undefined){if(img.cache.size>40)img.cache.clear();v=fn();img.cache.set(key,v);}return v;}
 
@@ -284,7 +303,7 @@ function ENGINE(){
     }
     img={id:m.id,w,h,rgba,L,oL:A,oA:B,oB:C,cache:new Map()};
   }
-
+  /* worker/engine/filters.js — Blur (3-pass box ~ gaussian) and majority/mode filter for label maps. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   /* --- blur: 3-pass box blur ≈ gaussian --- */
   function boxH(s,d,w,h,r){const k=1/(2*r+1);for(let y=0;y<h;y++){const o=y*w;let acc=0;for(let i=-r;i<=r;i++)acc+=s[o+(i<0?0:i>=w?w-1:i)];for(let x=0;x<w;x++){d[o+x]=acc*k;const xa=x+r+1,xr=x-r;acc+=s[o+(xa>=w?w-1:xa)]-s[o+(xr<0?0:xr)];}}}
   function boxV(s,d,w,h,r){const k=1/(2*r+1);for(let x=0;x<w;x++){let acc=0;for(let i=-r;i<=r;i++)acc+=s[(i<0?0:i>=h?h-1:i)*w+x];for(let y=0;y<h;y++){d[y*w+x]=acc*k;const ya=y+r+1,yr=y-r;acc+=s[(ya>=h?h-1:ya)*w+x]-s[(yr<0?0:yr)*w+x];}}}
@@ -324,7 +343,7 @@ function ENGINE(){
     }
     return src;
   }
-
+  /* worker/engine/values.js — Value study: posterised CIE L* steps + histogram. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   /* --- value study (posterised CIE L*) --- */
   function valueSteps(p){
     return cached('vs'+JSON.stringify(p),()=>{
@@ -342,7 +361,7 @@ function ENGINE(){
     });
   }
   function histL(){return cached('hist',()=>{const h=new Array(101).fill(0),n=img.L.length;for(let i=0;i<n;i++)h[Math.max(0,Math.min(100,Math.round(img.L[i])))]++;return h.map(v=>v/n);});}
-
+  /* worker/engine/palette.js — k-means palette extraction in OKLab + palette label maps. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   /* --- k-means palette in OKLab --- */
   function kmeans(k,blur){
     return cached('km'+k+'_'+blur,()=>{
@@ -396,7 +415,7 @@ function ENGINE(){
       return {labels,cols};
     });
   }
-
+  /* worker/engine/mixing.js — Limited palette: simulated paint mixing gamut, nearest mix, LUT. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   /* --- limited-palette gamut: simulated paint mixing (weighted geometric mean of reflectance) --- */
   const GC=new Map();
   function gamut(pigs,mix,S,maxN){
@@ -429,7 +448,7 @@ function ENGINE(){
     for(let r=0;r<32;r++)for(let gg=0;gg<32;gg++)for(let b=0;b<32;b++){toLab(S2L[r*8+4],S2L[gg*8+4],S2L[b*8+4],o);lut[r<<10|gg<<5|b]=nearest(g,o[0],o[1],o[2])[0];}
     return g.lut=lut;
   }
-
+  /* worker/engine/edges.js — Contours: Canny-like edges or simplified region outlines; cleanup. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   /* --- edges: Canny-like (blur → Sobel → non-max suppression → hysteresis) or region outlines --- */
   function removeSmall(mask,w,h,min){
     const n=w*h,seen=new Uint8Array(n),st=new Int32Array(n),comp=new Int32Array(n);
@@ -479,7 +498,7 @@ function ENGINE(){
     if(p.thick>1)mask=dilate(mask,w,h,p.thick-1);
     return {res:{type:'edges',kind:'edges',imageId:img.id,w,h,mask:mask.buffer},tr:[mask.buffer]};
   }
-
+  /* worker/engine/dispatch.js — Message handler: process()/handle(); exposes handle.util. (fragment: concatenated inside function ENGINE(){…} by build.mjs) */
   function process(m){
     const {w,h}=img,n=w*h,out=new Uint8ClampedArray(n*4),p=m.p||{},sc=scl();let labels=null,info=null;
     const put=(i,r,g,b)=>{const j=i*4;out[j]=r;out[j+1]=g;out[j+2]=b;out[j+3]=255;};
@@ -530,6 +549,7 @@ function ENGINE(){
   handle.util={toLab,fromLab,Lstar,S2L,l2s};
   return handle;
 }
+/* core/util.js — Tiny helpers ($, clamp, number/colour formatting) + HOOKS (theme modules register init hooks). */
 /* ===== App ===== */
 const $=s=>document.querySelector(s);
 const clamp=(v,a,b)=>v<a?a:v>b?b:v;
@@ -541,6 +561,8 @@ const hexRgb=h=>{const v=parseInt(h.slice(1),16);return[v>>16&255,v>>8&255,v&255
 const rgba=(h,a)=>{const c=hexRgb(h);return`rgba(${c[0]},${c[1]},${c[2]},${a})`;};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+const HOOKS=[];   // functions run at the end of init() (theme/optional modules push here)
+/* core/config.js — Static config: modes, presets, paint palettes, default state DEF. */
 const MODES=[['photo','Photo'],['gray','Value'],['squint','Squint'],['values','Values'],['notan','Notan'],['palette','Palette'],['remap','Limited'],['temp','Temp'],['chroma','Chroma']];
 const MODE_INFO={
   photo:['Photo','The reference as placed on your canvas. Tap anywhere to sample a colour (hex, value, suggested mix).'],
@@ -570,11 +592,12 @@ const DEF={mode:'photo',unit:'in',cw:12,ch:16,preset:'12x16',orient:'portrait',w
   tStrength:1,cStrength:1,
   canvasColor:'#efebe2',place:{cx:0.5,cy:0.5,s:1,rot:0,fx:1,fy:1,auto:true},
   compare:'off',split:0.5,flipH:false,flipV:false,stageBg:'#3a3a3a',exportScale:2};
+/* core/store.js — Settings state S (persisted to localStorage) + save(). */
 const SAVE_KEY='paintplan.v1';
 function loadSaved(){try{const o=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}');const r={};for(const k in DEF)if(k in o&&typeof o[k]===typeof DEF[k])r[k]=o[k];return r;}catch(e){return{};}}
 const S=Object.assign(JSON.parse(JSON.stringify(DEF)),loadSaved());
 let saveT=0;function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(SAVE_KEY,JSON.stringify(S));}catch(e){}},400);}
-
+/* worker/client.js — Worker client: spawns the engine as a Blob worker (iOS-safe), main-thread fallback, job queue. */
 /* ---------- engine / worker ---------- */
 const local=ENGINE();
 let worker=null;
@@ -609,7 +632,7 @@ function onResult(r){
 let statusT=0;
 function setStatus(){const busy=jobs.process.busy||jobs.edges.busy;clearTimeout(statusT);
   if(busy)statusT=setTimeout(()=>{const el=$('#status');el.textContent='Working\u2026';el.hidden=false;},180);else $('#status').hidden=true;}
-
+/* core/pipeline.js — Image/processing state + update() pipeline; applies engine results to display canvases. */
 /* ---------- state for images ---------- */
 let src=null;                       // {c:canvas,w,h,natW,natH}
 const orig=document.createElement('canvas'),proc=document.createElement('canvas'),hlc=document.createElement('canvas'),edgeC=document.createElement('canvas');
@@ -668,6 +691,7 @@ function rebuildDisplay(){
   hlc.getContext('2d').putImageData(id,0,0);disp=hlc;
 }
 function setHL(i){hl=(hl===i?-1:i);rebuildDisplay();renderModeInfo();render();}
+/* ui/panel.js — Control panel: builds the settings markup, syncs controls <-> S, setState(). */
 /* ---------- panel UI ---------- */
 const FMT={compAlpha:'%',gridAlpha:'%',lineAlpha:'%',split:'%',tStrength:'x',cStrength:'x'};
 function sl(k,label,min,max,step){return`<div class="row"><label for="c_${k}">${label}</label><input type="range" id="c_${k}" data-k="${k}" min="${min}" max="${max}" step="${step}"><output id="o_${k}"></output></div>`;}
@@ -693,14 +717,13 @@ function buildPanel(){
   <div data-for="temp">${sl('tStrength','Strength',0.25,4,0.25)}</div>
   <div data-for="chroma">${sl('cStrength','Strength',0.25,4,0.25)}</div>
 </section>
-<section class="sec" id="secSetup"><div class="su-head"><h3>Setup</h3><button id="bSetupDone" class="on">Done</button></div><p class="hint">Canvas size, photo placement and composition guides. Guides you turn on stay on the canvas after you close Setup.</p></section>
 <details id="dCanvas" open><summary>Canvas &amp; image</summary><div>
   ${se('preset','Preset',PRESETS.map(p=>[p[0],p[1]]))}
   <div class="row"><label>Size</label><input type="number" id="c_cw" data-k="cw" min="0.5" step="0.1" inputmode="decimal" aria-label="Width"> × <input type="number" id="c_ch" data-k="ch" min="0.5" step="0.1" inputmode="decimal" aria-label="Height">
     <select id="c_unit" data-k="unit" style="flex:0 0 auto"><option value="in">in</option><option value="cm">cm</option></select></div>
   ${se('orient','Orientation',[['portrait','Portrait'],['landscape','Landscape']])}
   ${co('canvasColor','Empty canvas')}
-  <div class="btns"><button id="bPos2">Position image…</button><label class="btn">Replace photo<input type="file" id="file2" accept="image/*" hidden></label><button id="bClearImg" title="Forget the saved photo">Clear saved photo</button></div>
+  <div class="btns"><button id="bPos2">Position image…</button><label class="btn">Replace photo<input type="file" id="file2" accept="image/*" hidden></label><button id="bClearImg" title="${THEME.sample?'Forget the saved photo and load the sample':'Forget the saved photo'}">Clear saved photo</button></div>
   <div class="info" id="scaleInfo"></div>
 </div></details>
 <details id="dComp" open><summary>Composition</summary><div>
@@ -806,7 +829,7 @@ function onPig(e){
   S.rPreset='custom';$('#pigList').dataset.sig=JSON.stringify(S.pigments);syncControls();save();
   if(el.dataset.f==='c')update();else renderModeInfo();
 }
-
+/* ui/mode-info.js — Mode info: value strip/histogram, palette swatches, mixes. */
 /* ---------- mode info panels ---------- */
 function recipe(w,pigs,S0){
   const nz=w.map((v,i)=>[v,i]).filter(a=>a[0]>0);if(!nz.length)return'';
@@ -841,29 +864,32 @@ function drawHist(v){
   for(let i=0;i<=100;i++){const bh=Math.sqrt(v.hist[i]/mx)*(H-4);x.fillRect(i/101*W,H-bh,W/101+0.5,bh);}
   x.fillStyle='#c8b48f';for(let i=1;i<v.N;i++)x.fillRect(v.bounds[i]/100*W-1,0,2,H);
 }
+/* ui/scale-info.js — Canvas scale readout (#scaleInfo). */
 function unitPx(){return orig.width/S.cw;}
 function updateInfo(){
   const el=$('#scaleInfo');if(!el)return;
   const a=aspect(),u=S.unit;
   let t=`<b>${fmtN(S.cw)} × ${fmtN(S.ch)} ${u}</b> · aspect ${a>=1?fmtN(r2(a))+' : 1':'1 : '+fmtN(r2(1/a))}`;
   if(origData){t+=`<br>Working image ${orig.width} × ${orig.height} px<br><b>1 ${u} on canvas = ${(orig.width/S.cw).toFixed(1)} px</b> (1 px = ${(S.cw/orig.width*(u==='cm'?10:1)).toFixed(3)} ${u==='cm'?'mm':'in'})`;
-    if(src){const P=S.place;t+=`<br>Photo ${src.natW} × ${src.natH} px · <b>${Math.round(src.natW/(P.s*S.cw))} original px per ${u}</b><br>Placement: ${Math.round(P.s/placeScale('fill')*100)}% of fill · ${fmtN(r2(P.rot))}°${P.fx<0||P.fy<0?' · flipped':''}${P.auto?' · auto-fill':''}`;}}
+    if(src){const P=S.place;t+=`<br>Photo ${src.natW} × ${src.natH} px${src.sample?' (sample)':''} · <b>${Math.round(src.natW/(P.s*S.cw))} original px per ${u}</b><br>Placement: ${Math.round(P.s/placeScale('fill')*100)}% of fill · ${fmtN(r2(P.rot))}°${P.fx<0||P.fy<0?' · flipped':''}${P.auto?' · auto-fill':''}`;}}
   el.innerHTML=t;
   const g=gridGeom(),gi=$('#gridInfo');
   if(gi)gi.innerHTML=`<b>${g.cols} × ${g.rows}</b> cells · cell ${fmtN(r2(g.cellW))} × ${fmtN(r2(g.cellH))} ${u}${origData?` (${Math.round(g.cellW*unitPx())} px)`:''}${S.gridMode==='spacing'?'<br>Last row/column may be partial.':''}`;
 }
-/* ---------- image loading: the original is kept untouched; placement is a transform ---------- */
+/* core/storage.js — IndexedDB key/value store (saved photo blob). */
 const idb={p:null,
   db(){if(!this.p)this.p=new Promise((res,rej)=>{try{const r=indexedDB.open('paintplan',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);}catch(e){rej(e);}});return this.p;},
   async op(mode,fn){const db=await this.db();return new Promise((res,rej)=>{const t=db.transaction('kv',mode);const rq=fn(t.objectStore('kv'));t.oncomplete=()=>res(rq&&rq.result);t.onerror=t.onabort=()=>rej(t.error);});},
   get(k){return this.op('readonly',s=>s.get(k));},put(k,v){return this.op('readwrite',s=>s.put(v,k));},del(k){return this.op('readwrite',s=>s.delete(k));}};
+/* core/image.js — Loading the photo (file, IndexedDB restore); clearSaved(). */
+/* ---------- image loading: the original is kept untouched; placement is a transform ---------- */
 function buildLevels(img,w,h){const L=[{c:img,w}];let cur=img,cw=w,ch=h;
   while(cw>800&&ch>200){const nw=Math.round(cw/2),nh=Math.round(ch/2),c=document.createElement('canvas');c.width=nw;c.height=nh;const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(cur,0,0,nw,nh);L.push({c,w:nw});cur=c;cw=nw;ch=nh;}
   return L;}
 function setSource(img,natW,natH,opts={}){
   document.body.classList.remove('noimg');
   if(src&&src.url&&src.url!==opts.url)URL.revokeObjectURL(src.url);
-  src={img,natW,natH,levels:buildLevels(img,natW,natH),name:opts.name||'',url:opts.url||null};
+  src={img,natW,natH,levels:buildLevels(img,natW,natH),name:opts.name||'',sample:!!opts.sample,url:opts.url||null};
   if(S.preset==='photo')applyPreset();
   if(!opts.keepPlace)S.place=Object.assign({},DEF.place);
   if(S.place.auto||!(S.place.s>0))applyAuto();
@@ -881,11 +907,10 @@ async function loadFile(f){
 async function restoreImage(){
   let v=null;try{v=await idb.get('image');}catch(e){}
   if(v&&v.blob){try{const d=await decodeImg(v.blob);setSource(d.im,d.im.naturalWidth,d.im.naturalHeight,{name:v.name,url:d.url,keepPlace:true});return;}catch(e){}}
-  showEmpty();
+  if(THEME.sample){const c=makeSample();setSource(c,c.width,c.height,{sample:true,keepPlace:true});}else showEmpty();
 }
-function showEmpty(){document.body.classList.add('noimg');render();}
-function clearSaved(){idb.del('image').catch(()=>{});if(posMode)setPosMode(false);if(src&&src.url)URL.revokeObjectURL(src.url);src=null;origData=null;procData=null;labels=null;edgeMask=null;edgeReady=false;lastValues=lastPalette=lastRemap=null;hl=-1;imageId++;procImageId=edgeImageId=-1;lastProcKey=lastEdgeKey='';for(const k in jobs)jobs[k].pending=false;['strip','swatches','mixes'].forEach(i=>{const e=document.getElementById(i);if(e)e.innerHTML='';});const hc=document.getElementById('hist');if(hc)hc.getContext('2d').clearRect(0,0,hc.width,hc.height);closePick();updateInfo();showEmpty();}
-
+function clearSaved(){if(THEME.sample){idb.del('image').catch(()=>{});loadSample();}else clearImage();}
+/* core/placement.js — Non-destructive placement transform (S.place) + Position mode state. */
 /* ---------- placement (non-destructive) ----------
    S.place: cx,cy = image centre as a fraction of canvas width/height; s = image width / canvas width;
    rot = degrees clockwise; fx,fy = ±1 flips in the image's own frame; auto = keep "fill" when the canvas changes. */
@@ -932,7 +957,7 @@ function syncPosBar(){
 }
 function posRect(){const bar=$('#posbar'),bh=bar&&!bar.hidden?(bar.offsetHeight+12)*dpr:0,W=cv.width,H=Math.max(60,cv.height-bh),m=Math.max(22*dpr,Math.min(W,H)*0.07);
   return fitRect(aspect()*1000,1000,{x:0,y:0,w:W,h:H},m);}
-
+/* ui/render.js — Main canvas rendering (view, compare, position view). */
 /* ---------- rendering ---------- */
 const cv=$('#view'),ctx=cv.getContext('2d');let dpr=1,rq=0;
 function resize(){dpr=Math.min(window.devicePixelRatio||1,3);const r=cv.getBoundingClientRect();cv.width=Math.max(1,Math.round(r.width*dpr));cv.height=Math.max(1,Math.round(r.height*dpr));draw();}
@@ -956,7 +981,7 @@ function draw(){
     const t=`${fmtN(S.cw)} × ${fmtN(S.ch)} ${S.unit} canvas`;ctx.font=`${12*dpr}px system-ui,sans-serif`;ctx.textBaseline='bottom';ctx.fillStyle='rgba(231,229,225,.85)';ctx.fillText(t,R.x,R.y-5*dpr);
     return;
   }
-  if(!origData)return; /* empty state is the #empty overlay */
+  if(!origData){if(!THEME.sample)return; /* themes without the sample show the #empty overlay */ctx.fillStyle='#aaa';ctx.font=`${15*dpr}px system-ui,sans-serif`;ctx.textAlign='center';ctx.fillText('Open a photo, drop one here, or load the sample',cv.width/2,cv.height/2);ctx.textAlign='start';return;}
   if(S.compare==='side'){
     const [a,b]=sideRects();drawFlipped(ctx,orig,a);drawScene(ctx,b,dpr,{});curRect=b;
     ctx.font=`${11*dpr}px system-ui,sans-serif`;ctx.textBaseline='top';for(const [R,t] of [[a,'Photo'],[b,MODE_INFO[S.mode][0]]]){const tw=ctx.measureText(t).width;ctx.fillStyle='rgba(0,0,0,.55)';ctx.fillRect(R.x+4*dpr,R.y+4*dpr,tw+10*dpr,17*dpr);ctx.fillStyle='#fff';ctx.fillText(t,R.x+9*dpr,R.y+7*dpr);}
@@ -972,6 +997,7 @@ function drawScene(c,R,k,o){
   drawOverlays(c,R,k,o);
 }
 function mapper(R){const h=fH(),vv=fV();return(u,v)=>[R.x+(h?1-u:u)*R.w,R.y+(vv?1-v:v)*R.h];}
+/* core/geometry.js — Composition geometry: golden spiral, drawing grid. */
 /* golden spiral in a φ×1 rectangle, normalised to unit square */
 const SPIRAL=(()=>{let x=0,y=0,w=PHI,h=1;const pts=[],sq=[];
   for(let i=0;i<14;i++){const d=i%4;let s,cx,cy,a0;
@@ -992,6 +1018,7 @@ function gridGeom(){
     for(let j=0;j<rows;j++)rowL.push([(j+0.5)/rows,j<26?String.fromCharCode(65+j):'A'+String.fromCharCode(65+j-26)]);}
   return{us,vs,cols,rows,cellW,cellH,colL,rowL};
 }
+/* ui/overlays.js — Draws composition overlays + grid onto a 2D context. */
 function drawOverlays(c,R,k,o){
   const P=mapper(R);c.save();c.lineCap='round';c.lineJoin='round';
   c.beginPath();c.rect(R.x,R.y,R.w,R.h);c.clip();
@@ -1028,6 +1055,7 @@ function drawOverlays(c,R,k,o){
     for(const [v,t] of g.rowL){const [,y]=P(0,v);pill(t,R.x+(o.sheet?-fs*2:fs*1.1),y);if(o.sheet)pill(t,R.x+R.w+fs*2,y);}
     c.restore();}
 }
+/* ui/gestures.js — Pointer/touch/wheel interaction (view pan/zoom, position drag/pinch). */
 /* ---------- interaction ----------
    Normal: 1 finger pans the VIEW, pinch/scroll zooms the view, tap samples a colour.
    Position mode: 1 finger moves the IMAGE behind the fixed canvas, pinch scales + rotates it, scroll scales (Shift/Alt+scroll rotates). */
@@ -1078,7 +1106,7 @@ cv.addEventListener('wheel',e=>{e.preventDefault();const p=pos(e),dy=e.deltaY*(e
   if(posMode&&src){posGest=true;if(e.shiftKey||e.altKey)placeAbout(p.x,p.y,1,clamp(-dy,-60,60)*0.0015,0,0);else placeAbout(p.x,p.y,Math.exp(-dy*0.0015),0,0,0);
     syncPosBar();render();clearTimeout(wheelT);wheelT=setTimeout(()=>{posGest=false;placeChanged(true);},250);}
   else zoomAt(p.x,p.y,view.zoom*Math.exp(-dy*0.0015));},{passive:false});
-
+/* ui/picker.js — Colour picker (tap to sample) + suggested mix. */
 function doPick(x,y){
   const R=curRect;if(!R||!origData)return;
   let u=(x-R.x)/R.w,v=(y-R.y)/R.h;if(u<0||v<0||u>1||v>1){if(S.compare==='side'){const a=sideRects()[0];u=(x-a.x)/a.w;v=(y-a.y)/a.h;if(u<0||v<0||u>1||v>1){closePick();return;}}else{closePick();return;}}
@@ -1104,7 +1132,7 @@ function showPick(){
    <button class="pk-x" aria-label="Close">×</button>`;
   $('#pick').hidden=false;
 }
-
+/* ui/export.js — PNG export, grid sheet, print. */
 /* ---------- export ---------- */
 function download(canvas,name){
   canvas.toBlob(b=>{if(!b)return;const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);},'image/png');
@@ -1136,7 +1164,7 @@ function sheetCanvas(){
 }
 function exportSheet(){if(origData)download(sheetCanvas(),`paintplan-grid-${fmtN(S.cw)}x${fmtN(S.ch)}${S.unit}.png`);}
 function printSheet(){if(!origData)return;const img=$('#printImg');img.onload=()=>{setTimeout(()=>window.print(),50);img.onload=null;};img.src=sheetCanvas().toDataURL('image/png');}
-
+/* ui/init.js — Wiring: DOM events -> actions; init(). */
 /* ---------- wiring ---------- */
 function init(){
   buildPanel();syncControls();
@@ -1154,6 +1182,7 @@ function init(){
   });
   $('#modes').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(b)setState('mode',b.dataset.mode);});
   $('#file').addEventListener('change',e=>{loadFile(e.target.files[0]);e.target.value='';});
+  if($('#bSample'))$('#bSample').onclick=loadSample;
   $('#bPos').onclick=()=>setPosMode(!posMode);
   document.getElementById('panelBody').addEventListener('change',e=>{if(e.target.id==='file2'){loadFile(e.target.files[0]);e.target.value='';}});
   $('#bMirror').onclick=()=>setState('flipH',!S.flipH);
@@ -1184,29 +1213,51 @@ function init(){
   new ResizeObserver(resize).observe(cv);resize();
   initWorker();
   restoreImage();
+  HOOKS.forEach(f=>f());
 }
-init();
-</script>
-<script>
-/* proposal layout glue: moves existing elements only (listeners stay attached); no app logic changed */
-
-document.getElementById('app').appendChild(document.getElementById('modes'));
-/* v2: Setup toggle — only shows/hides panel sections; nothing persisted */
-(function(){
-  const B=document.body,bS=document.getElementById('bSetup');
+/* ui/empty.js — Empty state for themes without the built-in sample (THEME.sample=false).
+   The theme template provides <button id="empty">…</button> inside #stage; body.noimg shows it. */
+function showEmpty(){document.body.classList.add('noimg');render();}
+function clearImage(){idb.del('image').catch(()=>{});if(posMode)setPosMode(false);if(src&&src.url)URL.revokeObjectURL(src.url);src=null;origData=null;procData=null;labels=null;edgeMask=null;edgeReady=false;lastValues=lastPalette=lastRemap=null;hl=-1;imageId++;procImageId=edgeImageId=-1;lastProcKey=lastEdgeKey='';for(const k in jobs)jobs[k].pending=false;['strip','swatches','mixes'].forEach(i=>{const e=document.getElementById(i);if(e)e.innerHTML='';});const hc=document.getElementById('hist');if(hc)hc.getContext('2d').clearRect(0,0,hc.width,hc.height);closePick();updateInfo();showEmpty();}
+HOOKS.push(()=>{const e=$('#empty');if(e)e.addEventListener('click',()=>$('#file').click());});
+/* ui/setup.js — "Setup" toggle (themes with THEME.setup). Pure presentation: shows/hides panel sections,
+   nothing is persisted. Which sections belong to Setup is theme config (theme.json → setup.sections / setup.hide);
+   build.mjs turns that list into CSS (body:not(.setup) #section{display:none}) appended to the theme's styles. */
+HOOKS.push(()=>{
+  const C=THEME.setup,B=document.body,bS=$('#bSetup');if(!C||!bS)return;
+  const first=document.getElementById(C.sections[0]);
+  first.insertAdjacentHTML('beforebegin',`<section class="sec" id="secSetup"><div class="su-head"><h3>${esc(C.title)}</h3><button id="bSetupDone" class="on">Done</button></div><p class="hint">${esc(C.hint)}</p></section>\n`);
   function setSetup(on){
     B.classList.toggle('setup',on);bS.classList.toggle('on',on);bS.setAttribute('aria-pressed',String(on));
-    if(on){B.classList.remove('nopanel');['dCanvas','dComp'].forEach(id=>{const d=document.getElementById(id);if(d)d.open=true;});const pb=document.getElementById('panelBody');if(pb)pb.scrollTop=0;}
+    if(on){B.classList.remove('nopanel');(C.open||[]).forEach(id=>{const d=document.getElementById(id);if(d)d.open=true;});const pb=$('#panelBody');if(pb)pb.scrollTop=0;}
     resize();
   }
   window.setSetup=setSetup;
   bS.onclick=()=>setSetup(!(B.classList.contains('setup')&&!B.classList.contains('nopanel')));
-  document.getElementById('panelBody').addEventListener('click',e=>{if(e.target.closest('#bSetupDone'))setSetup(false);});
-  document.getElementById('modes').addEventListener('click',e=>{if(e.target.closest('[data-mode]'))setSetup(false);});
+  $('#panelBody').addEventListener('click',e=>{if(e.target.closest('#bSetupDone'))setSetup(false);});
+  $('#modes').addEventListener('click',e=>{if(e.target.closest('[data-mode]'))setSetup(false);});
   window.addEventListener('keydown',e=>{if(e.key==='Escape'&&B.classList.contains('setup')&&!B.classList.contains('positioning')&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))setSetup(false);});
-  document.getElementById('empty').addEventListener('click',()=>document.getElementById('file').click());
-})();
-
+});
+/* ui/pwa.js — Service worker registration + "Updated — reload" toast.
+   THEME.build is the content hash stamped by build.mjs; sw.js knows the same hash. When a new service worker
+   takes control and reports a different build than this page, a small toast offers a reload. */
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
+  const SWC=navigator.serviceWorker,hadCtl=!!SWC.controller;let reg=null,lastCheck=Date.now();
+  const swBuild=sw=>new Promise(res=>{try{const ch=new MessageChannel();ch.port1.onmessage=e=>res(e.data&&e.data.build);sw.postMessage({type:'build'},[ch.port2]);setTimeout(()=>res(null),3000);}catch(e){res(null);}});
+  function updToast(){
+    if(document.getElementById('toast'))return;
+    const t=document.createElement('div');t.id='toast';t.setAttribute('role','status');
+    t.innerHTML='<span>PaintPlan was updated.</span><button id="toastReload" class="on">Reload</button><button id="toastX" aria-label="Dismiss">\u00d7</button>';
+    document.body.appendChild(t);
+    t.addEventListener('click',e=>{if(e.target.id==='toastReload')location.reload();else if(e.target.id==='toastX')t.remove();});
+  }
+  SWC.addEventListener('controllerchange',async()=>{if(!hadCtl||!SWC.controller)return;const b=await swBuild(SWC.controller);if(b&&b!==THEME.build)updToast();});
+  addEventListener('load',()=>{SWC.register('sw.js').then(r=>{reg=r;}).catch(e=>console.warn('SW registration failed',e));});
+  // installed iPhone apps can stay open for days: look for a new version when the app comes back to the foreground
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&reg&&Date.now()-lastCheck>60000){lastCheck=Date.now();reg.update().catch(()=>{});}});
+}
+/* ui/boot.js — start the app (must be the last module). */
+init();
 </script>
 </body>
 </html>

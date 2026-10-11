@@ -1,0 +1,28 @@
+<div id="app">
+<header>
+  <span class="brand hide-m">PaintPlan</span>
+  <label class="btn" title="Open a photo (or drop / paste one)">Open<input type="file" id="file" accept="image/*" hidden></label>
+  <button id="bSetup" aria-pressed="false" title="Setup: canvas size, photo placement &amp; composition guides">Setup</button>
+  <button id="bPos" title="Position the image behind the canvas (P)">Position</button>
+  <button id="bMirror" aria-pressed="false" title="Mirror view (M)">Mirror</button>
+  <button id="bFit" class="hide-m" title="Reset zoom (double-tap also works)">Fit</button>
+  <span class="spacer"></span>
+  <button id="bPng" title="Download current view as PNG">PNG</button>
+  <button id="bPanel" title="Show / hide controls">Panel</button>
+</header>
+<div id="body">
+  <div id="stage">
+    <canvas id="view" aria-label="Reference view"></canvas>
+    <div id="drop">Drop the photo here</div>
+    <button id="empty" type="button" aria-label="Choose a photo"><span class="em-card"><span class="em-ico"></span><b>Choose a photo</b><span class="em-sub">Tap to open your photos · or drop / paste an image</span></span></button>
+    <div id="status" hidden></div>
+    <div id="pick" hidden></div>
+{{> posbar}}
+  </div>
+  <aside id="panel">
+    <div id="panelBody"></div>
+  </aside>
+</div>
+<nav id="modes" aria-label="View mode"></nav>
+</div>
+{{> print-area}}

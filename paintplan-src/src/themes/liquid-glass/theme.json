@@ -1,0 +1,19 @@
+{
+  "name": "Liquid Glass",
+  "title": "PaintPlan · Liquid Glass proposal · — plan &amp; practise paintings from a photo",
+  "themeColor": "#3a3a3a",
+  "bodyClass": "noimg",
+  "deploy": "paintplan/proposals/liquid-glass/",
+  "manifest": { "name": "PaintPlan — Liquid Glass preview", "short_name": "PaintPlan", "background_color": "#3a3a3a", "theme_color": "#3a3a3a" },
+  "sw": { "exclude": [], "legacyCaches": [] },
+  "runtime": {
+    "sample": false,
+    "setup": {
+      "title": "Setup",
+      "hint": "Canvas size, photo placement and composition guides. Guides you turn on stay on the canvas after you close Setup.",
+      "sections": ["dCanvas", "dComp", "dGrid", "dExport", "dTips"],
+      "hide": ["secMode", "dLines", "dView"],
+      "open": ["dCanvas", "dComp"]
+    }
+  }
+}

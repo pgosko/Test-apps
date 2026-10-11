@@ -1,0 +1,3 @@
+/* themes/classic/theme.css — the original PaintPlan look: warm dark grey, sand accent. Design tokens only;
+   all component styles come from styles/base.css. */
+:root{--bg:#242424;--panel:#2c2c2c;--line:#3b3b3b;--text:#e7e5e1;--muted:#a7a49e;--accent:#c8b48f;--btn:#363636;--btnh:#414141;--field:#1f1f1f}
