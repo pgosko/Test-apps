@@ -2,11 +2,11 @@
    so every deploy that changes anything gets a new cache automatically (no manual version bump).
    Strategy: pages (navigations/HTML) = network-first with offline fallback to the cached copy;
    static assets (icons, manifest) = stale-while-revalidate. */
-const BUILD = 'adf07a33d4d5';
+const BUILD = '036cf00ff0f7';
 const PREFIX = 'paintplan-classic-';
 const VERSION = PREFIX + BUILD;
 const LEGACY = ["paintplan-v1"];     // cache names used by older service workers of this app
-const EXCLUDE = ["proposals/"];   // sub-paths of this scope that this worker must not handle (e.g. previews with their own SW)
+const EXCLUDE = ["proposals/","preview/"];   // sub-paths of this scope that this worker must not handle (e.g. previews with their own SW)
 const SHELL = ['./', './index.html', './manifest.webmanifest', './apple-touch-icon.png', './icon-192.png', './icon-512.png'];
 const SCOPE = new URL(self.registration.scope);
 const NET_TIMEOUT = 4000;      // slow network: answer from cache after this, keep updating in the background

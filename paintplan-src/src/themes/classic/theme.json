@@ -4,6 +4,6 @@
   "themeColor": "#242424",
   "deploy": "paintplan/",
   "manifest": { "name": "PaintPlan — plan & practise paintings", "short_name": "PaintPlan", "background_color": "#242424", "theme_color": "#242424" },
-  "sw": { "exclude": ["proposals/"], "legacyCaches": ["paintplan-v1"] },
+  "sw": { "exclude": ["proposals/", "preview/"], "legacyCaches": ["paintplan-v1"] },
   "runtime": { "sample": true, "setup": null }
 }
